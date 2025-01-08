@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{880D1AA6-7570-490D-99BD-F46486BBA022}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DROE_CSharp_API_Sample</RootNamespace>
+    <AssemblyName>DROE_CSharp_API_Sample</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>1\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DROE_CSharp_API_Sample.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="bbv.Common">
+      <HintPath>bin\bbv.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="bbv.Common.StateMachine">
+      <HintPath>bin\bbv.Common.StateMachine.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.Communication">
+      <HintPath>bin\Delta.Communication.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.General">
+      <HintPath>bin\Delta.General.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.Interpreter">
+      <HintPath>bin\Delta.Interpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="FTPLib">
+      <HintPath>bin\FTPLib.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.ControllerManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.DROE.ControllerManager\bin\Debug\RABD.DROE.ControllerManager.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.MSRobot, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.DROE.MSRobot\bin\Debug\RABD.DROE.MSRobot.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.ParaEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.DROE.ParaEditor\bin\Debug\RABD.DROE.ParaEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.ParaEditor.Define, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.DROE.ParaEditor.Define\bin\Debug\RABD.DROE.ParaEditor.Define.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.PlugInInterface">
+      <HintPath>bin\RABD.DROE.PlugInInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.ProjectManager">
+      <HintPath>bin\RABD.DROE.ProjectManager.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.Solution">
+      <HintPath>bin\RABD.DROE.Solution.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.SystemDefine, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.DROE.SystemDefine\bin\Debug\RABD.DROE.SystemDefine.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.DROE.VRRobot">
+      <HintPath>bin\RABD.DROE.VRRobot.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.FTP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.FTP\bin\Debug\RABD.FTP.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.Lib, Version=1.1.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.Lib\bin\Debug\RABD.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.Modbus.Client, Version=0.0.1.25951, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.Modbus.Client\bin\Debug\RABD.Modbus.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.Modbus.Define, Version=0.0.1.25949, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Knight\01_Programs\DRAStudio\DRAStudio_UI_Alpha_V1\RABD.Modbus.Define\bin\Debug\RABD.Modbus.Define.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.Project">
+      <HintPath>bin\RABD.Project.dll</HintPath>
+    </Reference>
+    <Reference Include="RABD.Tool">
+      <HintPath>bin\RABD.Tool.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RobotModuleID.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="bin\.jazzignore" />
+    <None Include="bin\Debug\DROE_CSharp_API_Sample.exe.config" />
+    <None Include="bin\Debug\logs\10660_2023-11-06.log" />
+    <None Include="bin\Debug\logs\10664_2023-10-17.log" />
+    <None Include="bin\Debug\logs\11568_2023-11-07.log" />
+    <None Include="bin\Debug\logs\11700_2023-10-18.log" />
+    <None Include="bin\Debug\logs\11848_2023-11-07.log" />
+    <None Include="bin\Debug\logs\12344_2023-10-17.log" />
+    <None Include="bin\Debug\logs\13308_2024-04-23.log" />
+    <None Include="bin\Debug\logs\16200_2023-10-18.log" />
+    <None Include="bin\Debug\logs\16908_2023-10-20.log" />
+    <None Include="bin\Debug\logs\17516_2023-11-07.log" />
+    <None Include="bin\Debug\logs\18584_2023-11-07.log" />
+    <None Include="bin\Debug\logs\18868_2023-10-19.log" />
+    <None Include="bin\Debug\logs\19600_2023-11-07.log" />
+    <None Include="bin\Debug\logs\19720_2024-02-06.log" />
+    <None Include="bin\Debug\logs\20040_2023-10-18.log" />
+    <None Include="bin\Debug\logs\2021-06-24.log" />
+    <None Include="bin\Debug\logs\2021-07-12.log" />
+    <None Include="bin\Debug\logs\2021-07-30.log" />
+    <None Include="bin\Debug\logs\2021-08-02.log" />
+    <None Include="bin\Debug\logs\2021-08-03.log" />
+    <None Include="bin\Debug\logs\2021-08-04.log" />
+    <None Include="bin\Debug\logs\20376_2023-10-18.log" />
+    <None Include="bin\Debug\logs\20392_2024-03-26.log" />
+    <None Include="bin\Debug\logs\21348_2023-10-20.log" />
+    <None Include="bin\Debug\logs\21592_2023-10-19.log" />
+    <None Include="bin\Debug\logs\22700_2023-10-20.log" />
+    <None Include="bin\Debug\logs\2288_2024-03-26.log" />
+    <None Include="bin\Debug\logs\22968_2024-02-06.log" />
+    <None Include="bin\Debug\logs\23044_2023-10-17.log" />
+    <None Include="bin\Debug\logs\23836_2023-11-07.log" />
+    <None Include="bin\Debug\logs\24588_2023-10-20.log" />
+    <None Include="bin\Debug\logs\25080_2023-10-18.log" />
+    <None Include="bin\Debug\logs\25176_2023-10-18.log" />
+    <None Include="bin\Debug\logs\25464_2023-10-18.log" />
+    <None Include="bin\Debug\logs\25836_2023-11-06.log" />
+    <None Include="bin\Debug\logs\26056_2023-10-19.log" />
+    <None Include="bin\Debug\logs\26056_2023-10-20.log" />
+    <None Include="bin\Debug\logs\26352_2024-02-06.log" />
+    <None Include="bin\Debug\logs\26636_2023-10-20.log" />
+    <None Include="bin\Debug\logs\27080_2023-11-06.log" />
+    <None Include="bin\Debug\logs\27488_2023-11-07.log" />
+    <None Include="bin\Debug\logs\27780_2023-10-17.log" />
+    <None Include="bin\Debug\logs\28136_2024-02-05.log" />
+    <None Include="bin\Debug\logs\30096_2023-10-23.log" />
+    <None Include="bin\Debug\logs\30888_2023-10-19.log" />
+    <None Include="bin\Debug\logs\30984_2023-10-18.log" />
+    <None Include="bin\Debug\logs\31036_2023-11-07.log" />
+    <None Include="bin\Debug\logs\31052_2023-10-20.log" />
+    <None Include="bin\Debug\logs\31296_2023-11-07.log" />
+    <None Include="bin\Debug\logs\31464_2023-10-17.log" />
+    <None Include="bin\Debug\logs\31524_2023-10-20.log" />
+    <None Include="bin\Debug\logs\31528_2023-10-18.log" />
+    <None Include="bin\Debug\logs\31796_2023-10-20.log" />
+    <None Include="bin\Debug\logs\31896_2023-10-18.log" />
+    <None Include="bin\Debug\logs\32028_2023-10-17.log" />
+    <None Include="bin\Debug\logs\32432_2023-10-19.log" />
+    <None Include="bin\Debug\logs\32548_2023-10-23.log" />
+    <None Include="bin\Debug\logs\32616_2023-10-23.log" />
+    <None Include="bin\Debug\logs\32972_2023-10-18.log" />
+    <None Include="bin\Debug\logs\33044_2023-10-20.log" />
+    <None Include="bin\Debug\logs\34196_2023-10-20.log" />
+    <None Include="bin\Debug\logs\34332_2023-10-17.log" />
+    <None Include="bin\Debug\logs\34968_2023-11-07.log" />
+    <None Include="bin\Debug\logs\35484_2023-10-17.log" />
+    <None Include="bin\Debug\logs\35532_2023-11-06.log" />
+    <None Include="bin\Debug\logs\35532_2023-11-07.log" />
+    <None Include="bin\Debug\logs\35556_2023-10-23.log" />
+    <None Include="bin\Debug\logs\37404_2023-10-17.log" />
+    <None Include="bin\Debug\logs\37584_2023-10-18.log" />
+    <None Include="bin\Debug\logs\38656_2023-10-19.log" />
+    <None Include="bin\Debug\logs\38864_2023-10-17.log" />
+    <None Include="bin\Debug\logs\39328_2023-10-17.log" />
+    <None Include="bin\Debug\logs\39340_2023-12-05.log" />
+    <None Include="bin\Debug\logs\39560_2023-10-23.log" />
+    <None Include="bin\Debug\logs\40072_2023-11-07.log" />
+    <None Include="bin\Debug\logs\4012_2023-11-07.log" />
+    <None Include="bin\Debug\logs\40428_2023-10-19.log" />
+    <None Include="bin\Debug\logs\40432_2024-04-23.log" />
+    <None Include="bin\Debug\logs\40476_2023-10-17.log" />
+    <None Include="bin\Debug\logs\41068_2023-10-23.log" />
+    <None Include="bin\Debug\logs\41076_2023-10-18.log" />
+    <None Include="bin\Debug\logs\41784_2023-11-06.log" />
+    <None Include="bin\Debug\logs\41816_2023-11-07.log" />
+    <None Include="bin\Debug\logs\41864_2023-11-07.log" />
+    <None Include="bin\Debug\logs\41892_2023-10-20.log" />
+    <None Include="bin\Debug\logs\42064_2023-10-17.log" />
+    <None Include="bin\Debug\logs\42112_2024-02-06.log" />
+    <None Include="bin\Debug\logs\42244_2023-11-06.log" />
+    <None Include="bin\Debug\logs\42516_2023-10-17.log" />
+    <None Include="bin\Debug\logs\42640_2023-11-07.log" />
+    <None Include="bin\Debug\logs\42688_2023-11-07.log" />
+    <None Include="bin\Debug\logs\43444_2023-11-07.log" />
+    <None Include="bin\Debug\logs\43500_2023-10-20.log" />
+    <None Include="bin\Debug\logs\43816_2023-11-06.log" />
+    <None Include="bin\Debug\logs\44016_2023-10-17.log" />
+    <None Include="bin\Debug\logs\44100_2023-11-07.log" />
+    <None Include="bin\Debug\logs\44152_2023-10-23.log" />
+    <None Include="bin\Debug\logs\44204_2023-10-17.log" />
+    <None Include="bin\Debug\logs\44536_2023-11-06.log" />
+    <None Include="bin\Debug\logs\44684_2023-11-07.log" />
+    <None Include="bin\Debug\logs\44688_2023-11-07.log" />
+    <None Include="bin\Debug\logs\44752_2023-11-07.log" />
+    <None Include="bin\Debug\logs\44768_2023-11-07.log" />
+    <None Include="bin\Debug\logs\45616_2023-10-23.log" />
+    <None Include="bin\Debug\logs\45800_2023-10-20.log" />
+    <None Include="bin\Debug\logs\46284_2023-11-07.log" />
+    <None Include="bin\Debug\logs\46916_2023-10-17.log" />
+    <None Include="bin\Debug\logs\47100_2023-11-07.log" />
+    <None Include="bin\Debug\logs\48212_2023-11-07.log" />
+    <None Include="bin\Debug\logs\48468_2023-11-07.log" />
+    <None Include="bin\Debug\logs\48544_2023-10-18.log" />
+    <None Include="bin\Debug\logs\48636_2023-11-07.log" />
+    <None Include="bin\Debug\logs\48724_2023-11-07.log" />
+    <None Include="bin\Debug\logs\49068_2023-11-07.log" />
+    <None Include="bin\Debug\logs\49124_2023-11-07.log" />
+    <None Include="bin\Debug\logs\49356_2024-04-23.log" />
+    <None Include="bin\Debug\logs\49968_2023-10-17.log" />
+    <None Include="bin\Debug\logs\50408_2024-02-05.log" />
+    <None Include="bin\Debug\logs\50632_2023-10-18.log" />
+    <None Include="bin\Debug\logs\5112_2023-11-07.log" />
+    <None Include="bin\Debug\logs\51936_2023-10-18.log" />
+    <None Include="bin\Debug\logs\524_2023-10-23.log" />
+    <None Include="bin\Debug\logs\5372_2023-10-19.log" />
+    <None Include="bin\Debug\logs\54128_2024-03-26.log" />
+    <None Include="bin\Debug\logs\5460_2023-10-20.log" />
+    <None Include="bin\Debug\logs\57332_2024-02-06.log" />
+    <None Include="bin\Debug\logs\59380_2024-02-06.log" />
+    <None Include="bin\Debug\logs\6560_2024-02-06.log" />
+    <None Include="bin\Debug\logs\68760_2024-02-05.log" />
+    <None Include="bin\Debug\logs\69964_2024-02-06.log" />
+    <None Include="bin\Debug\logs\71508_2024-02-06.log" />
+    <None Include="bin\Debug\logs\7552_2023-10-19.log" />
+    <None Include="bin\Debug\logs\9664_2023-10-20.log" />
+    <None Include="bin\Debug\logs\9832_2023-10-23.log" />
+    <None Include="bin\Debug\LuaDebugger.dll.config" />
+    <None Include="bin\Debug\RABD.Modbus.Client.dll.config" />
+    <None Include="bin\x64\Release\DROE_CSharp_API_Sample.exe.config" />
+    <None Include="bin\x64\Release\DROE_CSharp_API_Sample.vshost.exe.config" />
+    <None Include="bin\x64\Release\DROE_CSharp_API_Sample.vshost.exe.manifest" />
+    <None Include="bin\x64\Release\logs\2019-03-18.log" />
+    <None Include="bin\x64\Release\logs\2019-03-21.log" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Alarm_EN.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Alarm_TW.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Alarm_EN.xml" />
+    <Content Include="bin\Alarm_EN_CE.xml" />
+    <Content Include="bin\Alarm_EN_UL.xml" />
+    <Content Include="bin\Alarm_TW.xml" />
+    <Content Include="bin\Alarm_TW_CE.xml" />
+    <Content Include="bin\Alarm_TW_UL.xml" />
+    <Content Include="bin\bbv.Common.AsyncModule.dll" />
+    <Content Include="bin\bbv.Common.AsyncModule.xml" />
+    <Content Include="bin\bbv.Common.dll" />
+    <Content Include="bin\bbv.Common.StateMachine.dll" />
+    <Content Include="bin\bbv.Common.StateMachine.xml" />
+    <Content Include="bin\bbv.Common.xml" />
+    <Content Include="bin\Debug\Alarm_EN.xml" />
+    <Content Include="bin\Debug\Alarm_TW.xml" />
+    <Content Include="bin\Debug\bbv.Common.AsyncModule.dll" />
+    <Content Include="bin\Debug\bbv.Common.AsyncModule.xml" />
+    <Content Include="bin\Debug\bbv.Common.dll" />
+    <Content Include="bin\Debug\bbv.Common.StateMachine.dll" />
+    <Content Include="bin\Debug\bbv.Common.StateMachine.xml" />
+    <Content Include="bin\Debug\bbv.Common.xml" />
+    <Content Include="bin\Debug\Delta.Communication.dll" />
+    <Content Include="bin\Debug\Delta.General.dll" />
+    <Content Include="bin\Debug\Delta.Interpreter.dll" />
+    <Content Include="bin\Debug\DROE_CSharp_API_Sample.exe" />
+    <Content Include="bin\Debug\DROE_CSharp_API_Sample.pdb" />
+    <Content Include="bin\Debug\FTPLib.dll" />
+    <Content Include="bin\Debug\ICSharpCode.AvalonEdit.dll" />
+    <Content Include="bin\Debug\Ionic.Zip.dll" />
+    <Content Include="bin\Debug\lua51.dll" />
+    <Content Include="bin\Debug\LuaDebugger.dll" />
+    <Content Include="bin\Debug\LuaDebugger.pdb" />
+    <Content Include="bin\Debug\LuaDebugger.xml" />
+    <Content Include="bin\Debug\LuaInterface.dll" />
+    <Content Include="bin\Debug\LuaInterface.pdb" />
+    <Content Include="bin\Debug\MathNet.Numerics.dll" />
+    <Content Include="bin\Debug\NModbus4.dll" />
+    <Content Include="bin\Debug\RABD.DROE.ControllerManager.dll" />
+    <Content Include="bin\Debug\RABD.DROE.ControllerManager.pdb" />
+    <Content Include="bin\Debug\RABD.DROE.FTP.dll" />
+    <Content Include="bin\Debug\RABD.DROE.MSRobot.dll" />
+    <Content Include="bin\Debug\RABD.DROE.MSRobot.pdb" />
+    <Content Include="bin\Debug\RABD.DROE.ParaEditor.Define.dll" />
+    <Content Include="bin\Debug\RABD.DROE.ParaEditor.Define.pdb" />
+    <Content Include="bin\Debug\RABD.DROE.ParaEditor.dll" />
+    <Content Include="bin\Debug\RABD.DROE.ParaEditor.pdb" />
+    <Content Include="bin\Debug\RABD.DROE.PlugInInterface.dll" />
+    <Content Include="bin\Debug\RABD.DROE.ProjectManager.dll" />
+    <Content Include="bin\Debug\RABD.DROE.Solution.dll" />
+    <Content Include="bin\Debug\RABD.DROE.SystemDefine.dll" />
+    <Content Include="bin\Debug\RABD.DROE.SystemDefine.pdb" />
+    <Content Include="bin\Debug\RABD.DROE.VRRobot.dll" />
+    <Content Include="bin\Debug\RABD.FTP.dll" />
+    <Content Include="bin\Debug\RABD.FTP.pdb" />
+    <Content Include="bin\Debug\RABD.Lib.dll" />
+    <Content Include="bin\Debug\RABD.Lib.pdb" />
+    <Content Include="bin\Debug\RABD.Lib.xml" />
+    <Content Include="bin\Debug\RABD.Modbus.Client.dll" />
+    <Content Include="bin\Debug\RABD.Modbus.Client.pdb" />
+    <Content Include="bin\Debug\RABD.Modbus.Define.dll" />
+    <Content Include="bin\Debug\RABD.Modbus.Define.pdb" />
+    <Content Include="bin\Debug\RABD.Modbus.Server.dll" />
+    <Content Include="bin\Debug\RABD.Project.dll" />
+    <Content Include="bin\Debug\RABD.Tool.dll" />
+    <Content Include="bin\Debug\RABD.XMLSocket.Client.dll" />
+    <Content Include="bin\Debug\RABDAdapter.dll" />
+    <Content Include="bin\Debug\SevenZipSharp.dll" />
+    <Content Include="bin\Debug\Unme.Common.dll" />
+    <Content Include="bin\Delta.Communication.dll" />
+    <Content Include="bin\Delta.General.dll" />
+    <Content Include="bin\Delta.Interpreter.dll" />
+    <Content Include="bin\FTPLib.dll" />
+    <Content Include="bin\ICSharpCode.AvalonEdit.dll" />
+    <Content Include="bin\Ionic.Zip.dll" />
+    <Content Include="bin\lua51.dll" />
+    <Content Include="bin\LuaDebugger.dll" />
+    <Content Include="bin\LuaInterface.dll" />
+    <Content Include="bin\MathNet.Numerics.dll" />
+    <Content Include="bin\NModbus4.dll" />
+    <Content Include="bin\RABD.DROE.ControllerManager.dll" />
+    <Content Include="bin\RABD.DROE.FTP.dll" />
+    <Content Include="bin\RABD.DROE.MSRobot.dll" />
+    <Content Include="bin\RABD.DROE.ParaEditor.Define.dll" />
+    <Content Include="bin\RABD.DROE.ParaEditor.dll" />
+    <Content Include="bin\RABD.DROE.PlugInInterface.dll" />
+    <Content Include="bin\RABD.DROE.ProjectManager.dll" />
+    <Content Include="bin\RABD.DROE.Solution.dll" />
+    <Content Include="bin\RABD.DROE.SystemDefine.dll" />
+    <Content Include="bin\RABD.DROE.VRRobot.dll" />
+    <Content Include="bin\RABD.FTP.dll" />
+    <Content Include="bin\RABD.Lib.dll" />
+    <Content Include="bin\RABD.Lib.xml" />
+    <Content Include="bin\RABD.Modbus.Client.dll" />
+    <Content Include="bin\RABD.Modbus.Define.dll" />
+    <Content Include="bin\RABD.Modbus.Server.dll" />
+    <Content Include="bin\RABD.Project.dll" />
+    <Content Include="bin\RABD.Tool.dll" />
+    <Content Include="bin\RABD.XMLSocket.Client.dll" />
+    <Content Include="bin\RABDAdapter.dll" />
+    <Content Include="bin\SevenZipSharp.dll" />
+    <Content Include="bin\Unme.Common.dll" />
+    <Content Include="bin\x64\Release\Alarm_EN.xml" />
+    <Content Include="bin\x64\Release\Alarm_TW.xml" />
+    <Content Include="bin\x64\Release\bbv.Common.AsyncModule.dll" />
+    <Content Include="bin\x64\Release\bbv.Common.AsyncModule.xml" />
+    <Content Include="bin\x64\Release\bbv.Common.dll" />
+    <Content Include="bin\x64\Release\bbv.Common.StateMachine.dll" />
+    <Content Include="bin\x64\Release\bbv.Common.StateMachine.xml" />
+    <Content Include="bin\x64\Release\bbv.Common.xml" />
+    <Content Include="bin\x64\Release\Delta.Communication.dll" />
+    <Content Include="bin\x64\Release\Delta.General.dll" />
+    <Content Include="bin\x64\Release\Delta.Interpreter.dll" />
+    <Content Include="bin\x64\Release\DROE_CSharp_API_Sample.exe" />
+    <Content Include="bin\x64\Release\DROE_CSharp_API_Sample.pdb" />
+    <Content Include="bin\x64\Release\DROE_CSharp_API_Sample.vshost.exe" />
+    <Content Include="bin\x64\Release\FTPLib.dll" />
+    <Content Include="bin\x64\Release\ICSharpCode.AvalonEdit.dll" />
+    <Content Include="bin\x64\Release\Ionic.Zip.dll" />
+    <Content Include="bin\x64\Release\NModbus4.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.ControllerManager.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.ControllerManager.pdb" />
+    <Content Include="bin\x64\Release\RABD.DROE.FTP.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.MSRobot.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.MSRobot.pdb" />
+    <Content Include="bin\x64\Release\RABD.DROE.ParaEditor.Define.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.ParaEditor.Define.pdb" />
+    <Content Include="bin\x64\Release\RABD.DROE.ParaEditor.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.ParaEditor.pdb" />
+    <Content Include="bin\x64\Release\RABD.DROE.PlugInInterface.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.PlugInInterface.pdb" />
+    <Content Include="bin\x64\Release\RABD.DROE.ProjectManager.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.Solution.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.Solution.pdb" />
+    <Content Include="bin\x64\Release\RABD.DROE.SystemDefine.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.SystemDefine.pdb" />
+    <Content Include="bin\x64\Release\RABD.DROE.VRRobot.dll" />
+    <Content Include="bin\x64\Release\RABD.DROE.VRRobot.pdb" />
+    <Content Include="bin\x64\Release\RABD.FTP.dll" />
+    <Content Include="bin\x64\Release\RABD.FTP.pdb" />
+    <Content Include="bin\x64\Release\RABD.Lib.dll" />
+    <Content Include="bin\x64\Release\RABD.Lib.pdb" />
+    <Content Include="bin\x64\Release\RABD.Modbus.Client.dll" />
+    <Content Include="bin\x64\Release\RABD.Modbus.Client.pdb" />
+    <Content Include="bin\x64\Release\RABD.Modbus.Define.dll" />
+    <Content Include="bin\x64\Release\RABD.Modbus.Define.pdb" />
+    <Content Include="bin\x64\Release\RABD.Project.dll" />
+    <Content Include="bin\x64\Release\RABD.Project.pdb" />
+    <Content Include="bin\x64\Release\RABD.Tool.dll" />
+    <Content Include="bin\x64\Release\RABD.Tool.pdb" />
+    <Content Include="bin\x64\Release\RABD.XMLSocket.Client.dll" />
+    <Content Include="bin\x64\Release\SevenZipSharp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\---\" />
+    <Folder Include="bin\Debug\DROEio\" />
+    <Folder Include="bin\x64\Release\DROEio\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
