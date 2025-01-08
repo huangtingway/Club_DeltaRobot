@@ -1,0 +1,2322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AlarmInfo>
+  <Alarm>
+    <Name>AL001</Name>
+    <Title>Overcurrent</Title>
+    <Result1>The drive output is short-circuit</Result1>
+    <Solve1>Check if the wiring between the motor and the drive is correct and see if the wire is short-circuited. Eliminate short-circuit and avoid metal conductor being exposed.</Solve1>
+    <Result2>The motor wiring is in error.</Result2>
+    <Solve2>Check if the wiring steps are correct when connecting the motor to the drive. Rewiring by following the wiring description from the user manual.</Solve2>
+    <Result3>IGBT is abnormal</Result3>
+    <Solve3>The temperature of the heat sink is abnormal. Send the drive back to the distributors or contact with Delta.</Solve3>
+    <Result4>The control parameter setting is in error.</Result4>
+    <Solve4>Check if the setting value exceeds the default setting Setting back to the default setting and then gradually adjust the value.</Solve4>
+    <Result5>Unreasonable command</Result5>
+    <Solve5>Check if the command doing reasonable acceleration time. Less steep command used or filter applying to smooth command.</Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL002</Name>
+    <Title>Overvoltage</Title>
+    <Result1>The input voltage of the main circuit is higher than the rated allowable voltage.</Result1>
+    <Solve1>Use the voltmeter to see if the input voltage of the main circuit is within the rated allowable voltage value. Apply to the correct power supply or serial voltage regulator.</Solve1>
+    <Result2>Wrong power input(incorrect power system)</Result2>
+    <Solve2>Use the voltmeter to see if the power system matches the specification. Apply to the correct power supply or serial adaptor.</Solve2>
+    <Result3>The hardware of the servo drive is damaged.</Result3>
+    <Solve3>Use the voltmeter to see if the input voltage of the main circuit is within the rated allowable voltage value but still shows the error. Send the drive back to the distributors or contact with Delta.</Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL003</Name>
+    <Title>Undervoltage</Title>
+    <Result1>The input voltage of the main circuit is lower than the rated allowable voltage.</Result1>
+    <Solve1>Check if the input voltage wiring of the main circuit is normal. Re-confirm the voltage wiring.</Solve1>
+    <Result2>No power supply for the main circuit.</Result2>
+    <Solve2>Use the voltmeter to see if the voltage of the main circuit is normal. Check the power switch</Solve2>
+    <Result3>Wrong power input(incorrect power system)</Result3>
+    <Solve3>Use the voltmeter to see if the power system matches the specification. Apply to the correct power supply or serial adaptor.</Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL004</Name>
+    <Title>Motor Combination Error</Title>
+    <Result1>The encoder is abnormal</Result1>
+    <Solve1>The encoder is abnormal.Change the motor</Solve1>
+    <Result2>The encoder is loose.</Result2>
+    <Solve2>Check the encoder connector. Install the motor again.</Solve2>
+    <Result3>Motor Combination Error</Result3>
+    <Solve3>Connect to the right motor. Change the motor</Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL005</Name>
+    <Title>Regeneration Error</Title>
+    <Result1>Wrong selection of regenerative resistor or the external regenerative resistor is unconnected.</Result1>
+    <Solve1>Check the connection of regenerative resistor.	Reconnect the regenerative resistor or calculate the regenerative resistor value. If the alarm does not go off, please send the drive back to the distributor or contact with Delta.</Solve1>
+    <Result2>Parameter P1-53 is not set to zero when the regenerative resistor is not in use.</Result2>
+    <Solve2>Check if parameter P1-53 of regenerative resister is set to zero. Set parameter P1-53 of regenerative resistor to zero when it is not applying.</Solve2>
+    <Result3>Wrong parameter setting</Result3>
+    <Solve3>Check the setting value of parameter P1-52 and P1-53.	Correctly reset the value of P1-52 and P1-53.</Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL006</Name>
+    <Title>Overload</Title>
+    <Result1>Over the rated loading of the drive and continuously excessive using</Result1>
+    <Solve1>Set parameter P0-02 to 11 and see if the average torque [%] is over 100% all the time.	Increase the motor capacity or reduce the load.</Solve1>
+    <Result2>The setting of the control system parameter is inappropriate.</Result2>
+    <Solve2>
+      1. Adjust the gain value of the control circuit. 2. Slow down the acceleration / deceleration setting time.
+    </Solve2>
+    <Result3>Wrong wiring of the motor and the encoder.</Result3>
+    <Solve3>Check the wiring of U, V, W and the encoder. Correct wiring</Solve3>
+    <Result4>The encoder of the motor is defective.</Result4>
+    <Solve4>Send the drive back to the distributors or contact with Delta.</Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL007</Name>
+    <Title>Overspeed</Title>
+    <Result1>Unreasonable command</Result1>
+    <Solve1>Use the scope to check if the signal of analog voltage is abnormal. Less steep command used or filter applying to smooth command.</Solve1>
+    <Result2>Inappropriate parameter setting</Result2>
+    <Solve2>Check if the setting of parameter P2-34 is too small (the condition of over-speed warning). Correctly set parameter P2-34 (the condition of over-speed warning).</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL008</Name>
+    <Title>Abnormal Pulse Command</Title>
+    <Result1>The pulse command frequency is higher than the rated input frequency.</Result1>
+    <Solve1>Use the scope to check if the input frequency is over the rated input frequency. Correctly set the input pulse frequency.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL009</Name>
+    <Title>Excessive Deviation of Position Command</Title>
+    <Result1>Parameter P2-35 is set too small</Result1>
+    <Solve1>Check the setting value of parameter P2-35 (The warning condition of excessive position deviation) Increase the setting value of P2-35 (The warning condition of excessive position deviation)</Solve1>
+    <Result2>The setting of the gain value is too small.</Result2>
+    <Solve2>Check if the setting value is appropriate. Correctly adjust the gain value</Solve2>
+    <Result3>The torque limit is too low.</Result3>
+    <Solve3>
+      Check the torque limit value Correctly adjust the torque limit value. Check the external load Reduce the external load or evaluate the motor capacity again
+    </Solve3>
+    <Result4>Excessive external load</Result4>
+    <Solve4>Check the external load. Reduce the external load or evaluate the motor capacity again</Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL011</Name>
+    <Title>Encoder Error</Title>
+    <Result1>Wrong wiring of the encoder</Result1>
+    <Solve1>Check if the wiring follows the suggested wiring of the user manual. Correct wiring</Solve1>
+    <Result2>The encoder is loose</Result2>
+    <Solve2>Check the drive connector of CN2 and encoder. Install the encoder again</Solve2>
+    <Result3>Bad connection of the encoder</Result3>
+    <Solve3>Check if the connection between CN2 of the drive and the encoder of the servo motor is loose. Reconnect the wiring </Solve3>
+    <Result4>The encoder is damaged</Result4>
+    <Solve4>Check if the motor is damaged. Change the motor</Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL012</Name>
+    <Title>Adjustment Error</Title>
+    <Result1>The analog input contact is incorrectly set back to zero</Result1>
+    <Solve1>Measure if the voltage of the analog input contact is the same as the ground voltage. Correctly ground the analog input contact</Solve1>
+    <Result2>The detection device is damaged</Result2>
+    <Solve2>Reset the power supply. If the error still occurs after reset, send the drive back to the distributors or contact with Delta.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL013</Name>
+    <Title>Emergency Stop</Title>
+    <Result1>Press the system emergency stop switch</Result1>
+    <Solve1>Check if the TP emergency stop switch is enabled. Activate emergency stop</Solve1>
+    <Result2>Press the external emergency stop switch</Result2>
+    <Solve2>Check the circuit emergency stop whether correct</Solve2>
+    <Result3>System emergency stop</Result3>
+    <Solve3>Check the function of system DI1 whether abnormal</Solve3>
+    <Result4>TP Deadman switch emergency stop</Result4>
+    <Solve4>Please push Deadman switch at middle of position</Solve4>
+    <Result5>Safe emergency stop</Result5>
+    <Solve5>Check the fence or safety device whether enabled</Solve5>
+    <Result6>Temperature trip emergency stop switch</Result6>
+    <Solve6>Check the temperature inside the electric control box is too high or the temperature sensor</Solve6>
+  </Alarm>
+  <Alarm>
+    <Name>AL014</Name>
+    <Title>Reverse Limit Error</Title>
+    <Result1>Reverse limit switch is activated.</Result1>
+    <Solve1>Check if the limit switch is enabled.	Enable the reverse limit switch</Solve1>
+    <Result2>The servo system is unstable.</Result2>
+    <Solve2>Check the control parameter and inertia ratio. Re-adjust the parameter or evaluate the motor capacity.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL015</Name>
+    <Title>Forward Limit Error</Title>
+    <Result1>Forward limit switch is activated.</Result1>
+    <Solve1>Check if the limit switch is enabled.	Enable the forward limit switch</Solve1>
+    <Result2>The servo system is unstable.</Result2>
+    <Solve2>Check the control parameter and inertia ratio	Re-adjust the parameter or evaluate the motor capacity.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL016</Name>
+    <Title>IGBT Overheat</Title>
+    <Result1>Over the rated loading of the drive and continuously excessive using</Result1>
+    <Solve1>Check if it is overloading or the motor current is too high. Increase the motor capacity or reduce the load.</Solve1>
+    <Result2>The drive output is short-circuit</Result2>
+    <Solve2>Check the drive output wiring	Correct wiring</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL017</Name>
+    <Title>Abnormal EEPROM</Title>
+    <Result1>It is in error when DSP accesses EEPROM.</Result1>
+    <Solve1>
+      Press the SHIFT Key on the panel and it shows EXGAB.X = 1, 2, 3 G＝group code of the parameter AB＝hexadecimal of the parameter. If it shows E320A, it means it is parameter P2-10; If it shows E3610, it means it is parameter P6-16. Please check the parameter.
+    </Solve1>
+    <Result2>Abnormal hidden parameter</Result2>
+    <Solve2>Press the SHIFT Key on the panel and it shows E100X. The fault occurs in parameter reset. The setting of the drive is wrong. Please set the correct type of the drive.</Solve2>
+    <Result3>Data in ROM is damaged.</Result3>
+    <Solve3>Press the SHIFT Key on the panel and it shows E0001. The fault occurs when it is servo-on. Usually it is because the data in ROM is damaged or there is no data in ROM. Please send the drive back to the distributors or contact with Delta.</Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL018</Name>
+    <Title>Abnormal Signal Output</Title>
+    <Result1>The encoder is in error and cause the abnormal signal output</Result1>
+    <Solve1>Check the fault records (P4-00~P4-05). See if the alarm exists with the encoder error (AL011, AL024, AL025, AL026)</Solve1>
+    <Result2>The output pulse exceeds the hardware allowable range.</Result2>
+    <Solve2>Check if the following conditions produce: P1-76 &lt; Motor Speed </Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL019</Name>
+    <Title>Serial Communication Error</Title>
+    <Result1>Improper setting of the communication parameter</Result1>
+    <Solve1>Check the setting value of communication parameter. Correctly set the parameter value</Solve1>
+    <Result2>Incorrect communication address</Result2>
+    <Solve2>Check the communication address. Correctly set the communication address</Solve2>
+    <Result3>Incorrect communication value</Result3>
+    <Solve3>Check the accessing value. Correctly set the value</Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL020</Name>
+    <Title>Serial Communication Time Out</Title>
+    <Result1>Improper setting of the time-out parameter</Result1>
+    <Solve1>Check the parameter setting. Correctly set the value</Solve1>
+    <Result2>The drive hasn’t received the communication command for a long time.</Result2>
+    <Solve2>Check if the communication cable is loose or broken. Correct wiring</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL022</Name>
+    <Title>Safety Stop</Title>
+    <Result1>Press the system Safety stop switch</Result1>
+    <Solve1>Check if the TP Safety stop switch is enabled. Activate Safety stop</Solve1>
+    <Result2>Press the external Safety stop switch</Result2>
+    <Solve2>Check the circuit Safety stop whether correct</Solve2>
+    <Result3>System Safety stop</Result3>
+    <Solve3>Check the function of system DI1 whether abnormal</Solve3>
+    <Result4>TP Deadman switch Safety stop</Result4>
+    <Solve4>Please push Deadman switch at middle of position</Solve4>
+    <Result5>Safety stop</Result5>
+    <Solve5>Check the fence or safety device whether enableed</Solve5>
+    <Result6>Temperature trip Safety stop switch</Result6>
+    <Solve6>Check the temperature inside the electric control box is too high or the temperature sensor</Solve6>
+  </Alarm>
+  <Alarm>
+    <Name>AL023</Name>
+    <Title>Early warning for overload</Title>
+    <Result1>Early warning for overload</Result1>
+    <Solve1>
+      1.Please refer to the corrective actions of AL006. 2.Please increase the setting value of parameter P1-56. Or set the value over 100 and deactivate the overload warning function.
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL024</Name>
+    <Title>Encoder initial magnetic field error</Title>
+    <Result1>The initial magnetic field of the encoder is in error(Signal U, V, W of the encoder magnetic field is in error.)</Result1>
+    <Solve1>1. Check if the servo is properly grounded. 2. Check if the encoder cable separates from the power supply or the high-current circuit to avoid the interference. 3. Check if the shielding cables are used in the wiring of the encoder.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL025</Name>
+    <Title>The internal of the encoder is in error</Title>
+    <Result1>The internal of the encoder is in error.(The internal memory and the internal counter are in error)</Result1>
+    <Solve1>1. Check if the servo is properly grounded. 2. Check if the encoder cable separates from the power supply or the high-current circuit to avoid the interference. 3. Check if the shielding cables are used in the wiring of the encoder.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL026</Name>
+    <Title>Unreliable internal data of the encoder</Title>
+    <Result1>The encoder is in error.(Errors occur in the internal data for three times continuously)</Result1>
+    <Solve1>1. Please connect the UVW connector (color green) to the heat sink of the servo drive. 2. Please check if the encoder cable separates from the power supply or the high-current circuit. 3.  Please use shielding mesh. 4. If the situation is not improving, please send the drive back to the distributors or contact with Delta.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL027</Name>
+    <Title>The internal of the Encoder is in error</Title>
+    <Result1>The internal reset of the encoder is in error.</Result1>
+    <Solve1>1. Please connect the UVW connector (color green) to the heat sink of the servo drive. 2. Please check if the encoder cable separates from the power supply or the high-current circuit. 3.  Please use shielding mesh. 4. If the situation is not improving, please send the drive back to the distributors or contact with Delta.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL028</Name>
+    <Title>Encoder voltage error or the internal of the encoder is in error</Title>
+    <Result1>Battery voltage is too high.</Result1>
+    <Solve1>Please do the check according to the procedure Over voltage. When corrective actions are done, AL028 will be cleared automatically.</Solve1>
+    <Result2>The internal encoder is in error.</Result2>
+    <Solve2>
+      1. If the situation is not improving, please send the drive back to the distributors or contact with Delta. 2. Please connect the UVW connector (color green) to the heat sink of the servo drive.  3. Please check if the encoder cable separates from the power supply or the high-current circuit. 4. Please use shielding mesh. If the situation is not improving, please send the drive back to the distributors or contact with Delta.
+    </Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL029</Name>
+    <Title>Gray code error</Title>
+    <Result1>The internal address of the encoder is in error.</Result1>
+    <Solve1>Re-power on to operate the motor and check if the alarm will occur again.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL030</Name>
+    <Title>Motor Crash Error</Title>
+    <Result1>1. If it is enabled by mistake, please set P1-57 to zero. 2. According to the actual torque setting, if the value is set too small, the alarm will be triggered by mistake. However, if the value is set too big, it will lose the function of protection.</Result1>
+    <Solve1></Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL031</Name>
+    <Title>Incorrect wiring of the motor power line U, V, W, GND</Title>
+    <Result1>The wiring of U, V, W, GND of the motor is incorrect connected.</Result1>
+    <Solve1>Follow the user manual to correctly wire U, V, W and make sure it is grounded.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL040</Name>
+    <Title>Excessive deviation of full closed-loop position control</Title>
+    <Result1>Excessive deviation of full closed-loop position control</Result1>
+    <Solve1>
+      1. Check if P1-73 is set too small. 2. Check if the connector is loose or there is any connection problem of other mechanism.
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL041</Name>
+    <Title>Communication of linear scale is breakdown</Title>
+    <Result1>The communication of linear scale is breakdown</Result1>
+    <Solve1>Check the communication of linear scale. Check the communication of linear scale again.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL044</Name>
+    <Title>Warning of Servo Drive function overload</Title>
+    <Result1>Warning of Servo Drive function overload</Result1>
+    <Solve1>Set P2-66 Bit 4 to 1 can disable the display of this alarm.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL060</Name>
+    <Title>The absolute position is lost</Title>
+    <Result1>Battery undervoltage</Result1>
+    <Solve1>Check if the voltage of battery is lower than 2.8V. After changing the battery, conduct homing procedure again.</Solve1>
+    <Result2>Change the battery when the power is OFF which is controlled by the servo drive.</Result2>
+    <Solve2>Do not change or remove the battery power when the power is OFF which is controlled by the servo drive.  Conduct homing procedure again.</Solve2>
+    <Result3>After activating the absolute function, the absolute coordinate initialization has not been completed.</Result3>
+    <Solve3>1.Install the battery. 2.Check the wiring between the battery pack and power cable of the servo drive. 3. Check the wiring of the encoder. Conduct homing procedure again.</Solve3>
+    <Result4>Bad connection of the battery power circuit.</Result4>
+    <Solve4>1.Check the wiring of the encoder. 2.Check the wiring between the battery pack and the power cable of the servo drive.	Connect or repair the wiring of the battery so as to supply the power to the encoder. Conduct homing procedure again.</Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL061</Name>
+    <Title>Encoder under voltage</Title>
+    <Result1>The voltage of the absolute encoder is lower than the specification. </Result1>
+    <Solve1>1.Check if the voltage of the battery on the panel is lower than 3.1 V( tentative specification) 2.Check if the voltage of the battery is lower than 3.1 V( tentative specification) Change the battery when power is ON which is controlled by the servo drive. After changing the battery, AL061 will be cleared automatically. </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL062</Name>
+    <Title>The multi-turn of absolute encoder overflows</Title>
+    <Result1>The multi-turn of absolute encoder exceeds the maximum range: -32768 ~+32767</Result1>
+    <Solve1>Check if the operation distance exceeds the range,-32768 ~ +32767, the absolute encoder is able to record. Conduct homing procedure again. Please refer to the description of absolute coordinate initialization in Chapter 12.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL067</Name>
+    <Title>Encoder temperature warning</Title>
+    <Result1>Encoder temperature exceeds the warning level.(85~100℃)</Result1>
+    <Solve1>Check if the ventilation devices are normal. Lower the temperature of the encoder.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL069</Name>
+    <Title>Wrong motor type</Title>
+    <Result1>Incremental motor is not allowed to activate the absolute function.</Result1>
+    <Solve1>If users desire to use absolute function, please choose absolute motor. If not, please set parameter P2-69 to 0.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL070</Name>
+    <Title>Encoder does not complete the command which is issued by servo drive</Title>
+    <Result1>Servo drive has not completely written barcode into encoder or the encoder does not complete the command issued by servo drive.</Result1>
+    <Solve1>Check if the wiring is correct or there is any loose connection.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL072</Name>
+    <Title>Encoder over speed</Title>
+    <Result1>When driver provide power,revolution speed will exceed 8800 rpm.When battery provide power,revolution speed will exceed 10000 rpm.</Result1>
+    <Solve1>Check if the servo is properly grounded.Please connect the UVW connector (color green) to the heat sink of the servo drive.</Solve1>
+    <Result2></Result2>
+    <Solve2>Check if the encoder cable separates from the power supply or the high-current circuit to avoid the interference.Please check if the encoder cable separates from the power supply or the high-current circuit.</Solve2>
+    <Result3></Result3>
+    <Solve3>Check if the shielding cables are used in the wiring of the encoder.Please use shielding mesh.</Solve3>
+    <Result4></Result4>
+    <Solve4>Check the status of using is over specification or not.Please do not exceed the specification</Solve4>
+    <Result5></Result5>
+    <Solve5>If the situation is not improving, please send the drive back to the distributors or contact with Delta.</Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL079</Name>
+    <Title>Encoder Parameter Setting</Title>
+    <Result1>To let parameter become effective, MS need to be rebooted after setting parameter into encoder.以利參數生效。</Result1>
+    <Solve1>Re-power on。</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL099</Name>
+    <Title>DSP firmware upgrade</Title>
+    <Result1>Upgrade DSP firmware</Result1>
+    <Solve1>Check if the firmware is upgraded. Firstly set P2-08 to 30. Then set P2-08 to 28, the alarm will be cleared when re-power on.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL111</Name>
+    <Title>CANopen SDO receives overflow</Title>
+    <Result1>SDO Rx Buffer overflow (receives more than two SDOs within 1ms)</Result1>
+    <Solve1>Check if the servo drive receives (sends) more than one SDO within 1ms.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL112</Name>
+    <Title>CANopen PDO receives overflow</Title>
+    <Result1>PDO Rx Buffer overflow (receives more than two PDOs of COBID within one millisecond)</Result1>
+    <Solve1>Check if the servo drive receives (sends) more than one PDO of COBID within 1ms.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL185</Name>
+    <Title>Abnormal DMCNET Bus hardware</Title>
+    <Result1>
+      1. Check if the communication cable of DMCNET Bus is good. 2. Check if the communication quality is good. (It is suggested to use common grounding and shielded cable)
+    </Result1>
+    <Solve1></Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL201</Name>
+    <Title>An error occurs when loading DMCNET data</Title>
+    <Result1>An error occurs when loading DMCNET data</Result1>
+    <Solve1>If the alarm is cleared when re-servo on, it means the data error occurs instantaneously when accessing in the previous time. If the error still exists after re-servo on, it means the data in EEPROM is damaged. It can set P2-08 to 30, 28, and reboot again.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL235</Name>
+    <Title>PR command overflows</Title>
+    <Result1>PR command error</Result1>
+    <Solve1>PR mode continuously operates in one direction and causes feedback register overflows. And the coordinate system cannot reflect the correct position. If issuing the absolute positioning command (except incremental) at this time, the error will occur.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL245</Name>
+    <Title>PR positioning is over time</Title>
+    <Result1>PR positioning is over time</Result1>
+    <Solve1>This alarm will not occur at the moment. If it does, please contact the distributors.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL283</Name>
+    <Title>Forward Software Limit</Title>
+    <Result1>Forward Software Limit</Result1>
+    <Solve1>Fault Reset</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL285</Name>
+    <Title>Reverse Software Limit</Title>
+    <Result1>Reverse Software Limit</Result1>
+    <Solve1>Fault Reset</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL289</Name>
+    <Title>Feedback position counter overflows</Title>
+    <Result1>Feedback position counter overflows</Result1>
+    <Solve1>This alarm will not occur at the moment. If it does, please contact the distributors.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL301</Name>
+    <Title>CANopen fails to synchronize</Title>
+    <Result1>CANopen fails to synchronize</Result1>
+    <Solve1>
+      1. Check if the communication quality of the circuit is bad. 2. Check if the controller sends SYNC signal successfully. 3. Check if the setting of P3-09 is reasonable. (It is better to use the default value)
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL302</Name>
+    <Title>The synchronized signal of CANopen is sent too fast</Title>
+    <Result1>The synchronized signal of CANopen is sent too fast</Result1>
+    <Solve1>
+      1. Check if synchronized cycle 0x1006 is the same as the setting of controller. 2. Check if the setting of P3-09 is reasonable. (It is better to use the default value) 3. Check if the order of controller is incorrect.
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL303</Name>
+    <Title>The synchronized signal of CANopen is sent too slow</Title>
+    <Result1>The synchronized signal of CANopen is sent too slow</Result1>
+    <Solve1>
+      1. Check if the communication quality of the circuit is bad. 2. Check if synchronized cycle 0x1006 is the same as the setting of controller. 3. Check if the setting of P3-09 is reasonable. (It is better to use the default value) 4. Check if the order of controller is incorrect.
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL304</Name>
+    <Title>CANopen IP command fails</Title>
+    <Result1>CANopen IP command fails</Result1>
+    <Solve1>The calculating time of IP mode takes too long. Please disable USB monitoring function.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL3CF</Name>
+    <Title>Emergency Deceleration Stop</Title>
+    <Result1>Press the system emergency deceleration stop switch</Result1>
+    <Solve1>Check if the TP emergency deceleration stop switch is enabled. Activate emergency deceleration stop</Solve1>
+    <Result2>Press the external emergency deceleration stop switch</Result2>
+    <Solve2>Check the circuit emergency deceleration stop whether correct</Solve2>
+    <Result3>System emergency deceleration stop</Result3>
+    <Solve3>Check the function of system DI4 whether abnormal</Solve3>
+    <Result4>TP Deadman switch emergency deceleration stop</Result4>
+    <Solve4>Please push Deadman switch at middle of position</Solve4>
+    <Result5>Safe emergency deceleration stop</Result5>
+    <Solve5>Check the fence or safety device whether enableed</Solve5>
+    <Result6>Temperature trip emergency deceleration stop switch</Result6>
+    <Solve6>Check the temperature inside the electric control box is too high or the temperature sensor</Solve6>
+  </Alarm>
+  <Alarm>
+    <Name>AL500</Name>
+    <Title>STO function is activated</Title>
+    <Result1>STO function is activated</Result1>
+    <Solve1>STO function is artificially startup, make sure to startup reasons.</Solve1>
+    <Result2></Result2>
+    <Solve2>Please confirm STO contacts and restart the controller.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL501</Name>
+    <Title>Signal of STO_A missing or wrong</Title>
+    <Result1>Signal of STO_A missing or STO_A is no synchronization with STO_B more than one second.</Result1>
+    <Solve1>Please confirm STO_A contacts, then fault Reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL502</Name>
+    <Title>Signal of STO_B missing or wrong</Title>
+    <Result1>Signal of STO_B missing or STO_A is no synchronization with STO_B more than one second.</Result1>
+    <Solve1>Please confirm STO_B contacts, then fault Reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL503</Name>
+    <Title>STO Error</Title>
+    <Result1>STO is self-diagnostic error</Result1>
+    <Solve1>Check STO_A and STO_B contacts, then fault Reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+
+  <Alarm>
+    <Name>AL555</Name>
+    <Title>System Failure</Title>
+    <Result1>DSP processing error</Result1>
+    <Solve1>If AL555 occurs, please do not switch and send the drive back to the distributor or contact with Delta</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL801</Name>
+    <Title>Before the coordinate system moves, all-axis original point return is not carried out&lt;/Result1&gt;</Title>
+    <Result1>Before the coordinate system moves, all-axis original point return is not carried out</Result1>
+    <Solve1>Carry out all-axis original point return</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL802</Name>
+    <Title>Give motion command when the alarm occurs</Title>
+    <Result1>MS has alarm for deceleration stop, this time gave MS motion command</Result1>
+    <Solve1> Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL803</Name>
+    <Title>Motion command does not support overlay mode</Title>
+    <Result1>Motion command does not support overlay mode</Result1>
+    <Solve1>Single-point MovP, multi-axis MovP, multi-axis Line: these types of motion commands cannot overlap with each other</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL80A</Name>
+    <Title>Motion command interpretation is not prepared properly, unable to interpret</Title>
+    <Result1>Motion command interpretation is not prepared properly, unable to interpret</Result1>
+    <Solve1>Check if motion command is correct</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL80B</Name>
+    <Title>Motion command cannot be distinguished</Title>
+    <Result1>Motion command cannot be distinguished</Result1>
+    <Solve1>
+      1.Check if the motion command code is given correctly. 2.Check the list for support of motion command on the controller
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL80C</Name>
+    <Title>Interpretation error on buffer for motion command</Title>
+    <Result1>Interpretation error on buffer for motion command</Result1>
+    <Solve1>Check if motion is filled in the correct cache region (single/multiple axes commands are different)</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL811</Name>
+    <Title>Axis error during execution of motion command on Cartesian space</Title>
+    <Result1>Axis error during execution of motion command on Cartesian space</Result1>
+    <Solve1>
+      1.Check if the axis is abnormal. 2.Check if status of the axis is normal
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL812</Name>
+    <Title>Axis error during execution of motion command on joint space</Title>
+    <Result1>Axis error during execution of motion command on joint space</Result1>
+    <Solve1>
+      1.Check if the axis is abnormal. 2.Check if status of the axis is normal
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL813</Name>
+    <Title>Axis error during interpretation of motion command</Title>
+    <Result1>Axis error during interpretation of motion command</Result1>
+    <Solve1>1.Check if the axis is abnormal. 2.Check if status of the axis is normal</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL814</Name>
+    <Title>Axis error during execution of motion command</Title>
+    <Result1>Axis error during execution of motion command</Result1>
+    <Solve1>1.Check if the axis is abnormal. 2.Check if status of the axis is normal</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL815</Name>
+    <Title>Axis Out of software-limit</Title>
+    <Result1>Axis target position is out of software-limit</Result1>
+    <Solve1>Check the target position of command is in space word or not, and press reset button.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL817</Name>
+    <Title>Set Compensator Error</Title>
+    <Result1>Compensator only can be set at Robot Group Servo OFF state</Result1>
+    <Solve1>Please check servo status.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL820</Name>
+    <Title>Vertical articulated robot MovP error</Title>
+    <Result1>Vertical articulated robot do not support robot language—MovP when executing in Conveyor Tracking application</Result1>
+    <Solve1>Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL821</Name>
+    <Title>Current posture of the robot arm is inconsistent with the target posture</Title>
+    <Result1>Current posture of the robot arm is inconsistent with the target posture</Result1>
+    <Solve1>
+      1.Modify the target position posture, or use another motion command. 2.Use the ignore posture setting
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL822</Name>
+    <Title>Target position of the Line command given exceeds working range</Title>
+    <Result1>Target position of the Line command given exceeds working range</Result1>
+    <Solve1>Check if target position for the Line command is within working range</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL823</Name>
+    <Title>Target position of the Line command given exceeds working range</Title>
+    <Result1>Target position of the Line command given exceeds working range</Result1>
+    <Solve1>Check if target position for the Line command is within working range</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL824</Name>
+    <Title>Working range exceeded during motion of the space coordinates system </Title>
+    <Result1>Working range exceeded during motion of the space coordinates system </Result1>
+    <Solve1>Check if the path is within working range</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL825</Name>
+    <Title>Forward Kinematics calculation error</Title>
+    <Result1>Forward Kinematics calculation error</Result1>
+    <Solve1>
+      1.Check if settings for mechanical dimension and software limit are correct. 2.Check if the path is within working range
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL826</Name>
+    <Title>Axis motion is over acceleration</Title>
+    <Result1>Motion speed  or acceleration are set  too high, resulting in abnormal motion planning</Result1>
+    <Solve1>After click reset, and reduce the motion speed or acceleration. </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL829</Name>
+    <Title>The coordinates system designated by the motion command does not exist</Title>
+    <Result1>The coordinates system designated by the motion command does not exist</Result1>
+    <Solve1>
+      1.Check if the coordinates system designated by the motion command is correct. 2.The coordinates system supports three types: world, tool, and users
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL82A</Name>
+    <Title>Switching error of user’s coordinates system </Title>
+    <Result1>Switching error of user’s coordinates system </Result1>
+    <Solve1>
+      1.Check if the group of user’s coordinates system designated by the motion command is correct. 2.Check if the coordinates system is taught correctly
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL82B</Name>
+    <Title>Switching error of the tool coordinates system </Title>
+    <Result1>Switching error of the tool coordinates system </Result1>
+    <Solve1>
+      1.Check if the  group of working coordinates system designated by the motion command is correct. 2.Check if the coordinates system is taught correctly
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL82C</Name>
+    <Title>Target position given exceeds working range</Title>
+    <Result1>Target position given exceeds working range</Result1>
+    <Solve1>Press reset button and change target position.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL82D</Name>
+    <Title>Current position given exceeds working range</Title>
+    <Result1>Current position given exceeds working range</Result1>
+    <Solve1>Close checking of working range,then press reset button and go back to working range.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL832</Name>
+    <Title>Internal connection packet is loose</Title>
+    <Result1>Internal connection packet is loose</Result1>
+    <Solve1>Please connect DELTA company.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL833</Name>
+    <Title>Check code of Internal connection is error</Title>
+    <Result1>Check code of Internal connection is error</Result1>
+    <Solve1>Please connect DELTA company.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL834</Name>
+    <Title>Hand shaking error</Title>
+    <Result1>Data initialization error</Result1>
+    <Solve1>Please contact Delta comany, and provide version information of controller.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL835</Name>
+    <Title>Undefine Robot Type</Title>
+    <Result1>Robot Type error, no function properly</Result1>
+    <Solve1>Please confirm the arm length, reduction ratio, and related mechanism parameters conflict with the internal configuration of the controller.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL836</Name>
+    <Title>Auto Acc error</Title>
+    <Result1>Auto Acc/Dec caculation timeout</Result1>
+    <Solve1>Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL837</Name>
+    <Title>MArchP docode error</Title>
+    <Result1>Axis information wrong of MArchP decoding</Result1>
+    <Solve1>Please check the MArchP parameters.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL841</Name>
+    <Title>Command of circle out of workspace</Title>
+    <Result1>Command of circle out of workspace</Result1>
+    <Solve1>Check position, and please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL842</Name>
+    <Title>Connor be circle</Title>
+    <Result1>Input condition Error</Result1>
+    <Solve1>Check condition, and please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL843</Name>
+    <Title>No Circle Command</Title>
+    <Result1>No Circle Command</Result1>
+    <Solve1>Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL851</Name>
+    <Title>Visual material of Conveyor follow deliver is timeout</Title>
+    <Result1>Visual material not yet sent to the controller, Robot is triggered</Result1>
+    <Solve1>Make sure before Robot start, visual system is triggered.</Solve1>
+    <Result2>Data deliver error</Result2>
+    <Solve2>Please check setting of visual system, then Fault Reset.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL852</Name>
+    <Title>Following speed of conveyor is over limit</Title>
+    <Result1>Speed of conveyor is too fast</Result1>
+    <Solve1>Please check speed of conveyor and setting of the conversion parameters. Currently the fastest speed limit is 1 meter per second.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL853</Name>
+    <Title>Following application of conveyor used user frame is incorrect </Title>
+    <Result1>Following application of conveyor used user frame ID setting is error</Result1>
+    <Solve1>1.Check the settings of the user frame ID between 1 and 9. 2.then Fault Reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>AL881</Name>
+    <Title>Collision Protect</Title>
+    <Result1>Torque Overloaded，swich to Servo Off。 </Result1>
+    <Solve1>Please Reset Alarm。</Solve1>
+  </Alarm>
+  <Alarm>
+    <Name>AL940</Name>
+    <Title>Safety stop</Title>
+    <Result1>TP Deadman switch emergency stop</Result1>
+    <Solve1>Please push Deadman switch at middle of position</Solve1>
+    <Result2>Safety stop</Result2>
+    <Solve2>Check the fence or safety device whether enabled</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.801</Name>
+    <Title>Before the coordinate system moves, all-axis original point return is not carried out&lt;/Result1&gt;</Title>
+    <Result1>Before the coordinate system moves, all-axis original point return is not carried out</Result1>
+    <Solve1>Carry out all-axis original point return</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.802</Name>
+    <Title>Give motion command when the alarm occurs</Title>
+    <Result1>MS has alarm for deceleration stop, this time gave MS motion command</Result1>
+    <Solve1>Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.803</Name>
+    <Title>Motion command does not support overlay mode</Title>
+    <Result1>Motion command does not support overlay mode</Result1>
+    <Solve1>Single-point MovP, multi-axis MovP, multi-axis Line: these types of motion commands cannot overlap with each other</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.80A</Name>
+    <Title>Motion command interpretation is not prepared properly, unable to interpret</Title>
+    <Result1>Motion command interpretation is not prepared properly, unable to interpret</Result1>
+    <Solve1>Check if motion command is correct</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.80B</Name>
+    <Title>Motion command cannot be distinguished</Title>
+    <Result1>Motion command cannot be distinguished</Result1>
+    <Solve1>
+      1.Check if the motion command code is given correctly. 2.Check the list for support of motion command on the controller
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.80C</Name>
+    <Title>Interpretation error on buffer for motion command</Title>
+    <Result1>Interpretation error on buffer for motion command</Result1>
+    <Solve1>Check if motion is filled in the correct cache region (single/multiple axes commands are different)</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.811</Name>
+    <Title>Axis error during execution of motion command on Cartesian space</Title>
+    <Result1>Axis error during execution of motion command on Cartesian space</Result1>
+    <Solve1>
+      1.Check if the axis is abnormal. 2.Check if status of the axis is normal
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.812</Name>
+    <Title>Axis error during execution of motion command on joint space</Title>
+    <Result1>Axis error during execution of motion command on joint space</Result1>
+    <Solve1>
+      1.Check if the axis is abnormal. 2.Check if status of the axis is normal
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.813</Name>
+    <Title>Axis error during interpretation of motion command</Title>
+    <Result1>Axis error during interpretation of motion command</Result1>
+    <Solve1>1.Check if the axis is abnormal. 2.Check if status of the axis is normal</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.814</Name>
+    <Title>Axis error during execution of motion command</Title>
+    <Result1>Axis error during execution of motion command</Result1>
+    <Solve1>1.Check if the axis is abnormal. 2.Check if status of the axis is normal</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.815</Name>
+    <Title>Axis Out of software-limit</Title>
+    <Result1>Axis target position is out of software-limit</Result1>
+    <Solve1>Check the target position of command is in space word or not, and press reset button.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.817</Name>
+    <Title>Set Compensator Error</Title>
+    <Result1>Compensator only can be set at Robot Group Servo OFF state</Result1>
+    <Solve1>Please check servo status.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.820</Name>
+    <Title>Vertical articulated robot MovP error</Title>
+    <Result1>Vertical articulated robot do not support robot language—MovP when executing in Conveyor Tracking application</Result1>
+    <Solve1>Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.821</Name>
+    <Title>Current posture of the robot arm is inconsistent with the target posture</Title>
+    <Result1>Current posture of the robot arm is inconsistent with the target posture</Result1>
+    <Solve1>
+      1.Modify the target position posture, or use another motion command. 2.Use the ignore posture setting
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.822</Name>
+    <Title>Target position of the Line command given exceeds working range</Title>
+    <Result1>Target position of the Line command given exceeds working range</Result1>
+    <Solve1>Check if target position for the Line command is within working range</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.823</Name>
+    <Title>Target position of the Line command given exceeds working range</Title>
+    <Result1>Target position of the Line command given exceeds working range</Result1>
+    <Solve1>Check if target position for the Line command is within working range</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.824</Name>
+    <Title>Working range exceeded during motion of the space coordinates system </Title>
+    <Result1>Working range exceeded during motion of the space coordinates system </Result1>
+    <Solve1>Check if the path is within working range</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.825</Name>
+    <Title>Forward Kinematics calculation error</Title>
+    <Result1>Forward Kinematics calculation error</Result1>
+    <Solve1>
+      1.Check if settings for mechanical dimension and software limit are correct. 2.Check if the path is within working range
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.826</Name>
+    <Title>Axis motion is over acceleration</Title>
+    <Result1>Motion speed  or acceleration are set  too high, resulting in abnormal motion planning</Result1>
+    <Solve1>After click reset, and reduce the motion speed or acceleration. </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.829</Name>
+    <Title>The coordinates system designated by the motion command does not exist</Title>
+    <Result1>The coordinates system designated by the motion command does not exist</Result1>
+    <Solve1>
+      1.Check if the coordinates system designated by the motion command is correct. 2.The coordinates system supports three types: world, tool, and users
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.82A</Name>
+    <Title>Switching error of user’s coordinates system </Title>
+    <Result1>Switching error of user’s coordinates system </Result1>
+    <Solve1>
+      1.Check if the group of user’s coordinates system designated by the motion command is correct. 2.Check if the coordinates system is taught correctly
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.82B</Name>
+    <Title>Switching error of the tool coordinates system </Title>
+    <Result1>Switching error of the tool coordinates system </Result1>
+    <Solve1>
+      1.Check if the  group of working coordinates system designated by the motion command is correct. 2.Check if the coordinates system is taught correctly
+    </Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.82C</Name>
+    <Title>Target position given exceeds working range</Title>
+    <Result1>Target position given exceeds working range</Result1>
+    <Solve1>Press reset button and change target position.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.82D</Name>
+    <Title>Current position given exceeds working range</Title>
+    <Result1>Current position given exceeds working range</Result1>
+    <Solve1>Close checking of working range,then press reset button and go back to working range.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.832</Name>
+    <Title>Internal connection packet is loose</Title>
+    <Result1>Internal connection packet is loose</Result1>
+    <Solve1>Please connect DELTA company.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.833</Name>
+    <Title>Check code of Internal connection is error</Title>
+    <Result1>Check code of Internal connection is error</Result1>
+    <Solve1>Please connect DELTA company.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.834</Name>
+    <Title>Hand shaking error</Title>
+    <Result1>Data initialization error</Result1>
+    <Solve1>Please contact Delta comany, and provide version information of controller.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.835</Name>
+    <Title>Undefine Robot Type</Title>
+    <Result1>Robot Type error, no function properly</Result1>
+    <Solve1>Please confirm the arm length, reduction ratio, and related mechanism parameters conflict with the internal configuration of the controller.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.836</Name>
+    <Title>Auto Acc error</Title>
+    <Result1>Auto Acc/Dec caculation timeout</Result1>
+    <Solve1>Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.837</Name>
+    <Title>MArchP docode error</Title>
+    <Result1>Axis information wrong of MArchP decoding</Result1>
+    <Solve1>Please check the MArchP parameters.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.841</Name>
+    <Title>Command of circle out of workspace</Title>
+    <Result1>Command of circle out of workspace</Result1>
+    <Solve1>Check position, and please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.842</Name>
+    <Title>Connor be circle</Title>
+    <Result1>Input condition Error</Result1>
+    <Solve1>Check condition, and please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.843</Name>
+    <Title>No Circle Command</Title>
+    <Result1>No Circle Command</Result1>
+    <Solve1>Please click reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.851</Name>
+    <Title>Visual material of Conveyor follow deliver is timeout</Title>
+    <Result1>Visual material not yet sent to the controller, Robot is triggered</Result1>
+    <Solve1>Make sure before Robot start, visual system is triggered.</Solve1>
+    <Result2>Data deliver error</Result2>
+    <Solve2>Please check setting of visual system, then Fault Reset.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.852</Name>
+    <Title>Following speed of conveyor is over limit</Title>
+    <Result1>Speed of conveyor is too fast</Result1>
+    <Solve1>Please check speed of conveyor and setting of the conversion parameters. Currently the fastest speed limit is 1 meter per second.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.853</Name>
+    <Title>Following application of conveyor used user frame is incorrect </Title>
+    <Result1>Following application of conveyor used user frame ID setting is error</Result1>
+    <Solve1>1.Check the settings of the user frame ID between 1 and 9. 2.then Fault Reset.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.861</Name>
+    <Title>TP Handwheel jog too fast</Title>
+    <Result1>TP Handwheel jog too fast</Result1>
+    <Solve1>Please reduce the speed of TP handwheel.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.862</Name>
+    <Title>TP handwheel jog in progress</Title>
+    <Result1>TP handwheel jog in progress</Result1>
+    <Solve1>Please stop TP handwheel jog, then performed the original operation.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.881</Name>
+    <Title>Excessive deviation of torque</Title>
+    <Result1>Excessive deviation of torque</Result1>
+    <Solve1>Check the  deviation of torque</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.940</Name>
+    <Title>Safety stop</Title>
+    <Result1>TP Deadman switch emergency stop</Result1>
+    <Solve1>Please push Deadman switch at middle of position</Solve1>
+    <Result2>Safety stop</Result2>
+    <Solve2>Check the fence or safety device whether enabled</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.991</Name>
+    <Title>Encoder's match code is invalid</Title>
+    <Result1>Robot does not match with MS</Result1>
+    <Solve1>Please change MS witch match with robot.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.992</Name>
+    <Title>Axes-Sations error</Title>
+    <Result1>TP connection error or motion error</Result1>
+    <Solve1>Send the drive back to the distributors or contact with Delta.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.993</Name>
+    <Title>Trial period of robot is expired</Title>
+    <Result1>Please check your expiration date</Result1>
+    <Solve1>Send the drive back to the distributors or contact with Delta.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.995</Name>
+    <Title>Robot parameter matching error</Title>
+    <Result1>The robot does not match the controller record model.</Result1>
+    <Solve1>Please change MS witch match with robot.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>  
+  <Alarm>
+    <Name>E1.996</Name>
+    <Title>Controller Slave ID</Title>
+    <Result1>Controller Slave ID is not as default</Result1>
+    <Solve1>Send this alarm to service center, and restart controller.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.997</Name>
+    <Title>Absolute motor parameter</Title>
+    <Result1>Absolute motor parameter setting is not as default</Result1>
+    <Solve1>Send to service center.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.998</Name>
+    <Title>Operating mode has not been activated</Title>
+    <Result1>1.Operating mode has not been activated, please confirm causes. 2.Contacts of system DI4 and DI5 are not connected</Result1>
+    <Solve1>Please confirm contacts of system DI4 and DI5 ,then restart the controller.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>E1.999</Name>
+    <Title>SCARA 400 arm length</Title>
+    <Result1>SCARA 400 arm length is set to GMC default value</Result1>
+    <Solve1>Send to service center.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC001</Name>
+    <Title>PLC timeout</Title>
+    <Result1>PLC code is too large, make execution time is too long</Result1>
+    <Solve1>Change to a longer PLC cycle execution.</Solve1>
+    <Result2>Debug Operating</Result2>
+    <Solve2>Check has closed PLC Debug.</Solve2>
+    <Result3></Result3>
+    <Solve3>Send the drive back to the distributors or contact with Delta.</Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC002</Name>
+    <Title>Library download fail</Title>
+    <Result1>Library version doesn't match with firmware version</Result1>
+    <Solve1>Check Controller Parameter P1-01 is 1 or not. If P1-01 is 1, because update firmware make library version doesn't match. Please update matching library and restart controller.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC003</Name>
+    <Title>PLC Exception</Title>
+    <Result1>PLC Execution Error</Result1>
+    <Solve1>If this alarm happened, please send the drive back to the distributors or contact with Delta.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC004</Name>
+    <Title>Motion Modules Failure</Title>
+    <Result1>Function of motion modules is abnormality</Result1>
+    <Solve1>If this alarm happened, don't make any changes, please send the drive back to the distributors or contact with Delta.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC005</Name>
+    <Title>Controller Failure</Title>
+    <Result1>Function of controller is abnormality</Result1>
+    <Solve1>If this alarm happened, don't make any changes, please send the drive back to the distributors or contact with Delta.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC006</Name>
+    <Title>30 seconds sustained write</Title>
+    <Result1>30 seconds sustained write operation</Result1>
+    <Solve1>Check PLC and RL code, or sequential write is caused by operating logic of modbus is incorrect, then Fault Reset.</Solve1>
+    <Result2></Result2>
+    <Solve2>If the repeated occurrence. We recommend removal of all external devices to restore the original PLC setting, then debugging step by step.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC007</Name>
+    <Title>Device settings of DMCNET do not match</Title>
+    <Result1>Boot-time scan results of DMCNET do not match with parameter setting of power off retentive</Result1>
+    <Solve1>Please check device connection status of DMCNET. Confirm the parameters setting of controller between P3-31 to P3-42 are match with current DMCNET external devices.</Solve1>
+    <Result2></Result2>
+    <Solve2>Fault Reset, If you want to change the settings, please re-scanned and stored in parameter setting of power off retentive.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC008</Name>
+    <Title>Load arm parameter file fail</Title>
+    <Result1>File format of arm parameter is wrong or file is damaged</Result1>
+    <Solve1>1.Do not servo on, then restart controller after power off ten minute. 2.If this alarm happened again, don't make any changes, please send the drive back to the distributors.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC009</Name>
+    <Title>RobotType is Inconsistent</Title>
+    <Result1>RobotType of parameters setting is inconsistent with currently motion module</Result1>
+    <Solve1>Confirm the firmware version, whether firmware update(down version or failed) caused parameters P1-00 and P0-03 are Inconsistent.</Solve1>
+    <Result2></Result2>
+    <Solve2>Reset the parameters P1-00, confirm the current firmware version support this RobotType, the alarm will be cleared when re-power on.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC010</Name>
+    <Title>Alarm Reset is too often</Title>
+    <Result1>Alarm Reset be triggered too much, about 1 second 5 times</Result1>
+    <Solve1>Restart controller after power off, do not trigger Alarm Reset too often.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC011</Name>
+    <Title>PLC Image's variable address has alignment problem</Title>
+    <Result1>The declared variables is misaligned with PLC Image's variable address</Result1>
+    <Solve1>Check the specified address of declared variable in PLC program witch Type and Address are match or not. For example: Type is DWORD, but address is declared by dividing the remainder by 2 to 4.</Solve1>
+    <Result2></Result2>
+    <Solve2>Replace the modified PLC Image and restart controller after power off.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC014</Name>
+    <Title>Bootloader need to be changed</Title>
+    <Result1>Bootloader from NAND Flash is crashed</Result1>
+    <Solve1>Please use backup robot then contact OEM to change Bootloader</Solve1>
+    <Result2></Result2>
+    <Solve2>Press Alarm Reset.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>EC015</Name>
+    <Title>Verification code from NAND Flash is wrong</Title>
+    <Result1>Nand Flash has numerous invalid Verification code</Result1>
+    <Solve1>Please clean up NAND Flash as soon as posible, and do not power off during the operation.</Solve1>
+    <Result2></Result2>
+    <Solve2>Press Alarm Reset.</Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>WA001</Name>
+    <Title>Gating are triggered</Title>
+    <Result1>Gating are opened or triggered</Result1>
+    <Solve1>Please close the gating and press the reset switch (System DI3) to disarm.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>WA002</Name>
+    <Title>Motor temperature is overheat</Title>
+    <Result1>Motor temperature is overheat</Result1>
+    <Solve1> Stop motion operation temporarily, waiting for motor temperature decreases.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+  <Alarm>
+    <Name>WA991</Name>
+    <Title>Encoder's match code is invalid</Title>
+    <Result1>Robot does not match with MS</Result1>
+    <Solve1>Please change MS witch match with robot.</Solve1>
+    <Result2></Result2>
+    <Solve2></Solve2>
+    <Result3></Result3>
+    <Solve3></Solve3>
+    <Result4></Result4>
+    <Solve4></Solve4>
+    <Result5></Result5>
+    <Solve5></Solve5>
+  </Alarm>
+</AlarmInfo>

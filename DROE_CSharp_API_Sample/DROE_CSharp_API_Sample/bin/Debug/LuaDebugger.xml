@@ -1,0 +1,701 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LuaDebugger</name>
+    </assembly>
+    <members>
+        <member name="T:LuaInterface.Debugger.ILuaDebugBreakpointFactory">
+            <summary>
+            Interface for LuaDebugBreakpoint factories.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.ILuaDebugBreakpointFactory.CreateBreakpoint(LuaInterface.Debugger.LuaDebugFile,System.Int32)">
+            <summary>
+            Creates a new LuaDebugBreakpoint.
+            </summary>
+            <param name="file">File</param>
+            <param name="line">Line number</param>
+            <returns>Returns the new breakpoint.</returns>
+        </member>
+        <member name="T:LuaInterface.Debugger.LuaDebugBreakpoint">
+            <summary>
+            Default implementation for breakpoints.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugBreakpoint.File">
+            <summary>
+            Gets the file which containes the breakpoint.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugBreakpoint.Line">
+            <summary>
+            Gets or sets the Line.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugBreakpoint.Enabled">
+            <summary>
+            Gets or sets if the breakpoint is enabled.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpoint.#ctor(LuaInterface.Debugger.LuaDebugFile,System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="file">File</param>
+            <param name="line">Line</param>
+        </member>
+        <member name="T:LuaInterface.Debugger.LuaDebugBreakpointContainer">
+            <summary>
+            Container for LuaDebugBreakpoints.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebugBreakpointContainer.m_Items">
+            <summary>
+            List with all breakpoints.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpointContainer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpointContainer.Add(LuaInterface.Debugger.LuaDebugBreakpoint)">
+            <summary>
+            Adds a breakpoint.
+            </summary>
+            <param name="item">Breakpoint.</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpointContainer.Remove(LuaInterface.Debugger.LuaDebugBreakpoint)">
+            <summary>
+            Removes a breakpoint.
+            </summary>
+            <param name="item">Breakpoint.</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpointContainer.RemoveAt(System.Int32)">
+            <summary>
+            Removes breakpoint at a given index.
+            </summary>
+            <param name="index">Index</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpointContainer.Clear">
+            <summary>
+            Removes all breakpoints.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugBreakpointContainer.Count">
+            <summary>
+            Gets the number of breakpoints.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugBreakpointContainer.Item(System.Int32)">
+            <summary>
+            Gets breakpoints by index.
+            </summary>
+            <param name="index">Index</param>
+            <returns>Returns a breakpoint.</returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpointContainer.GetEnumerator">
+            <summary>
+            Returns the enumerator for the breakpoints.
+            </summary>
+            <returns>Returns the enumerator for the breakpoints.</returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugBreakpointContainer.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns the enumerator for the breakpoints.
+            </summary>
+            <returns>Returns the enumerator for the breakpoints.</returns>
+        </member>
+        <member name="T:LuaInterface.Debugger.ILuaDebugFileFactory">
+            <summary>
+            Interface for LuaDebugFile factories.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.ILuaDebugFileFactory.CreateFile(LuaInterface.Debugger.LuaDebugger,System.String)">
+            <summary>
+            Creates a new LuaDebugFile.
+            </summary>
+            <param name="debugger">Debugger.</param>
+            <param name="fileName">Filename.</param>
+            <returns>Returns a new file.</returns>
+        </member>
+        <member name="T:LuaInterface.Debugger.LuaDebugFile">
+            <summary>
+            Default implementation for files.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugFile.Debugger">
+            <summary>
+            Gets the debugger.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugFile.FileName">
+            <summary>
+            Gets the filename of the file.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugFile.Breakpoints">
+            <summary>
+            Gets the breakpoints of this file.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFile.#ctor(LuaInterface.Debugger.LuaDebugger,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="debugger">Debugger</param>
+            <param name="fileName">Filename</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFile.AddBreakpoint(System.Int32)">
+            <summary>
+            Adds a new breapoint.
+            </summary>
+            <param name="line">Line number.</param>
+            <returns>
+            Returns the new breakpoints.
+            If the breakpoint at that line already exists, then the existing breakpoint is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFile.RemoveBreakpoint(System.Int32)">
+            <summary>
+            Remves a breakpoint.
+            </summary>
+            <param name="line">Line number</param>
+            <remarks>
+            If no breakpoint exists at the given line, then nothing happens.
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFile.RemoveBreakpoint(LuaInterface.Debugger.LuaDebugBreakpoint)">
+            <summary>
+            Removes a breakpoint.
+            </summary>
+            <param name="breakpoint">Breakpoint</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFile.GetBreakpoint(System.Int32)">
+            <summary>
+            Gets a breakpoint at a given line.
+            </summary>
+            <param name="line">Line</param>
+            <returns>
+            Returns the breakpoint at the given line.
+            If no breakpoint exists at the line, then null is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFile.ToggleBreakpoint(System.Int32)">
+            <summary>
+            Toggels the breakpoint at a given line.
+            </summary>
+            <param name="line">Line number.</param>
+            <returns>
+            If the breakpoint was created, then the breakpoint is returned.
+            If the breakpoint was removen, then null is returned.
+            </returns>
+        </member>
+        <member name="T:LuaInterface.Debugger.LuaDebugFileContainer">
+            <summary>
+            Container for LuaDebugFiles.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebugFileContainer.m_Items">
+            <summary>
+            List with all breakpoints.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFileContainer.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFileContainer.Add(LuaInterface.Debugger.LuaDebugFile)">
+            <summary>
+            Adds a file.
+            </summary>
+            <param name="item">File.</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFileContainer.Remove(LuaInterface.Debugger.LuaDebugFile)">
+            <summary>
+            Removes a file.
+            </summary>
+            <param name="item">File</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFileContainer.RemoveAt(System.Int32)">
+            <summary>
+            Removes a file at a given index.
+            </summary>
+            <param name="index">Index.</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFileContainer.Clear">
+            <summary>
+            Removes all files.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugFileContainer.Count">
+            <summary>
+            Gets the number of files.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugFileContainer.Item(System.Int32)">
+            <summary>
+            Gets file by index
+            </summary>
+            <param name="index">Index</param>
+            <returns>Returns a file.</returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFileContainer.GetEnumerator">
+            <summary>
+            Returns the enumerator for the files.
+            </summary>
+            <returns>Returns the enumerator for the files.</returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugFileContainer.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns the enumerator for the files.
+            </summary>
+            <returns>Returns the enumerator for the files.</returns>
+        </member>
+        <member name="T:LuaInterface.Debugger.LuaDebugger">
+            <summary>
+            Debugger extension for LuaInterface
+            </summary>
+            <remarks>
+            Implements also the default factories for file- and breakpoint- objects.
+            </remarks>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugger.Lua">
+            <summary>
+            Gets the lua interpreter.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugger.FileFactory">
+            <summary>
+            Gets and sets the LuaDebugFile factory.
+            </summary>
+            <remarks>
+            The default file factory is LuaDebugger itself.
+            </remarks>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugger.BreakpointFactory">
+            <summary>
+            Gets and sets the LuaDebugBreakpoint factory.
+            </summary>
+            <remarks>
+            The default breakpoint factory is LuaDebugger itself.
+            </remarks>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugger.Files">
+            <summary>
+            Gets the container with the files.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugger.FullTrace">
+            <summary>
+            Gets or sets if the full tryce feature is enabled.
+            </summary>
+            <remarks>
+            The FullTrace property controls if the FullTraceData event is called.
+            </remarks>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebugger.m_InDebugHook">
+            <summary>
+            true if in debug hook funtion (simple locking mechanism)
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebugger.m_Action">
+            <summary>
+            current action of the debugger
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebugger.m_StackLevel">
+            <summary>
+            current stack level (absolute value is not important)
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebugger.m_StepStackLevel">
+            <summary>
+            Stack level to use for stepping (step over and step out)
+            </summary> 
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.#ctor(LuaInterface.Lua)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="lua">Lua interpreter to use.</param>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugger.Enabled">
+            <summary>
+            Gets and sets if the debugger is enabled.
+            </summary>
+            <remarks>
+            If the debugger is disabled, the lua debug hook funktion is removed.
+            By this you can avoid any perfomance issues while no debugging is needed.
+            Enabled sets the State property to Running (true) or Disabled (false).
+            You can not disable the debugger while it is stopped.
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.Lua_DebugHook(System.Object,LuaInterface.DebugHookEventArgs)">
+            <summary>
+            Lua debug hook event handler.
+            </summary>
+            <param name="sender">Sender of the event</param>
+            <param name="e">Event args</param>
+            <remarks>
+            This is the main debug handler.
+            This event calls the FullTraceData event (if enabled),
+            Stoping event and the WaitingForAction event (when execution is stoped).
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.StopExecution(LuaInterface.LuaDebug,LuaInterface.Debugger.DebuggerActions,LuaInterface.Debugger.LuaDebugBreakpoint)">
+            <summary>
+            Stops execution.
+            </summary>
+            <param name="luaDebug">LuaDebug from debug hook.</param>
+            <param name="action">Current Debugger Action.</param>
+            <param name="breakpoint">Brekpoint. Can be null.</param>
+            <remarks>
+            The WaitingForAction event is called as long as State == Stoped.
+            </remarks>
+        </member>
+        <member name="E:LuaInterface.Debugger.LuaDebugger.WaitingForAction">
+            <summary>
+            Event that is raised when the debugger has stoped and a action is required.
+            </summary>
+            <remarks>
+            The event gets called as long as the State == Stoped.
+            To change the state call one of the following methods:
+            Run, StepInto, StepOver, StepOut
+            </remarks>
+        </member>
+        <member name="E:LuaInterface.Debugger.LuaDebugger.Stoping">
+            <summary>
+            Event gest called when the debugger stops execution.
+            </summary>
+        </member>
+        <member name="E:LuaInterface.Debugger.LuaDebugger.FullTraceData">
+            <summary>
+            Event gest called on every debug hook call.
+            </summary>
+            <remarks>
+            This event can be enabled or disabeld by the FullTrace property.
+            By default it's disabled.
+            </remarks>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaDebugger.State">
+            <summary>
+            Gets or sets the state of the debugger.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.Run">
+            <summary>
+            Continues execution until the next breakpoint.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.Stop">
+            <summary>
+            Stops execution on the next executed line of code.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.StepInto">
+            <summary>
+            Steps into the function if possible.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.StepOver">
+            <summary>
+            Executes the next line of code.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.StepOut">
+            <summary>
+            Steps out of the current function.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.GetCallStack">
+            <summary>
+            Gets the current callstack.
+            </summary>
+            <returns>
+            Returns the current callstack.
+            If the debugger is not stoped then a empty array is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.GetLocalVars(LuaInterface.LuaDebug)">
+            <summary>
+            Gets the local variables and their values.
+            </summary>
+            <param name="luaDebug">Current LuaDebug structure.</param>
+            <returns>
+            Returns a list with all local variables and their values.
+            If the debuggger is not stoped, a empty array is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.SetLocalVar(LuaInterface.LuaDebug,LuaInterface.Debugger.LuaVar@,System.Object)">
+            <summary>
+            Sets a new value for a local variable.
+            </summary>
+            <param name="luaDebug">Current LuaDebug structure.</param>
+            <param name="var">Variable that was returned by GetLocalVars.</param>
+            <param name="newValue">New value. The type don't have to match.</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.SetLocalVar(LuaInterface.LuaDebug,System.String,System.Object)">
+            <summary>
+            Sets a new value for a local variable.
+            </summary>
+            <param name="luaDebug">Current LuaDebug structure.</param>
+            <param name="varName">Name of the variable.</param>
+            <param name="newValue">New value. The type don't have to match.</param>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.GetUpValues(System.Int32)">
+            <summary>
+            Gets all upvalues.
+            </summary>
+            <param name="functionIndex">?</param>
+            <returns>Array with all up values. Array can be empty.</returns>
+            <remarks>
+            Not tested.
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.SetUpValue(System.Int32,LuaInterface.Debugger.LuaVar@,System.Object)">
+            <summary>
+            Sets a new value for a upvalue.
+            </summary>
+            <param name="functionIndex">?</param>
+            <param name="var">Variable that was returned by GetUpValues.</param>
+            <param name="newValue">New value. The type don't have to match.</param>
+            <remarks>
+            Not tested.
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.SetUpValue(System.Int32,System.String,System.Object)">
+            <summary>
+            Sets a new value for a upvalue.
+            </summary>
+            <param name="functionIndex">?</param>
+            <param name="varName">Name of the value.</param>
+            <param name="newValue">New value. The type don't have to match.</param>
+            <remarks>
+            Not tested.
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.AddFile(System.String)">
+            <summary>
+            Adds a file.
+            </summary>
+            <param name="fileName">Filename</param>
+            <returns>
+            Returns the added file. If a file with the given name already exists,
+            the existing file is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.GetFile(System.String)">
+            <summary>
+            Gets a file
+            </summary>
+            <param name="fileName">Filename</param>
+            <returns>
+            Returns the file with the given name.
+            If the file does not exist, null is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.GetBreakpoint(System.String,System.Int32)">
+            <summary>
+            Gets a breakpoint.
+            </summary>
+            <param name="fileName">Filename</param>
+            <param name="line">Line</param>
+            <returns>
+            Returns the breakpoint of a file at a given line.
+            If the file or breakpoint des not exist, then null is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.AddBreakpoint(System.String,System.Int32)">
+            <summary>
+            Adds a new breakpoint.
+            </summary>
+            <param name="fileName">Filename</param>
+            <param name="line">Line</param>
+            <returns>
+            Returns the new breakpoint.
+            If the breakpoint already exists, then the existing breakpoint is returned.
+            </returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.RemoveBreakpoint(System.String,System.Int32)">
+            <summary>
+            Removes a breakpoint.
+            </summary>
+            <param name="fileName">Filename</param>
+            <param name="line">Line</param>
+            <remarks>
+            If no breakpoint exists in the file at the given line, then nothing happens.
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.LuaInterface#Debugger#ILuaDebugFileFactory#CreateFile(LuaInterface.Debugger.LuaDebugger,System.String)">
+            <summary>
+            Creates the default implementation of the LuaDebugFile.
+            </summary>
+            <param name="debugger">Debugger.</param>
+            <param name="fileName">Filename.</param>
+            <returns>Returns the new LuaDebugFile.</returns>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaDebugger.LuaInterface#Debugger#ILuaDebugBreakpointFactory#CreateBreakpoint(LuaInterface.Debugger.LuaDebugFile,System.Int32)">
+            <summary>
+            Creates the default implementation of the LuaDebugBreakpoint.
+            </summary>
+            <param name="file">File</param>
+            <param name="line">Line</param>
+            <returns>Returns the new LuaDebugBreakpoint.</returns>
+        </member>
+        <member name="T:LuaInterface.Debugger.LuaVar">
+            <summary>
+            Structure that represents a Lua variable and it's value.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaVar.Index">
+            <summary>
+            Get the index of the variable. (Mainly for internal use)
+            </summary>
+            <remarks>Index can be for example the index on the stack.</remarks>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaVar.Name">
+            <summary>
+            Gets the name of the variable.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.LuaVar.Value">
+            <summary>
+            Gets the value of the variable.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.LuaVar.#ctor(System.Int32,System.String,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="index">Index</param>
+            <param name="name">Name</param>
+            <param name="value">Value</param>
+        </member>
+        <member name="T:LuaInterface.Debugger.CallStackEntry">
+            <summary>
+            Structure representing a callstack entry (level).
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.CallStackEntry.LuaDebug">
+            <summary>
+            Gets the LuaDebug structure for the entry.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.CallStackEntry.FunctionName">
+            <summary>
+            Gets the function name.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.CallStackEntry.FileName">
+            <summary>
+            Gets the filename.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.CallStackEntry.Line">
+            <summary>
+            Gets the line number.
+            </summary>
+        </member>
+        <member name="M:LuaInterface.Debugger.CallStackEntry.#ctor(LuaInterface.LuaDebug)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="luaDebug">LuaDebug structure for the entry.</param>
+        </member>
+        <member name="T:LuaInterface.Debugger.StopingEventArgs">
+            <summary>
+            Event args for the Stoping event.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.StopingEventArgs.LuaDebug">
+            <summary>
+            Gets the LuaDebug structure.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.StopingEventArgs.FileName">
+            <summary>
+            Gets the filename.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.StopingEventArgs.Line">
+            <summary>
+            Gets the line number.
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.StopingEventArgs.Breakpoint">
+            <summary>
+            Gets the breakpoint (can be null).
+            </summary>
+        </member>
+        <member name="P:LuaInterface.Debugger.StopingEventArgs.Action">
+            <summary>
+            Gets the debug action which is responible for Stopping.
+            </summary>
+            <remarks>
+            If Breakpoint property is set, then the breakpoint is responsible for stoping.
+            </remarks>
+        </member>
+        <member name="M:LuaInterface.Debugger.StopingEventArgs.#ctor(LuaInterface.LuaDebug,System.String,System.Int32,LuaInterface.Debugger.DebuggerActions,LuaInterface.Debugger.LuaDebugBreakpoint)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="luaDebug">Lua debug structure.</param>
+            <param name="fileName">Filename</param>
+            <param name="line">Line number</param>
+            <param name="action">Action</param>
+            <param name="breakpoint">Brewakpoint</param>
+        </member>
+        <member name="T:LuaInterface.Debugger.LuaDebuggerState">
+            <summary>
+            Lua debugger states.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebuggerState.Disabled">
+            <summary>
+            Debugger is disabled.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebuggerState.Running">
+            <summary>
+            Debugger is running.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.LuaDebuggerState.Stoped">
+            <summary>
+            Debugger is stoped.
+            </summary>
+        </member>
+        <member name="T:LuaInterface.Debugger.DebuggerActions">
+            <summary>
+            Actions for debugger.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.DebuggerActions.Run">
+            <summary>
+            Run. Continues execution.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.DebuggerActions.Stop">
+            <summary>
+            Stop execution .
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.DebuggerActions.StepInto">
+            <summary>
+            Step into function.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.DebuggerActions.StepOver">
+            <summary>
+            Step over function.
+            </summary>
+        </member>
+        <member name="F:LuaInterface.Debugger.DebuggerActions.StepOut">
+            <summary>
+            Step out of function.
+            </summary>
+        </member>
+    </members>
+</doc>

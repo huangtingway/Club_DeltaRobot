@@ -1,0 +1,1503 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RABD.Lib</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "T:RABD.Lib.HomeMode" -->
+        <member name="M:RABD.Lib.IRobot.MovStop(RABD.DROE.SystemDefine.eAxisName)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="axis"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MotionStop">
+            <summary>
+            API used only, stop movement.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.ExtMotionStop">
+            <summary>
+            API used only, all external motor will stop movement.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MovP(RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="pass">PASSMODE.OverlapDistance or PASSMODE.OverlapTime</param>
+            <param name="overlapinput">OverlapTime : 0~100% , OverlapDistance : mm </param>
+            <param name="SPD">0~100% </param>
+            <param name="ACC">0~100% </param>
+            <param name="DEC">0~100% </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MCircle(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MovP_ACS(RABD.DROE.SystemDefine.cPoint,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="mask"></param>
+            <param name="check"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MovL(RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <param name="SPD"></param>
+            <param name="ACC"></param>
+            <param name="DEC"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MArchP(RABD.DROE.SystemDefine.cPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MArchL(RABD.DROE.SystemDefine.cPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.RelToolMovL(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_dleta"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.RelToolMovP(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_dleta"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.StartContinuousMovP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.PathP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.EndContinuousMovP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.StartContinuousMovL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.PathL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.EndContinuousMovL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.GotoMovP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.GotoMovL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetAccurEx(RABD.DROE.SystemDefine.eAccur)">
+            <summary>
+            API used only
+            </summary>
+            <param name="accur"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MovJ(RABD.DROE.SystemDefine.eAxisName,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="axis"></param>
+            <param name="degree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.GoHomeSingle(RABD.Lib.eRobotAxisName)">
+            <summary>
+            ///
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+            
+        </member>
+        <member name="M:RABD.Lib.IRobot.MovP(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MCircle(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MovP_ACS(RABD.Lib.sPoint,System.Int32,System.Int32)">
+            <summary>
+            CPP　API used only
+            </summary>
+            <param name="p"></param>
+            <param name="mask"></param>
+            <param name="check"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MovL(RABD.Lib.sPoint)">
+            <summary>
+            CPP　API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MArchP(RABD.Lib.sPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.MArchL(RABD.Lib.sPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetOnFly(System.Int32,RABD.Lib.sPoint,System.Double,System.Double,System.Int32,System.Double)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="index"></param>
+            <param name="p"></param>
+            <param name="Radius"></param>
+            <param name="Time"></param>
+            <param name="DOIndex"></param>
+            <param name="DO_Time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.StartContinuousMovP(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.PathP(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.EndContinuousMovP(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.StartContinuousMovL(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.PathL(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.EndContinuousMovL(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.ExtMovJ(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="ExternalID"></param>
+            <param name="PUU"></param>
+            <param name="SPD"></param>
+            <param name="ACC"></param>
+            <param name="DEC"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetAccurEx(RABD.Lib.eRobotAccur)">
+            <summary>
+            API used only
+            </summary>
+            <param name="accur"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetJointAccurEx(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="J1"></param>
+            <param name="J2"></param>
+            <param name="J3"></param>
+            <param name="J4"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.GetJointAccurEx(System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            API used only
+            </summary>
+            <param name="J1"></param>
+            <param name="J2"></param>
+            <param name="J3"></param>
+            <param name="J4"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetBufferModeEx(RABD.Lib.eRobotBufferMode)">
+            <summary>
+            API used only
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetSpeed(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="speed"></param>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetSpeedEx(System.Int32,RABD.Lib.SpeedType)">
+            <summary>
+            API used only
+            </summary>
+            <param name="speed">depend on speedType.</param>
+            <param name="speedType">SpdJ(1~100%) : Joint motion used, SpdL(1~25000 mm/s) : linear motion used </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.GetSpeedEx">
+            <summary>
+            API used only
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetAccelEx(System.Int32,RABD.Lib.AccelerationType)">
+            <summary>
+            API used only
+            </summary>
+            <param name="accel">depend on accelerationType.</param>
+            <param name="accelerationType">AccJ(1~100%) : Joint motion used, AccL(1~25000 mm/s) : linear motion used </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.GetAccelEx">
+            <summary>
+            API used only
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.SetDecelEx(System.Int32,RABD.Lib.DecelerationType)">
+            <summary>
+            API used only
+            </summary>
+            <param name="decel">depend on decelerationType</param>
+            <param name="decelerationType">DecJ(1~100%) : Joint motion used, DecL(1~25000 mm/s) : linear motion used </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.GetDecelEx">
+            <summary>
+            API used only
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.StartAPIMoveFunction">
+            <summary>
+            Open API's movement function when first start or after the alarm happened.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.IRobot.CloseAPIMoveFunction">
+            <summary>
+            Close API's movement function.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.LPT_Build_Funcion(RABD.DROE.SystemDefine.cPoints,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="WorkPoint"></param>
+            <param name="Path"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.UpdateBinFile(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="FilePath"></param>
+            <param name="FileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.pointToByteArray(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.WriteSingleModbus(System.UInt16,RABD.Lib.eRobotModbusWordType,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="WordType"></param>
+            <param name="modbus_value"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.ReadSingleModbus(System.UInt16,RABD.Lib.eRobotModbusWordType)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="WordType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.IsConnected">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExecutorState(RABD.Lib.eExecutorState@)">
+            <summary>
+            
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExecutorState">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.Jog(RABD.Lib.eRobotDirection)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.Jog(RABD.DROE.SystemDefine.eDirection)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.JogEx(RABD.Lib.eRobotDirection)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.JogEx(RABD.DROE.SystemDefine.eDirection)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovStop">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="axis"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovStop(RABD.Lib.eRobotAxisName)">
+            <summary>
+            
+            </summary>
+            <param name="axis"></param>        
+        </member>
+        <member name="M:RABD.Lib.Robot.MovStop(RABD.DROE.SystemDefine.eAxisName)">
+            <summary>
+            
+            </summary>
+            <param name="axis"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovStopEx">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MotionStop">
+            <summary>
+            API used only, stop movement.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExtMotionStop">
+            <summary>
+            API used only, all external motor will stop movement.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovP(RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="pass">PASSMODE.OverlapDistance or PASSMODE.OverlapTime</param>
+            <param name="overlapinput">OverlapTime : 0~100% , OverlapDistance : mm </param>
+            <param name="SPD">0~100% </param>
+            <param name="ACC">0~100% </param>
+            <param name="DEC">0~100% </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovP(RABD.Lib.sPoint)">
+            <summary>
+            CPP API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MCircle(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovP_ACS(RABD.DROE.SystemDefine.cPoint,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="mask"></param>
+            <param name="check"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovL(RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="pass">PASSMODE.OverlapDistance or PASSMODE.OverlapTime</param>
+            <param name="overlapinput">OverlapTime : 0~100% , OverlapDistance : mm </param>
+            <param name="SPD">0~100% </param>
+            <param name="ACC">0~100% </param>
+            <param name="DEC">0~100% </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovJ(RABD.Lib.eRobotAxisName,System.Double)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="axis"></param>
+            <param name="degree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovJ(RABD.DROE.SystemDefine.eAxisName,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="axis"></param>
+            <param name="degree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MArchP(RABD.DROE.SystemDefine.cPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MArchL(RABD.DROE.SystemDefine.cPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolDirectionToPointDelta(System.String,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovL(RABD.DROE.SystemDefine.cPoint,System.String,System.Double,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovL(RABD.Lib.sPoint,System.String,System.Double,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovL(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovL(RABD.Lib.sPoint,RABD.Lib.sPoint,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovP(RABD.DROE.SystemDefine.cPoint,System.String,System.Double,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovP(RABD.Lib.sPoint,System.String,System.Double,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovP(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.RelToolMovP(RABD.Lib.sPoint,RABD.Lib.sPoint,RABD.Lib.PassMode,System.Int32)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <param name="pass"></param>
+            <param name="overlapinput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolP(RABD.Lib.sPoint,System.String,System.Double)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolP(RABD.DROE.SystemDefine.cPoint,System.String,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolP(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolP(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolP(RABD.Lib.sPoint,System.String,System.Double)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolP(RABD.DROE.SystemDefine.cPoint,System.String,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolP(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolP(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolP(RABD.Lib.sPoint,System.String,System.Double)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolP(RABD.DROE.SystemDefine.cPoint,System.String,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolP(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolP(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolL(RABD.Lib.sPoint,System.String,System.Double)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolL(RABD.DROE.SystemDefine.cPoint,System.String,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolL(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousRelToolL(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolL(RABD.Lib.sPoint,System.String,System.Double)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolL(RABD.DROE.SystemDefine.cPoint,System.String,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolL(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathRelToolL(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolL(RABD.Lib.sPoint,System.String,System.Double)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolL(RABD.DROE.SystemDefine.cPoint,System.String,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolL(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousRelToolL(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <param name="p_delta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetMACAddress">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetFirmwareVersion">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetSerialPortParameter(System.Int16,System.Int16,System.Int16,System.Int16)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="baudrate"></param>
+            <param name="protocol"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetSerialPortParameter(System.Int16@,System.Int16@,System.Int16@,System.Int16@)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="baudrate"></param>
+            <param name="protocol"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetDestinationPosition(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint@)">
+            <summary>
+            
+            </summary>
+            <param name="p_base"></param>
+            <param name="p_dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetDestinationPosition(RABD.DROE.SystemDefine.cPoint,System.String,System.Double,RABD.DROE.SystemDefine.cPoint@)">
+            <summary>
+            
+            </summary>
+            <param name="p_base"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <param name="p_dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetDestinationPosition(RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint,RABD.DROE.SystemDefine.cPoint@)">
+            <summary>
+            
+            </summary>
+            <param name="p_base"></param>
+            <param name="p_delta"></param>
+            <param name="p_dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetDestinationPosition(RABD.Lib.sPoint,RABD.Lib.sPoint@)">
+            <summary>
+            
+            </summary>
+            <param name="p_base"></param>
+            <param name="p_dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetDestinationPosition(RABD.Lib.sPoint,System.String,System.Double,RABD.Lib.sPoint@)">
+            <summary>
+            
+            </summary>
+            <param name="p_base"></param>
+            <param name="direction"></param>
+            <param name="distance"></param>
+            <param name="p_dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetDestinationPosition(RABD.Lib.sPoint,RABD.Lib.sPoint,RABD.Lib.sPoint@)">
+            <summary>
+            
+            </summary>
+            <param name="p_base"></param>
+            <param name="p_delta"></param>
+            <param name="p_dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousMovP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousMovP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MArchL(RABD.Lib.sPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovL(RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MCircle(RABD.Lib.sPoint,RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="p2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MovP_ACS(RABD.Lib.sPoint,System.Int32,System.Int32)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="mask"></param>
+            <param name="check"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.MArchP(RABD.Lib.sPoint,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <param name="h1"></param>
+            <param name="h2"></param>
+            <param name="h3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousMovP(RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathP(RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousMovP(RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousMovL(RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathL(RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousMovL(RABD.Lib.sPoint)">
+            <summary>
+            CPP used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartContinuousMovL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.PathL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndContinuousMovL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            API used only
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartCmd">
+            <summary>
+            Run No.100 project
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.EndCmd">
+            <summary>
+            Stop No.100 project
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.ServoOn">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.ServoOff">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.ServoState">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExternalServoOn(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ExternalID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExternalServoOff(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ExternalID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExternalPUU(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ExternalID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExternalJogForward(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ExternalID"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExternalJogReverse(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ExternalID"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExtMovJ(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            API used only
+            </summary>
+            <param name="ExternalID">External ID</param>
+            <param name="PUU">PUU</param>
+            <param name="SPD">1~100%</param>
+            <param name="ACC">1~100%</param>
+            <param name="DEC">1~100%</param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExtSetHome(System.Int32,RABD.Lib.HomeMode)">
+            <summary>
+            
+            </summary>
+            <param name="ExternalID"></param>
+            <param name="homeMode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ExtServoState">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.IsReady">
+            <summary>
+            New API : Waiting finish flag, No.100 : wait in socket
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.Ready">
+            <summary>
+            New API : Waiting finish flag, No.100 : wait mudbus 0x1402
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetPos">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.HasAlarm">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.HasWarning">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.ResetAlarm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.MonitorAlarmCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.Step(RABD.Lib.eRobotDirection)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.Step(RABD.DROE.SystemDefine.eDirection)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.StepEx(RABD.Lib.eRobotDirection,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+            <param name="dis"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StepEx(RABD.DROE.SystemDefine.eDirection,System.Double)">
+            <summary>
+            
+            </summary>
+            <param name="dir"></param>
+            <param name="dis"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetCartesianDistance(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="dis"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.RunSelectProgram(System.Int16)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.RunProgram">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StopProgram">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.SelectProgram(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.PauseProgram">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.GoHome">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:RABD.Lib.Robot.GoHomeSingle(RABD.Lib.eRobotAxisName)">
+            <summary>
+            
+            </summary>
+            <param name="axis"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.GoHomeSingle(RABD.DROE.SystemDefine.eAxisName)">
+            <summary>
+            
+            </summary>
+            <param name="axis"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetBufferModeEx(RABD.Lib.eRobotBufferMode)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetInputState(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetAllInputState">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetRobotInputState(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetExtInputState(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetOutputState(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetAllOutputState">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetRobotOutputState(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetExtOutputState(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetOutputState(System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="TOnFOff"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetAllOutputState(System.UInt16)">
+            <summary>
+            
+            </summary>
+            <param name="DOinfo"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetRobotOutputState(System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <param name="TOnFOff"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetExtOutputState(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="index"></param>
+            <param name="TOnFOff"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetAccurEx(RABD.Lib.eRobotAccur)">
+            <summary>
+            
+            </summary>
+            <param name="accur"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetAccurEx(RABD.DROE.SystemDefine.eAccur)">
+            <summary>
+            
+            </summary>
+            <param name="accur"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetJointAccurEx(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="J1"></param>
+            <param name="J2"></param>
+            <param name="J3"></param>
+            <param name="J4"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetAccurEx">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetSpeedEx(System.Int32,RABD.Lib.SpeedType)">
+            <summary>
+            API used only
+            </summary>
+            <param name="speed">depend on speedType.</param>
+            <param name="speedType">SpdJ(1~100%) : Joint motion used, SpdL(1~25000 mm/s) : linear motion used </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GetSpeedEx">
+            <summary>
+            API used only
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetSpeed(System.Int32)">
+            <summary>
+             
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetAccelEx(System.Int32,RABD.Lib.AccelerationType)">
+            <summary>
+            API used only
+            </summary>
+            <param name="accel">depend on accelerationType.</param>
+            <param name="accelerationType">AccJ(1~100%) : Joint motion used, AccL(1~25000 mm/s) : linear motion used </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.SetDecelEx(System.Int32,RABD.Lib.DecelerationType)">
+            <summary>
+            API used only
+            </summary>
+            <param name="decel">depend on decelerationType</param>
+            <param name="decelerationType">DecJ(1~100%) : Joint motion used, DecL(1~25000 mm/s) : linear motion used </param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.GotoMovP(RABD.Lib.sPoint)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.GotoMovL(RABD.Lib.sPoint)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.GotoMovP(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.GotoMovL(RABD.DROE.SystemDefine.cPoint)">
+            <summary>
+            Jog used only
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.DynamicbrakeOff(System.Boolean)">
+            <summary>
+            Be careful before used in Articulated Robot. 
+            </summary>
+            <param name="enable"></param>
+        </member>
+        <member name="M:RABD.Lib.Robot.MutipleMovJ(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            API used only
+            </summary>
+            <param name="J1degree"></param>
+            <param name="J2degree"></param>
+            <param name="J3degree"></param>
+            <param name="J4degree"></param>
+            <param name="J5degree"></param>
+            <param name="J6degree"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.StartAPIMoveFunction">
+            <summary>
+            Open API's movement function when first start or after the alarm happened.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RABD.Lib.Robot.CloseAPIMoveFunction">
+            <summary>
+            Close API's movement function.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
