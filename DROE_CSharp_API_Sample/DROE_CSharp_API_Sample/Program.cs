@@ -21,31 +21,21 @@ namespace DROE_CSharp_API_Sample
 {
     static class Program
     {
+        static Robot robot = new Robot();
         static SerialPort serialPort;
-        const String myIP = "192.168.1.1", robotIP = "192.168.1.0";
+        const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
 
         static void Main()
         {
-            arduinoCommTest();
-
-            Robot robot = new Robot();
-            robot.ConnectRobot(myIP, robotIP, 11000);
-
-            if(robot.IsConnected()) //connect test
-            {
-                Console.WriteLine("Connected to robot");
-                robot.StartAPIMoveFunction();
-            }
-            else
-            {
-                Console.WriteLine("Failed to connect to robot");
-            }
-            
+            //arduinoCommTest();
+            initRobot();
+            //testRobot();
+            robot.DisConnectRobot();
         }
 
         static void arduinoCommTest()
         {
-            string portName = "COM11";
+            string portName = "COM10";
             int baudRate = 9600;
             serialPort = new SerialPort(portName, baudRate);
             serialPort.Open();
@@ -64,5 +54,50 @@ namespace DROE_CSharp_API_Sample
 
             serialPort.Close();
         }
+
+        static void initRobot()
+        {
+            robot.ConnectRobot(robotIP, myIP, 11000);
+            Thread.Sleep(1000);
+            robot.ResetAlarm();
+            robot.StartAPIMoveFunction();
+            robot.ServoOn();
+            robot.SetSpeed(40);
+            Thread.Sleep(1000);
+            robot.GoHome();
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+            }
+
+            Thread.Sleep(5000);
+            Console.WriteLine("robot go home");
+            Console.WriteLine("Connected to robot");
+        }
+
+        static void testRobot()
+        {
+            cPoint pos1 = new cPoint();
+            pos1[eAxisName.X] = 360;
+            pos1[eAxisName.Y] = 90;
+            pos1[eAxisName.Z] = -40;
+            pos1[eAxisName.RZ] = 360;
+            robot.GotoMovP(pos1);
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+            }
+
+            robot.GoHome();
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+            }
+
+            robot.ServoOff();
+        }
+
     }
 }
