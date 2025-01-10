@@ -21,16 +21,83 @@ namespace DROE_CSharp_API_Sample
 {
     static class Program
     {
+        static SerialPort serialPort; //arduino communication
+
         static Robot robot = new Robot();
-        static SerialPort serialPort;
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
+        const int SPEED = 40;
+        static cPoint HOMEPOS = new cPoint();
 
         static void Main()
         {
             //arduinoCommTest();
+            serialPort.Write("yellowLight*");
+
             initRobot();
-            //testRobot();
-            robot.DisConnectRobot();
+            testRobot();
+            Thread.Sleep(500);
+
+            while (true)
+            {
+                serialPort.Write("greenLight*");
+
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine("按一下開始按鈕啟動執行");
+
+                    while (true)
+                    {
+                        if (robot.GetInputState(0) == true) break;
+                        Thread.Sleep(50);
+                    }
+
+                    serialPort.Write("yellowLight*");
+
+                    //work flow
+
+                    Thread.Sleep(500);
+                    Console.WriteLine("執行結束");
+                    serialPort.Write("greenLight*");
+                }
+
+                serialPort.Write("redLight*");
+                Console.WriteLine("補料完成後, 長按開始按鈕一秒繼續, 或長按開始按鈕3秒結束");
+                long pressTime = 0, beforeTime = 0;
+                int pressCount = 0;
+
+                while (true)
+                {
+                    //if (robot.GetInputState(0) == true)
+                    //{
+                    //    if (beforeTime == 0)
+                    //    {
+                    //        beforeTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                    //    }
+                    //    else
+                    //    {
+                    //        pressTime = DateTimeOffset.Now.ToUnixTimeMilliseconds() - beforeTime;
+                    //        if (pressTime >= 1000)
+                    //        {
+                    //            pressCount++;
+                    //            Console.WriteLine($"按鈕按下次數: {pressCount}, 經過時間: {pressTime} 毫秒");
+                    //            beforeTime = 0;
+                    //            pressTime = 0;
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    beforeTime = 0;
+                    //    pressTime = 0;
+                    //}
+
+                    Thread.Sleep(50);
+                }
+            }
+
+
+            robotOff();
+            serialPort.Close();
         }
 
         static void arduinoCommTest()
@@ -59,45 +126,173 @@ namespace DROE_CSharp_API_Sample
         {
             robot.ConnectRobot(robotIP, myIP, 11000);
             Thread.Sleep(1000);
+            Console.WriteLine("Connected to robot");
+
             robot.ResetAlarm();
             robot.StartAPIMoveFunction();
             robot.ServoOn();
-            robot.SetSpeed(40);
             Thread.Sleep(1000);
-            robot.GoHome();
 
-            while (true)
-            {
-                if (robot.RobotMovingStatus() == false) break;
-            }
+            robot.SetSpeed(SPEED);
+            robot.SetOverrideSpeed(SPEED);
+            Thread.Sleep(1000);
 
-            Thread.Sleep(5000);
-            Console.WriteLine("robot go home");
-            Console.WriteLine("Connected to robot");
+            robot.FrameSelect(0,0);
+
+            HOMEPOS[eAxisName.X] = 360;
+            HOMEPOS[eAxisName.Y] = 90;
+            HOMEPOS[eAxisName.Z] = -35;
+            HOMEPOS[eAxisName.RZ] = 0;
+            movePTP(HOMEPOS);
+            Thread.Sleep(1000);
+            Console.WriteLine("robot init");
         }
 
         static void testRobot()
         {
-            cPoint pos1 = new cPoint();
-            pos1[eAxisName.X] = 360;
-            pos1[eAxisName.Y] = 90;
-            pos1[eAxisName.Z] = -40;
-            pos1[eAxisName.RZ] = 360;
-            robot.GotoMovP(pos1);
-            while (true)
-            {
-                if (robot.RobotMovingStatus() == false) break;
-            }
-
-            robot.GoHome();
+            Console.WriteLine("button test");
 
             while (true)
             {
-                if (robot.RobotMovingStatus() == false) break;
+                if(robot.GetInputState(0) == true)
+                {
+                    Console.WriteLine("button test complete");
+                    break;
+                }
+
+                Thread.Sleep(50);
             }
 
-            robot.ServoOff();
+            Console.WriteLine("Pneumatic test");
+            robot.SetOutputState(0, true);
+            Thread.Sleep(1000);
+            robot.SetOutputState(0, false);
+            Thread.Sleep(1000);
+            robot.SetOutputState(1, true);
+            Thread.Sleep(1000);
+            robot.SetOutputState(1, false);
+            Console.WriteLine("Pneumatic test complete");
+            Thread.Sleep(1000);
+
+            Console.WriteLine("moving Rel test");
+            movePTPRel(50, 0, 0, 0);
+            movePTPRel(-50, 0, 0, 0);
+            movePTPRel(0, 50, 0, 0);
+            movePTPRel(0, -50, 0, 0);
+            movePTPRel(0, 0, 50, 0);
+            movePTPRel(0, 0, -50, 0);
+            movePTPRel(0, 0, 0, 90);
+            movePTPRel(0, 0, 0, -90);
+            Console.WriteLine("moving Rel test complete");
+            Thread.Sleep(1000);
+
+
+            //TODO: move source obj pos test
         }
 
+        static void robotOff()
+        {
+            movePTP(HOMEPOS);
+            robot.ServoOff();
+            robot.CloseAPIMoveFunction();
+            Console.WriteLine("robot off");
+            Thread.Sleep(1000);
+            robot.DisConnectRobot();
+        }
+
+        static void movePTP(cPoint pos)
+        {
+            robot.GotoMovP(pos);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(50);
+            }
+
+            Thread.Sleep(100);
+        }
+
+        static void movePTP(cPoint pos, double offsetX, double offsetY, double offsetZ, double offsetRz)
+        {
+            pos[eAxisName.X] += offsetX;
+            pos[eAxisName.Y] += offsetY;
+            pos[eAxisName.Z] += offsetZ;
+            pos[eAxisName.RZ] += offsetRz;
+            robot.GotoMovP(pos);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(50);
+            }
+
+            Thread.Sleep(100);
+        }
+
+        static void moveLin(cPoint pos)
+        {
+            robot.GotoMovL(pos);
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(50);
+            }
+
+            Thread.Sleep(100);
+        }
+
+        static void moveLin(cPoint pos, double offsetX, double offsetY, double offsetZ, double offsetRz)
+        {
+            pos[eAxisName.X] += offsetX;
+            pos[eAxisName.Y] += offsetY;
+            pos[eAxisName.Z] += offsetZ;
+            pos[eAxisName.RZ] += offsetRz;
+            robot.GotoMovL(pos);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(50);
+            }
+
+            Thread.Sleep(100);
+        }
+
+        static void movePTPRel(double x, double y, double z, double Rz)
+        {
+            cPoint currrentPos = robot.GetPos();
+            currrentPos[eAxisName.X] += x;
+            currrentPos[eAxisName.Y] += y;
+            currrentPos[eAxisName.Z] += z;
+            currrentPos[eAxisName.RZ] += Rz;
+            robot.GotoMovP(currrentPos);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(50);
+            }
+
+            Thread.Sleep(100);
+        }
+
+        static void moveLinRel(double x, double y, double z, double Rz)
+        {
+            cPoint currrentPos = robot.GetPos();
+            currrentPos[eAxisName.X] += x;
+            currrentPos[eAxisName.Y] += y;
+            currrentPos[eAxisName.Z] += z;
+            currrentPos[eAxisName.RZ] += Rz;
+            robot.GotoMovL(currrentPos);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(50);
+            }
+
+            Thread.Sleep(100);
+        }
     }
 }
