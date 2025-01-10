@@ -14,8 +14,19 @@ void loop() {
     if (Serial.available() > 0) {
         String inByte = Serial.readStringUntil('*');
         
-        if(inByte == "1") digitalWrite(LED_BUILTIN, 1);
-        else if(inByte == "0") digitalWrite(LED_BUILTIN, 0);
+        if(inByte == "start"){
+          for(int i = 0;i<3;i++){
+            digitalWrite(RPin, 1);
+            digitalWrite(GPin, 1);
+            digitalWrite(BPin, 1);
+            delay(80);
+            digitalWrite(RPin, 0);
+            digitalWrite(GPin, 0);
+            digitalWrite(BPin, 0);
+            delay(80);
+           }
+            
+        }
         else if(inByte == "redLight"){
             digitalWrite(RPin, 1);
             digitalWrite(GPin, 0);

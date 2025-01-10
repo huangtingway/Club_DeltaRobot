@@ -30,96 +30,48 @@ namespace DROE_CSharp_API_Sample
 
         static void Main()
         {
-            //arduinoCommTest();
-            serialPort.Write("yellowLight*");
+            //arduinoStart();
+            //serialPort.Write("yellowLight*");
 
             initRobot();
             testRobot();
+            Console.WriteLine("自動測試完成，請確認來料已完全補滿");
             Thread.Sleep(500);
 
-            while (true)
+            for (int i = 0; i < 10; i++)
             {
-                serialPort.Write("greenLight*");
-
-                for (int i = 0; i < 10; i++)
-                {
-                    Console.WriteLine("按一下開始按鈕啟動執行");
-
-                    while (true)
-                    {
-                        if (robot.GetInputState(0) == true) break;
-                        Thread.Sleep(50);
-                    }
-
-                    serialPort.Write("yellowLight*");
-
-                    //work flow
-
-                    Thread.Sleep(500);
-                    Console.WriteLine("執行結束");
-                    serialPort.Write("greenLight*");
-                }
-
-                serialPort.Write("redLight*");
-                Console.WriteLine("補料完成後, 長按開始按鈕一秒繼續, 或長按開始按鈕3秒結束");
-                long pressTime = 0, beforeTime = 0;
-                int pressCount = 0;
+                //serialPort.Write("greenLight*");
+                Console.WriteLine("按一下開始按鈕啟動執行");
 
                 while (true)
                 {
-                    //if (robot.GetInputState(0) == true)
-                    //{
-                    //    if (beforeTime == 0)
-                    //    {
-                    //        beforeTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                    //    }
-                    //    else
-                    //    {
-                    //        pressTime = DateTimeOffset.Now.ToUnixTimeMilliseconds() - beforeTime;
-                    //        if (pressTime >= 1000)
-                    //        {
-                    //            pressCount++;
-                    //            Console.WriteLine($"按鈕按下次數: {pressCount}, 經過時間: {pressTime} 毫秒");
-                    //            beforeTime = 0;
-                    //            pressTime = 0;
-                    //        }
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    beforeTime = 0;
-                    //    pressTime = 0;
-                    //}
-
+                    if (robot.GetInputState(0) == true) break;
                     Thread.Sleep(50);
                 }
+
+                //serialPort.Write("yellowLight*");
+
+                //work flow
+
+                Thread.Sleep(500);
+                Console.WriteLine("執行結束");
+                //serialPort.Write("greenLight*");
             }
 
-
+            //serialPort.Write("redLight*");
             robotOff();
+            Thread.Sleep(1000);
             serialPort.Close();
         }
 
-        static void arduinoCommTest()
+        static void arduinoStart()
         {
             string portName = "COM10";
             int baudRate = 9600;
             serialPort = new SerialPort(portName, baudRate);
             serialPort.Open();
             Thread.Sleep(2000);
-            string command = "1*";
-
-            for (int i = 0; i < 5; i++)
-            {
-                command = "1*";
-                serialPort.Write(command);
-                Thread.Sleep(600);
-                command = "0*";
-                serialPort.Write(command);
-                Thread.Sleep(600);
-            }
-
-            serialPort.Close();
+            serialPort.Write("start*");
         }
 
         static void initRobot()
