@@ -14,7 +14,7 @@ void loop() {
     if (Serial.available() > 0) {
         String inByte = Serial.readStringUntil('*');
         
-        if(inByte == "start"){
+        if(inByte == "blink"){
           for(int i = 0;i<3;i++){
             digitalWrite(RPin, 1);
             digitalWrite(GPin, 1);

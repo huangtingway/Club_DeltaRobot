@@ -30,48 +30,79 @@ namespace DROE_CSharp_API_Sample
 
         static void Main()
         {
-            //arduinoStart();
+            //initArduino();
             //serialPort.Write("yellowLight*");
 
             initRobot();
             testRobot();
-            Console.WriteLine("自動測試完成，請確認來料已完全補滿");
+            Console.WriteLine("自動測試完成, 請確認來料完全補滿");
             Thread.Sleep(500);
 
-            for (int i = 0; i < 10; i++)
+            int pressTime = 0;
+
+            while (true)
             {
-                //serialPort.Write("greenLight*");
-                Console.WriteLine("按一下開始按鈕啟動執行");
+                bool isFininsh = false;
+
+                for (int i = 0; i < 10; i++)
+                {
+                    //serialPort.Write("greenLight*");
+                    //testRobot();
+                    //Console.WriteLine("自動測試完成, 請確認來料完全補滿");
+                    Console.WriteLine("按一下開始按鈕啟動執行, 或長按開始按鈕1秒結束程式");
+                    pressTime = detectBtnPress();
+
+                    while (true)
+                    {
+                        if (pressTime >= 800)
+                        {
+                            isFininsh = true;
+                            break;
+                        }
+                        else if (pressTime <= 300) break;
+                        else pressTime = detectBtnPress();
+                    }
+
+                    if (isFininsh == true) break;
+                    //serialPort.Write("yellowLight*");
+
+                    //work flow=======================================================
+
+
+
+                    //================================================================
+
+                    Thread.Sleep(500);
+                    Console.WriteLine("執行結束");
+                    //serialPort.Write("greenLight*");
+                    //serialPort.Write("blink*");
+                }
+
+                if (isFininsh == true) break;
+                //serialPort.Write("redLight*");
+                Console.WriteLine("補料完成後, 長按開始按鈕1秒");
+                pressTime = detectBtnPress();
 
                 while (true)
                 {
-                    if (robot.GetInputState(0) == true) break;
-                    Thread.Sleep(50);
+                    if (pressTime >= 800) break;
+                    else pressTime = detectBtnPress();
                 }
-
-                //serialPort.Write("yellowLight*");
-
-                //work flow
-
-                Thread.Sleep(500);
-                Console.WriteLine("執行結束");
-                //serialPort.Write("greenLight*");
             }
 
-            //serialPort.Write("redLight*");
             robotOff();
             Thread.Sleep(1000);
             serialPort.Close();
         }
 
-        static void arduinoStart()
+        static void initArduino()
         {
             string portName = "COM10";
             int baudRate = 9600;
             serialPort = new SerialPort(portName, baudRate);
             serialPort.Open();
             Thread.Sleep(2000);
-            serialPort.Write("start*");
+            serialPort.Write("blink*");
         }
 
         static void initRobot()
@@ -89,7 +120,7 @@ namespace DROE_CSharp_API_Sample
             robot.SetOverrideSpeed(SPEED);
             Thread.Sleep(1000);
 
-            robot.FrameSelect(0,0);
+            robot.FrameSelect(0, 0);
 
             HOMEPOS[eAxisName.X] = 360;
             HOMEPOS[eAxisName.Y] = 90;
@@ -102,30 +133,6 @@ namespace DROE_CSharp_API_Sample
 
         static void testRobot()
         {
-            Console.WriteLine("button test");
-
-            while (true)
-            {
-                if(robot.GetInputState(0) == true)
-                {
-                    Console.WriteLine("button test complete");
-                    break;
-                }
-
-                Thread.Sleep(50);
-            }
-
-            Console.WriteLine("Pneumatic test");
-            robot.SetOutputState(0, true);
-            Thread.Sleep(1000);
-            robot.SetOutputState(0, false);
-            Thread.Sleep(1000);
-            robot.SetOutputState(1, true);
-            Thread.Sleep(1000);
-            robot.SetOutputState(1, false);
-            Console.WriteLine("Pneumatic test complete");
-            Thread.Sleep(1000);
-
             Console.WriteLine("moving Rel test");
             movePTPRel(50, 0, 0, 0);
             movePTPRel(-50, 0, 0, 0);
@@ -138,6 +145,22 @@ namespace DROE_CSharp_API_Sample
             Console.WriteLine("moving Rel test complete");
             Thread.Sleep(1000);
 
+            Console.WriteLine("press button");
+            int pressTime = detectBtnPress();
+            Console.WriteLine("press time: " + pressTime);
+            Console.WriteLine("button test complete");
+            Thread.Sleep(1000);
+
+            Console.WriteLine("Pneumatic test");
+            robot.SetOutputState(0, true);
+            Thread.Sleep(1000);
+            robot.SetOutputState(0, false);
+            Thread.Sleep(1000);
+            robot.SetOutputState(1, true);
+            Thread.Sleep(1000);
+            robot.SetOutputState(1, false);
+            Console.WriteLine("Pneumatic test complete");
+            Thread.Sleep(1000);
 
             //TODO: move source obj pos test
         }
@@ -245,6 +268,33 @@ namespace DROE_CSharp_API_Sample
             }
 
             Thread.Sleep(100);
+        }
+
+        static int detectBtnPress()
+        {
+            Stopwatch sw = new Stopwatch();
+            int pressTime = 0;
+            bool isPressed = false;
+
+            while (true)
+            {
+                bool pressState = robot.GetInputState(0);
+
+                if (pressState == true && isPressed == false)
+                {
+                    sw.Start();
+                    isPressed = true;
+                }
+                else if (pressState == false && isPressed == true) break;
+                else if (pressState == true && isPressed == true)
+                {
+                    pressTime = (int)sw.ElapsedMilliseconds;
+                }
+                
+                Thread.Sleep(50);
+            }
+
+            return pressTime;
         }
     }
 }
