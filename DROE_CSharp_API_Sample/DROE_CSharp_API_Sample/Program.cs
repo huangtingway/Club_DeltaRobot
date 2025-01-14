@@ -25,7 +25,7 @@ namespace DROE_CSharp_API_Sample
 
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
-        const int SPEED = 40;
+        const int SPEED = 80;
         static cPoint HOMEPOS = new cPoint();
 
         static void Main()
@@ -35,64 +35,64 @@ namespace DROE_CSharp_API_Sample
 
             initRobot();
             testRobot();
-            Console.WriteLine("自動測試完成, 請確認來料完全補滿");
-            Thread.Sleep(500);
-
-            int pressTime = 0;
-
-            while (true)
-            {
-                bool isFininsh = false;
-
-                for (int i = 0; i < 10; i++)
-                {
-                    //serialPort.Write("greenLight*");
-                    //testRobot();
-                    //Console.WriteLine("自動測試完成, 請確認來料完全補滿");
-                    Console.WriteLine("按一下開始按鈕啟動執行, 或長按開始按鈕1秒結束程式");
-                    pressTime = detectBtnPress();
-
-                    while (true)
-                    {
-                        if (pressTime >= 800)
-                        {
-                            isFininsh = true;
-                            break;
-                        }
-                        else if (pressTime <= 300) break;
-                        else pressTime = detectBtnPress();
-                    }
-
-                    if (isFininsh == true) break;
-                    //serialPort.Write("yellowLight*");
-
-                    //work flow=======================================================
-
-
-
-                    //================================================================
-
-                    Thread.Sleep(500);
-                    Console.WriteLine("執行結束");
-                    //serialPort.Write("greenLight*");
-                    //serialPort.Write("blink*");
-                }
-
-                if (isFininsh == true) break;
-                //serialPort.Write("redLight*");
-                Console.WriteLine("補料完成後, 長按開始按鈕1秒");
-                pressTime = detectBtnPress();
-
-                while (true)
-                {
-                    if (pressTime >= 800) break;
-                    else pressTime = detectBtnPress();
-                }
-            }
-
+            //Console.WriteLine("自動測試完成, 請確認來料完全補滿");
+            //Thread.Sleep(500);
+            //
+            //int pressTime = 0;
+            //
+            //while (true)
+            //{
+            //    bool isFininsh = false;
+            //
+            //    for (int i = 0; i < 10; i++)
+            //    {
+            //        //serialPort.Write("greenLight*");
+            //        //testRobot();
+            //        //Console.WriteLine("自動測試完成, 請確認來料完全補滿");
+            //        Console.WriteLine("按一下開始按鈕啟動執行, 或長按開始按鈕1秒結束程式");
+            //        pressTime = detectBtnPress();
+            //
+            //        while (true)
+            //        {
+            //            if (pressTime >= 800)
+            //            {
+            //                isFininsh = true;
+            //                break;
+            //            }
+            //            else if (pressTime <= 300) break;
+            //            else pressTime = detectBtnPress();
+            //        }
+            //
+            //        if (isFininsh == true) break;
+            //        //serialPort.Write("yellowLight*");
+            //
+            //        //work flow=======================================================
+            //
+            //
+            //
+            //        //================================================================
+            //
+            //        Thread.Sleep(500);
+            //        Console.WriteLine("執行結束");
+            //        //serialPort.Write("greenLight*");
+            //        //serialPort.Write("blink*");
+            //    }
+            //
+            //    if (isFininsh == true) break;
+            //    //serialPort.Write("redLight*");
+            //    Console.WriteLine("補料完成後, 長按開始按鈕1秒");
+            //    pressTime = detectBtnPress();
+            //
+            //    while (true)
+            //    {
+            //        if (pressTime >= 800) break;
+            //        else pressTime = detectBtnPress();
+            //    }
+            //}
+            
             robotOff();
             Thread.Sleep(1000);
-            serialPort.Close();
+            //serialPort.Close();
         }
 
         static void initArduino()
@@ -112,22 +112,54 @@ namespace DROE_CSharp_API_Sample
             Console.WriteLine("Connected to robot");
 
             robot.ResetAlarm();
+            Thread.Sleep(100);
             robot.StartAPIMoveFunction();
             robot.ServoOn();
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             robot.SetSpeed(SPEED);
             robot.SetOverrideSpeed(SPEED);
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             robot.FrameSelect(0, 0);
+            robot.GoHome();
+            Thread.Sleep(500);
 
-            HOMEPOS[eAxisName.X] = 360;
-            HOMEPOS[eAxisName.Y] = 90;
-            HOMEPOS[eAxisName.Z] = -35;
-            HOMEPOS[eAxisName.RZ] = 0;
-            movePTP(HOMEPOS);
-            Thread.Sleep(1000);
+            while (true)
+            {
+                if (robot.RobotMovingStatus())
+                {
+                    Console.WriteLine("Moveing to origin home");
+                }
+                else break;
+
+                Thread.Sleep(100);
+            }
+
+            Thread.Sleep(200);
+
+            HOMEPOS[eAxisName.X] = 340000;
+            HOMEPOS[eAxisName.Y] = 0;
+            HOMEPOS[eAxisName.Z] = -30000;
+            HOMEPOS[eAxisName.RZ] = 90000;
+            movePTP(HOMEPOS); 
+            Thread.Sleep(200);
+
+            robot.GoHome();
+            Thread.Sleep(500);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus())
+                {
+                    Console.WriteLine("Moveing to origin home");
+                }
+                else break;
+
+                Thread.Sleep(100);
+            }
+
+            Thread.Sleep(500);
             Console.WriteLine("robot init");
         }
 
@@ -178,14 +210,15 @@ namespace DROE_CSharp_API_Sample
         static void movePTP(cPoint pos)
         {
             robot.GotoMovP(pos);
+            Thread.Sleep(500);
 
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
         }
 
         static void movePTP(cPoint pos, double offsetX, double offsetY, double offsetZ, double offsetRz)
