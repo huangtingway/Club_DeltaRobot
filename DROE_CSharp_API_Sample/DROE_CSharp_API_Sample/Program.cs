@@ -227,27 +227,30 @@ namespace DROE_CSharp_API_Sample
             pos[eAxisName.Y] += offsetY;
             pos[eAxisName.Z] += offsetZ;
             pos[eAxisName.RZ] += offsetRz;
-            robot.GotoMovP(pos);
+            robot.GotoMovL(pos);
+            Thread.Sleep(500);
 
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
         }
 
         static void moveLin(cPoint pos)
         {
             robot.GotoMovL(pos);
+            Thread.Sleep(500);
+
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
         }
 
         static void moveLin(cPoint pos, double offsetX, double offsetY, double offsetZ, double offsetRz)
@@ -257,14 +260,15 @@ namespace DROE_CSharp_API_Sample
             pos[eAxisName.Z] += offsetZ;
             pos[eAxisName.RZ] += offsetRz;
             robot.GotoMovL(pos);
+            Thread.Sleep(500);
 
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
         }
 
         static void movePTPRel(double x, double y, double z, double Rz)
