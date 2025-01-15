@@ -27,6 +27,10 @@ namespace DROE_CSharp_API_Sample
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
         const int SPEED = 80;
+        const int LOAD_ACC_SPEED = 80;
+        const int LOAD_DEC_SPEED = 80;
+        const int CRUISE_ACC_SPEED = 80;
+        const int CRUISE_DEC_SPEED = 80;
         //const int PROJECT_INDEX = 9;
 
         //basic position
@@ -188,20 +192,19 @@ namespace DROE_CSharp_API_Sample
         {
             Console.WriteLine("moving Rel test");
             movePTPRel(50, 0, 0, 0);
-            movePTPRel(-50, 0, 0, 0);
+            movePTPRel(-100, 0, 0, 0);
             movePTPRel(0, 50, 0, 0);
-            movePTPRel(0, -50, 0, 0);
-            movePTPRel(0, 0, 50, 0);
-            movePTPRel(0, 0, -50, 0);
+            movePTPRel(0, -100, 0, 0);
+            moveLinRel(0, 0, -100, 0);
+            moveLinRel(0, 0, 50, 0);
             movePTPRel(0, 0, 0, 90);
             movePTPRel(0, 0, 0, -90);
             Console.WriteLine("moving Rel test complete");
             Thread.Sleep(1000);
 
-            Console.WriteLine("press button");
-            int pressTime = detectBtnPress();
-            Console.WriteLine("press time: " + pressTime);
-            Console.WriteLine("button test complete");
+            Console.WriteLine("moving Arc test");
+            moveArch(GET_NET_PLAT_POS);
+            Console.WriteLine("moving Arc test complete");
             Thread.Sleep(1000);
 
             Console.WriteLine("Pneumatic test");
@@ -215,6 +218,12 @@ namespace DROE_CSharp_API_Sample
             Console.WriteLine("Pneumatic test complete");
             Thread.Sleep(1000);
 
+            Console.WriteLine("press button");
+            int pressTime = detectBtnPress();
+            Console.WriteLine("press time: " + pressTime);
+            Console.WriteLine("button test complete");
+            Thread.Sleep(1000);
+
             //TODO: move source obj pos test
         }
 
@@ -226,6 +235,22 @@ namespace DROE_CSharp_API_Sample
             Console.WriteLine("robot off");
             Thread.Sleep(1000);
             robot.DisConnectRobot();
+        }
+
+        static void moveArch(cPoint target)
+        {
+            cPoint currentPos = robot.GetPos();
+            Thread.Sleep(500);
+            robot.MArchP(target, -50000, (int)currentPos[eAxisName.Z] + 50000, (int)target[eAxisName.Z] + 50000);
+            Thread.Sleep(500);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(100);
+            }
+
+            Thread.Sleep(500);
         }
 
         static void movePTP(cPoint pos)
