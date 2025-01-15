@@ -23,9 +23,11 @@ namespace DROE_CSharp_API_Sample
     {
         static SerialPort serialPort; //arduino communication
 
+        //basic parameter
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
         const int SPEED = 80;
+        //const int PROJECT_INDEX = 9;
 
         //basic position
         static cPoint HOME_POS = new cPoint();
@@ -72,7 +74,7 @@ namespace DROE_CSharp_API_Sample
             {
                 bool isFininsh = false;
 
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     //serialPort.Write("greenLight*");
                     //testRobot();
@@ -95,8 +97,12 @@ namespace DROE_CSharp_API_Sample
                     //serialPort.Write("yellowLight*");
 
                     //work flow=======================================================
-
-
+                    getNetPlat();
+                    //getBaseFrame();
+                    //getPicture();
+                    //getTopFrame();
+                    //getScrew();
+                    //export();
 
                     //================================================================
 
@@ -135,10 +141,11 @@ namespace DROE_CSharp_API_Sample
 
         static void initPos()
         {
-            HOMEPOS[eAxisName.X] = 340000;
-            HOMEPOS[eAxisName.Y] = 0;
-            HOMEPOS[eAxisName.Z] = -30000;
-            HOMEPOS[eAxisName.RZ] = 90000;
+            HOME_POS[eAxisName.X] = 340000;
+            HOME_POS[eAxisName.Y] = 0;
+            HOME_POS[eAxisName.Z] = -30000;
+            HOME_POS[eAxisName.RZ] = 90000;
+            GET_NET_PLAT_POS = robot.GetGlobalPoint(1);
         }
         static void initRobot()
         {
@@ -171,24 +178,8 @@ namespace DROE_CSharp_API_Sample
                 Thread.Sleep(100);
             }
 
-            Thread.Sleep(200);
-            movePTP(HOMEPOS); 
-            Thread.Sleep(200);
-
-            robot.GoHome();
             Thread.Sleep(500);
-
-            while (true)
-            {
-                if (robot.RobotMovingStatus())
-                {
-                    Console.WriteLine("Moveing to origin home");
-                }
-                else break;
-
-                Thread.Sleep(100);
-            }
-
+            movePTP(GET_NET_PLAT_POS);
             Thread.Sleep(500);
             Console.WriteLine("robot init");
         }
@@ -229,7 +220,7 @@ namespace DROE_CSharp_API_Sample
 
         static void robotOff()
         {
-            movePTP(HOMEPOS);
+            movePTP(HOME_POS);
             robot.ServoOff();
             robot.CloseAPIMoveFunction();
             Console.WriteLine("robot off");
@@ -253,11 +244,11 @@ namespace DROE_CSharp_API_Sample
 
         static void movePTP(cPoint pos, double offsetX, double offsetY, double offsetZ, double offsetRz)
         {
-            pos[eAxisName.X] += offsetX;
-            pos[eAxisName.Y] += offsetY;
-            pos[eAxisName.Z] += offsetZ;
-            pos[eAxisName.RZ] += offsetRz;
-            robot.GotoMovL(pos);
+            pos[eAxisName.X] += offsetX * 1000;
+            pos[eAxisName.Y] += offsetY * 1000;
+            pos[eAxisName.Z] += offsetZ * 1000;
+            pos[eAxisName.RZ] += offsetRz * 1000;
+            robot.GotoMovP(pos);
             Thread.Sleep(500);
 
             while (true)
@@ -285,10 +276,10 @@ namespace DROE_CSharp_API_Sample
 
         static void moveLin(cPoint pos, double offsetX, double offsetY, double offsetZ, double offsetRz)
         {
-            pos[eAxisName.X] += offsetX;
-            pos[eAxisName.Y] += offsetY;
-            pos[eAxisName.Z] += offsetZ;
-            pos[eAxisName.RZ] += offsetRz;
+            pos[eAxisName.X] += offsetX * 1000;
+            pos[eAxisName.Y] += offsetY * 1000;
+            pos[eAxisName.Z] += offsetZ * 1000;
+            pos[eAxisName.RZ] += offsetRz * 1000;
             robot.GotoMovL(pos);
             Thread.Sleep(500);
 
@@ -304,37 +295,39 @@ namespace DROE_CSharp_API_Sample
         static void movePTPRel(double x, double y, double z, double Rz)
         {
             cPoint currrentPos = robot.GetPos();
-            currrentPos[eAxisName.X] += x;
-            currrentPos[eAxisName.Y] += y;
-            currrentPos[eAxisName.Z] += z;
-            currrentPos[eAxisName.RZ] += Rz;
+            currrentPos[eAxisName.X] += x * 1000;
+            currrentPos[eAxisName.Y] += y * 1000;
+            currrentPos[eAxisName.Z] += z * 1000;
+            currrentPos[eAxisName.RZ] += Rz * 1000;
             robot.GotoMovP(currrentPos);
+            Thread.Sleep(500);
 
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
         }
 
         static void moveLinRel(double x, double y, double z, double Rz)
         {
             cPoint currrentPos = robot.GetPos();
-            currrentPos[eAxisName.X] += x;
-            currrentPos[eAxisName.Y] += y;
-            currrentPos[eAxisName.Z] += z;
-            currrentPos[eAxisName.RZ] += Rz;
+            currrentPos[eAxisName.X] += x * 1000;
+            currrentPos[eAxisName.Y] += y * 1000;
+            currrentPos[eAxisName.Z] += z * 1000;
+            currrentPos[eAxisName.RZ] += Rz * 1000;
             robot.GotoMovL(currrentPos);
+            Thread.Sleep(500);
 
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(50);
+                Thread.Sleep(100);
             }
 
-            Thread.Sleep(100);
+            Thread.Sleep(500);
         }
 
         static int detectBtnPress()
@@ -361,7 +354,14 @@ namespace DROE_CSharp_API_Sample
                 Thread.Sleep(50);
             }
 
+            Console.WriteLine("press time: " + pressTime);
             return pressTime;
         }
+    
+        static void getNetPlat()
+        {
+            
+        }
+
     }
 }
