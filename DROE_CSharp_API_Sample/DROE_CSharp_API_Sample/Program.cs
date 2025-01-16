@@ -52,8 +52,8 @@ namespace DROE_CSharp_API_Sample
         //margin
         static int SCREW_MARGIN_X = 10;
         static int SCREW_MARGIN_Y = 10;
-        static int COMPOSE_MARGIN_X = 10;
-        static int COMPOSE_MARGIN_Y = 10;
+        static int COMPOSE_SCREW_MARGIN_X = 10;
+        static int COMPOSE_SCREW_MARGIN_Y = 10;
 
         //height offset
         static int NET_PLAT_HEIGHT_OFFSET = 10;
@@ -61,6 +61,7 @@ namespace DROE_CSharp_API_Sample
         static int TOP_FRAME_HEIGHT_OFFSET = 10;
         static int PICTURE_HEIGHT_OFFSET = 10;
         static int SCREW_HEIGHT_OFFSET = 10;
+        static int COMPOSE_HEIGHT_OFFSET = 10;
 
         static void Main()
         {
@@ -112,8 +113,9 @@ namespace DROE_CSharp_API_Sample
 
                     Thread.Sleep(500);
                     Console.WriteLine("執行結束");
-                    //serialPort.Write("greenLight*");
                     //serialPort.Write("blink*");
+                    //Thread.Sleep(300);
+                    //serialPort.Write("greenLight*");
                 }
 
                 if (isFininsh == true) break;
