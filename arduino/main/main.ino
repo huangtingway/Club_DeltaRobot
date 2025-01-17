@@ -19,11 +19,11 @@ void loop() {
             digitalWrite(RPin, 1);
             digitalWrite(GPin, 1);
             digitalWrite(BPin, 1);
-            delay(80);
+            delay(120);
             digitalWrite(RPin, 0);
             digitalWrite(GPin, 0);
             digitalWrite(BPin, 0);
-            delay(80);
+            delay(150);
            }
             
         }

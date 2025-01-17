@@ -182,7 +182,6 @@ C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_S
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.Properties.Resources.resources
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.GenerateResource.cache
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.CoreCompileInputs.cache
-C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.CopyComplete
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.exe
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.pdb
 C:\school\SchoolProgram\DeltaProject\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.AssemblyReference.cache
@@ -192,3 +191,4 @@ C:\school\SchoolProgram\DeltaProject\DROE_CSharp_API_Sample\DROE_CSharp_API_Samp
 C:\school\SchoolProgram\DeltaProject\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.CoreCompileInputs.cache
 C:\school\SchoolProgram\DeltaProject\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.exe
 C:\school\SchoolProgram\DeltaProject\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.pdb
+C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSh.BD736D3A.Up2Date

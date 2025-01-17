@@ -26,7 +26,7 @@ namespace DROE_CSharp_API_Sample
         //basic parameter
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
-        const int SPEED = 80;
+        const int SPEED = 90;
         const int LOAD_ACC_SPEED = 80;
         const int LOAD_DEC_SPEED = 80;
         const int CRUISE_ACC_SPEED = 80;
@@ -65,9 +65,8 @@ namespace DROE_CSharp_API_Sample
 
         static void Main()
         {
-            //initArduino();
-            //serialPort.Write("yellowLight*");
-            initPos();
+            initArduino();
+            serialPort.Write("yellowLight*");
             initRobot();
             testRobot();
             Console.WriteLine("自動測試完成, 請確認來料完全補滿");
@@ -143,20 +142,13 @@ namespace DROE_CSharp_API_Sample
             serialPort.Open();
             Thread.Sleep(2000);
             serialPort.Write("blink*");
+            Thread.Sleep(800);
         }
 
-        static void initPos()
-        {
-            HOME_POS[eAxisName.X] = 340000;
-            HOME_POS[eAxisName.Y] = 0;
-            HOME_POS[eAxisName.Z] = -30000;
-            HOME_POS[eAxisName.RZ] = 90000;
-            GET_NET_PLAT_POS = robot.GetGlobalPoint(1);
-        }
         static void initRobot()
         {
             robot.ConnectRobot(robotIP, myIP, 11000);
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             Console.WriteLine("Connected to robot");
 
             robot.ResetAlarm();
@@ -171,7 +163,7 @@ namespace DROE_CSharp_API_Sample
 
             robot.FrameSelect(0, 0);
             robot.GoHome();
-            Thread.Sleep(500);
+            Thread.Sleep(200);
 
             while (true)
             {
@@ -185,19 +177,31 @@ namespace DROE_CSharp_API_Sample
             }
 
             Thread.Sleep(500);
-            movePTP(GET_NET_PLAT_POS);
-            Thread.Sleep(500);
+
+            initPos();
+            movePTP(HOME_POS);
             Console.WriteLine("robot init");
+        }
+
+
+        static void initPos ( )
+        {
+            HOME_POS = robot.GetGlobalPoint(0);
+            Thread.Sleep(100);
+            COMPOSE_POS = robot.GetGlobalPoint(1);
+            Thread. Sleep (100);
+            GET_NET_PLAT_POS = robot.GetGlobalPoint(2);
+            Thread.Sleep(100);
         }
 
         static void testRobot()
         {
             Console.WriteLine("moving Rel test");
             movePTPRel(50, 0, 0, 0);
-            movePTPRel(-100, 0, 0, 0);
+            movePTPRel(-50, 0, 0, 0);
             movePTPRel(0, 50, 0, 0);
-            movePTPRel(0, -100, 0, 0);
-            moveLinRel(0, 0, -100, 0);
+            movePTPRel(0, -50, 0, 0);
+            moveLinRel(0, 0, -50, 0);
             moveLinRel(0, 0, 50, 0);
             movePTPRel(0, 0, 0, 90);
             movePTPRel(0, 0, 0, -90);
@@ -205,9 +209,11 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(1000);
 
             Console.WriteLine("moving Arc test");
-            moveArch(GET_NET_PLAT_POS);
+            movePTP(GET_NET_PLAT_POS);
             Console.WriteLine("moving Arc test complete");
             Thread.Sleep(1000);
+
+            movePTP(COMPOSE_POS);
 
             Console.WriteLine("Pneumatic test");
             robot.SetOutputState(0, true);
@@ -242,9 +248,10 @@ namespace DROE_CSharp_API_Sample
         static void moveArch(cPoint target)
         {
             cPoint currentPos = robot.GetPos();
+            Thread.Sleep(100);
+            String errCode = robot.MArchP(target, 80000, 20000, 30000);
             Thread.Sleep(500);
-            robot.MArchP(target, -50000, (int)currentPos[eAxisName.Z] + 50000, (int)target[eAxisName.Z] + 50000);
-            Thread.Sleep(500);
+            Console.WriteLine("move arch error code: " + errCode);
 
             while (true)
             {
