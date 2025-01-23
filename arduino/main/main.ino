@@ -41,6 +41,18 @@ void loop() {
             digitalWrite(RPin, 0);
             digitalWrite(GPin, 1);
             digitalWrite(BPin, 0);
+        }else if(inByte == "redBlink"){
+          while(Serial.available() <= 0){
+            digitalWrite(RPin, 1);
+            digitalWrite(GPin, 0);
+            digitalWrite(BPin, 0);
+            delay(300);
+
+            digitalWrite(RPin, 0);
+            digitalWrite(GPin, 0);
+            digitalWrite(BPin, 0);
+            delay(300);
+          }
         }
     } 
 }

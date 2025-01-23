@@ -22,18 +22,19 @@ namespace DROE_CSharp_API_Sample
     static class Program
     {
         static SerialPort serialPort; //arduino communication
+        const bool TEST_MODE = false;
 
         //basic parameter
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
-        const int CRUISE_SPEED = 80;
-        const int LOAD_SPEED = 50;
+        const int CRUISE_SPEED = 100;
+        const int LOAD_SPEED = 75;
         const int LOAD_ACC_SPEED = 80;
         const int LOAD_DEC_SPEED = 50;
         const int CRUISE_ACC_SPEED = 100;
         const int CRUISE_DEC_SPEED = 100;
-        const int SUCTION_INDEX = 0;
-        const int CYLINDER_INDEX = 1;
+        const int SUCTION_INDEX = 2;
+        const int CYLINDER_INDEX = 3;
         //const int PROJECT_INDEX = 9;
 
         //basic position
@@ -58,12 +59,12 @@ namespace DROE_CSharp_API_Sample
         static int COMPOSE_SCREW_MARGIN_Y = 10;
 
         //height offset
-        static int NET_PLAT_HEIGHT_OFFSET = 10;
-        static int BOTTOM_FRAME_HEIGHT_OFFSET = 10;
-        static int TOP_FRAME_HEIGHT_OFFSET = 10;
-        static int PICTURE_HEIGHT_OFFSET = 10;
-        static int SCREW_HEIGHT_OFFSET = 10;
-        static int COMPOSE_HEIGHT_OFFSET = 10;
+        static int NET_PLAT_HEIGHT_OFFSET = 35;
+        static int BOTTOM_FRAME_HEIGHT_OFFSET = 35;
+        static int TOP_FRAME_HEIGHT_OFFSET = 35;
+        static int PICTURE_HEIGHT_OFFSET = 45;
+        static int SCREW_HEIGHT_OFFSET = 25;
+        static int COMPOSE_HEIGHT_OFFSET = 30;
 
         static void Main()
         {
@@ -100,7 +101,7 @@ namespace DROE_CSharp_API_Sample
                     }
 
                     if (isFininsh == true) break;
-                    serialPort.Write("yellowLight*");
+                    serialPort.Write("redLight*");
 
                     //work flow=======================================================
                     getNetPlat();
@@ -120,7 +121,7 @@ namespace DROE_CSharp_API_Sample
 
                 if (isFininsh == true) break;
 
-                serialPort.Write("redLight*");
+                serialPort.Write("redBlink*");
                 Console.WriteLine("補料完成後, 長按開始按鈕1秒");
                 pressTime = detectBtnPress();
 
@@ -129,6 +130,9 @@ namespace DROE_CSharp_API_Sample
                     if (pressTime >= 800) break;
                     else pressTime = detectBtnPress();
                 }
+
+                //reset height
+
             }
 
             robotOff();
@@ -213,6 +217,8 @@ namespace DROE_CSharp_API_Sample
 
         static void testRobot()
         {
+            if(TEST_MODE == false) return;
+
             Console.WriteLine("moving Rel test");
             movePTPRel(50, 0, 0, 0);
             movePTPRel(-50, 0, 0, 0);
@@ -373,7 +379,7 @@ namespace DROE_CSharp_API_Sample
 
             while (true)
             {
-                bool pressState = robot.GetInputState(0);
+                bool pressState = robot.GetInputState(3);
 
                 if (pressState == true && isPressed == false)
                 {
@@ -431,8 +437,8 @@ namespace DROE_CSharp_API_Sample
             speedUp();
             moveLinRel(0, 0, COMPOSE_HEIGHT_OFFSET, 0);
 
-            NET_PLAT_HEIGHT_OFFSET += 3;
-            COMPOSE_HEIGHT_OFFSET += 3;
+            GET_NET_PLAT_POS[eAxisName.Z] += 3;
+            COMPOSE_POS[eAxisName.Z] += 3;
         }
 
         static void getBaseFrame()
@@ -451,8 +457,8 @@ namespace DROE_CSharp_API_Sample
             robot.SetOutputState(SUCTION_INDEX, false);
             speedUp();
             moveLinRel(0, 0, COMPOSE_HEIGHT_OFFSET, 0);
-            BOTTOM_FRAME_HEIGHT_OFFSET += 3;
-            COMPOSE_HEIGHT_OFFSET += 3;
+            GET_BASE_FRAME_POS[eAxisName.Z] += 3;
+            COMPOSE_POS[eAxisName.Z] += 3;
         }
 
         static void getPicture()
@@ -471,8 +477,6 @@ namespace DROE_CSharp_API_Sample
             robot.SetOutputState(SUCTION_INDEX, false);
             speedUp();
             moveLinRel(0, 0, COMPOSE_HEIGHT_OFFSET, 0);
-            PICTURE_HEIGHT_OFFSET += 3;
-            COMPOSE_HEIGHT_OFFSET += 3;
         }
 
         static void getTopFrame()
@@ -491,8 +495,9 @@ namespace DROE_CSharp_API_Sample
             robot.SetOutputState(SUCTION_INDEX, false);
             speedUp();
             moveLinRel(0, 0, COMPOSE_HEIGHT_OFFSET, 0);
-            TOP_FRAME_HEIGHT_OFFSET += 6;
-            COMPOSE_HEIGHT_OFFSET += 6;
+
+            GET_TOP_FRAME_POS[eAxisName.Z] += 6;
+            COMPOSE_POS[eAxisName.Z] += 6;
         }
 
     }
