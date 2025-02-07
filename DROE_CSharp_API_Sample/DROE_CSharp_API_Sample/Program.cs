@@ -40,15 +40,14 @@ namespace DROE_CSharp_API_Sample
 
         //position
         static cPoint HOME_POS = new cPoint();
-        static cPoint GET_NET_PLAT_POS = new cPoint();
         static cPoint GET_BASE_FRAME_POS = new cPoint();
         static cPoint GET_PICTURE_POS = new cPoint();
+        static cPoint GET_ACRYLIC_POS = new cPoint();
         static cPoint GET_TOP_FRAME_POS = new cPoint();
         static cPoint GET_SCREW_POS = new cPoint();
         static cPoint EXPORT_POS = new cPoint();
         static cPoint COMPOSE_POS = new cPoint();
         static cPoint LOCK_SCREW_POS = new cPoint();
-        static cPoint NET_PLAT_RETURN_POS = new cPoint();
 
         //object size
         static int FRAME_LENGTH = 63;
@@ -62,7 +61,7 @@ namespace DROE_CSharp_API_Sample
         static int SCREW_DRIVER_MARGIN_Y = 35;
 
         //height offset
-        static int ORG_NET_PLAT_HEIGHT_OFFSET = 35;
+        static int ORG_ACRYLIC_HEIGHT_OFFSET = 35;
         static int ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 35;
         static int ORG_TOP_FRAME_HEIGHT_OFFSET = 35;
         static int ORG_PICTURE_HEIGHT_OFFSET = 45;
@@ -71,7 +70,7 @@ namespace DROE_CSharp_API_Sample
         static int ORG_EXPORT_HEIGHT_OFFSET = 30;
         static int LOCK_SCREW_HEIGHT_OFFSET = 30;
 
-        static int netPlatHeightOffset = ORG_NET_PLAT_HEIGHT_OFFSET;
+        static int acrylicHeightOffset = ORG_ACRYLIC_HEIGHT_OFFSET;
         static int bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
         static int topFrameHeightOffset = ORG_TOP_FRAME_HEIGHT_OFFSET;
         static int pictureHeightOffset = ORG_PICTURE_HEIGHT_OFFSET;
@@ -116,16 +115,15 @@ namespace DROE_CSharp_API_Sample
                     serialPort.Write("redLight*");
 
                     //work flow=======================================================
-                    getNetPlat();
-                    getBaseFrame();
+                    //getBaseFrame();
                     getPicture();
+                    getAcrylic();
                     getTopFrame();
                     getScrew(i, 0);
                     getScrew(i, 1);
                     getScrew(i, 2);
                     getScrew(i, 3);
                     export();
-                    returnNetPlat();
                     movePTP(HOME_POS);
                     //================================================================
 
@@ -147,7 +145,7 @@ namespace DROE_CSharp_API_Sample
                 }
 
                 //reset height
-                netPlatHeightOffset = ORG_NET_PLAT_HEIGHT_OFFSET;
+                acrylicHeightOffset = ORG_ACRYLIC_HEIGHT_OFFSET;
                 bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
                 topFrameHeightOffset = ORG_TOP_FRAME_HEIGHT_OFFSET;
                 pictureHeightOffset = ORG_PICTURE_HEIGHT_OFFSET;
@@ -157,6 +155,7 @@ namespace DROE_CSharp_API_Sample
             }
 
             robotOff();
+            serialPort.Write("off*");
             Thread.Sleep(500);
             serialPort.Close();
             Thread.Sleep(500);
@@ -228,11 +227,11 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(100);
             COMPOSE_POS = robot.GetGlobalPoint(1);
             Thread.Sleep(100);
-            GET_NET_PLAT_POS = robot.GetGlobalPoint(2);
+            GET_BASE_FRAME_POS = robot.GetGlobalPoint(2);
             Thread.Sleep(100);
-            GET_BASE_FRAME_POS = robot.GetGlobalPoint(3);
+            GET_PICTURE_POS = robot.GetGlobalPoint(3);
             Thread.Sleep(100);
-            GET_PICTURE_POS = robot.GetGlobalPoint(4);
+            GET_ACRYLIC_POS = robot.GetGlobalPoint(4);
             Thread.Sleep(100);
             GET_TOP_FRAME_POS = robot.GetGlobalPoint(5);
             Thread.Sleep(100);
@@ -241,8 +240,6 @@ namespace DROE_CSharp_API_Sample
             LOCK_SCREW_POS = robot.GetGlobalPoint(7);
             Thread.Sleep(100);
             EXPORT_POS = robot.GetGlobalPoint(8);
-            Thread.Sleep(100);
-            NET_PLAT_RETURN_POS = robot.GetGlobalPoint(9);
             Thread.Sleep(100);
         }
 
@@ -280,13 +277,13 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(100);
 
             // Move to every defined position
-            movePTP(GET_NET_PLAT_POS);
             movePTP(GET_BASE_FRAME_POS);
             movePTP(GET_PICTURE_POS);
+            movePTP(GET_ACRYLIC_POS);
             movePTP(GET_TOP_FRAME_POS);
             movePTP(GET_SCREW_POS);
-            movePTP(LOCK_SCREW_POS);
             movePTP(COMPOSE_POS);
+            movePTP(LOCK_SCREW_POS);
             movePTP(EXPORT_POS);
         }
 
@@ -461,29 +458,6 @@ namespace DROE_CSharp_API_Sample
             robot.SetDecelEx(DOWN_DEC_SPEED);
             Thread.Sleep(100);
         }
-        
-        static void getNetPlat()
-        {
-            movePTP(GET_NET_PLAT_POS);
-
-            //get
-            setGetObjectSpeed();
-            moveLinRel(0, 0, -netPlatHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, true);
-            speedDown();
-            Thread.Sleep(300);
-            moveLinRel(0, 0, netPlatHeightOffset, 0);
-            movePTP(COMPOSE_POS);
-
-            //put
-            moveLinRel(0, 0, -composeHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, false);
-            speedUp();
-            moveLinRel(0, 0, composeHeightOffset, 0);
-
-            netPlatHeightOffset -= 3;
-            composeHeightOffset -= 3;
-        }
 
         static void getBaseFrame()
         {
@@ -526,6 +500,25 @@ namespace DROE_CSharp_API_Sample
             moveLinRel(0, 0, composeHeightOffset, 0);
         }
 
+        static void getAcrylic()
+        {
+            movePTP(GET_ACRYLIC_POS);
+            //get
+            setGetObjectSpeed();
+            moveLinRel(0 , 0 , -acrylicHeightOffset , 0);
+            robot.SetOutputState(SUCTION_INDEX , true);
+            speedDown();
+            Thread.Sleep(300);
+            moveLinRel(0 , 0 , acrylicHeightOffset , 0);
+            movePTP(COMPOSE_POS);
+
+            //put
+            moveLinRel(0 , 0 , -composeHeightOffset , 0);
+            robot.SetOutputState(SUCTION_INDEX , false);
+            speedUp();
+            moveLinRel(0 , 0 , composeHeightOffset , 0);
+        }
+
         static void getTopFrame()
         {
             movePTP(GET_TOP_FRAME_POS);
@@ -552,8 +545,8 @@ namespace DROE_CSharp_API_Sample
         {
             cPoint getScrewPos = GET_SCREW_POS;
             cPoint lockScrewPos = LOCK_SCREW_POS;
-            getScrewPos[eAxisName.Y] += round * SCREW_MARGIN_Y * 1000;
-            getScrewPos[eAxisName.X] += screwNum * SCREW_MARGIN_X * 1000;
+            getScrewPos[eAxisName.Y] -= screwNum * SCREW_MARGIN_Y * 1000;
+            getScrewPos[eAxisName.X] += round * SCREW_MARGIN_X * 1000;
 
             int lockScrewXOffset = screwNum % 2;
             int lockScrewYOffset = screwNum / 2;
@@ -569,6 +562,7 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(300);
             moveLinRel(0, 0, screwHeightOffset, 0);
 
+            movePTP(COMPOSE_POS);
             movePTP(lockScrewPos);
             movePTPRel(0, SCREW_DRIVER_MARGIN_Y, 0, 0);
             //put
@@ -578,48 +572,12 @@ namespace DROE_CSharp_API_Sample
             moveLinRel(0, 0, composeHeightOffset, 0);
 
             //lock screw
-            for (int i = 0; i < 3; i++)
-            {
-                //down
-                movePTP(lockScrewPos);
-                moveLinRel(0, 0, -LOCK_SCREW_HEIGHT_OFFSET + 10, -360);
-
-                //align
-                robot.SetSpeed(15);
-                Thread.Sleep(100);
-                moveLinRel(0, 0, -10, 30);
-                robot.SetSpeed(100);
-                Thread.Sleep(1000);
-
-                //lock and up
-                moveLinRel(0, 0, 10, 690);
-                speedUp();
-                moveLinRel(0, 0, LOCK_SCREW_HEIGHT_OFFSET, 0);
-            }
            
-        }
-
-        static void returnNetPlat()
-        {
-            movePTP(COMPOSE_POS);
-            //get
-            setGetObjectSpeed();
-            moveLinRel(0, 0, -composeHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, true);
-            speedDown(); 
-            Thread.Sleep(300);
-            moveLinRel(0, 0, composeHeightOffset, 0);
-
-            movePTP(NET_PLAT_RETURN_POS);
-            //put
-            robot.SetOutputState(SUCTION_INDEX, true); 
-            speedUp();
+           
         }
 
         static void export()
         {
-            composeHeightOffset += 3;
-
             movePTP(COMPOSE_POS);
             //get
             setGetObjectSpeed();

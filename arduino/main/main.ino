@@ -53,6 +53,10 @@ void loop() {
             digitalWrite(BPin, 0);
             delay(300);
           }
+        }else if(inByte == "off"){
+            digitalWrite(RPin, 0);
+            digitalWrite(GPin, 0);
+            digitalWrite(BPin, 0);
         }
     } 
 }
