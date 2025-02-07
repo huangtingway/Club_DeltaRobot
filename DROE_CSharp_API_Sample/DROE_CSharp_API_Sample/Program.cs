@@ -28,11 +28,11 @@ namespace DROE_CSharp_API_Sample
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
         const int CRUISE_SPEED = 100;
-        const int LOAD_SPEED = 75;
-        const int LOAD_ACC_SPEED = 70;
-        const int LOAD_DEC_SPEED = 80;
+        const int LOAD_SPEED = 80;
+        const int LOAD_ACC_SPEED = 80;
+        const int LOAD_DEC_SPEED = 90;
         const int DOWN_SPEED = 60;
-        const int DOWN_DEC_SPEED = 35;
+        const int DOWN_DEC_SPEED = 30;
         const int CRUISE_ACC_SPEED = 100;
         const int CRUISE_DEC_SPEED = 100;
         const int SUCTION_INDEX = 2;
@@ -65,7 +65,7 @@ namespace DROE_CSharp_API_Sample
         static int ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 35;
         static int ORG_TOP_FRAME_HEIGHT_OFFSET = 35;
         static int ORG_PICTURE_HEIGHT_OFFSET = 45;
-        static int ORG_SCREW_HEIGHT_OFFSET = 25;
+        static int ORG_SCREW_HEIGHT_OFFSET = 30;
         static int ORG_COMPOSE_HEIGHT_OFFSET = 30;
         static int ORG_EXPORT_HEIGHT_OFFSET = 30;
         static int LOCK_SCREW_HEIGHT_OFFSET = 30;
@@ -154,6 +154,7 @@ namespace DROE_CSharp_API_Sample
                 exportHeightOffset = ORG_EXPORT_HEIGHT_OFFSET;
             }
 
+            movePTP(HOME_POS);
             robotOff();
             serialPort.Write("off*");
             Thread.Sleep(500);
@@ -498,6 +499,8 @@ namespace DROE_CSharp_API_Sample
             robot.SetOutputState(SUCTION_INDEX, false);
             speedUp();
             moveLinRel(0, 0, composeHeightOffset, 0);
+
+            composeHeightOffset -= 3;
         }
 
         static void getAcrylic()
@@ -517,6 +520,9 @@ namespace DROE_CSharp_API_Sample
             robot.SetOutputState(SUCTION_INDEX , false);
             speedUp();
             moveLinRel(0 , 0 , composeHeightOffset , 0);
+
+            acrylicHeightOffset += 3;
+            composeHeightOffset -= 3;
         }
 
         static void getTopFrame()
@@ -537,8 +543,8 @@ namespace DROE_CSharp_API_Sample
             speedUp();
             moveLinRel(0, 0, composeHeightOffset, 0);
 
-            topFrameHeightOffset -= 6;
-            composeHeightOffset -= 6;
+            topFrameHeightOffset += 3;
+            composeHeightOffset -= 3;
         }
 
         static void getScrew(int round, int screwNum)
@@ -548,9 +554,9 @@ namespace DROE_CSharp_API_Sample
             getScrewPos[eAxisName.Y] -= screwNum * SCREW_MARGIN_Y * 1000;
             getScrewPos[eAxisName.X] += round * SCREW_MARGIN_X * 1000;
 
-            int lockScrewXOffset = screwNum % 2;
-            int lockScrewYOffset = screwNum / 2;
-            lockScrewPos[eAxisName.X] += lockScrewXOffset * COMPOSE_SCREW_MARGIN_X * 1000;
+            int lockScrewXOffset = screwNum / 2;
+            int lockScrewYOffset = screwNum % 2;
+            lockScrewPos[eAxisName.X] -= lockScrewXOffset * COMPOSE_SCREW_MARGIN_X * 1000;
             lockScrewPos[eAxisName.Y] -= lockScrewYOffset * COMPOSE_SCREW_MARGIN_Y * 1000;
 
             movePTP(getScrewPos);
@@ -575,7 +581,6 @@ namespace DROE_CSharp_API_Sample
            
            
         }
-
         static void export()
         {
             movePTP(COMPOSE_POS);
