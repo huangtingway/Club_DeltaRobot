@@ -48,7 +48,8 @@ namespace DROE_CSharp_API_Sample
         static cPoint EXPORT_POS = new cPoint();
         static cPoint COMPOSE_POS = new cPoint();
         static cPoint LOCK_SCREW_POS = new cPoint();
-        
+        static cPoint NET_PLAT_RETURN_POS = new cPoint();
+
         //object size
         static int FRAME_LENGTH = 63;
         static int FRAME_WIDTH = 53;
@@ -124,6 +125,7 @@ namespace DROE_CSharp_API_Sample
                     getScrew(i, 2);
                     getScrew(i, 3);
                     export();
+                    returnNetPlat();
                     movePTP(HOME_POS);
                     //================================================================
 
@@ -239,6 +241,8 @@ namespace DROE_CSharp_API_Sample
             LOCK_SCREW_POS = robot.GetGlobalPoint(7);
             Thread.Sleep(100);
             EXPORT_POS = robot.GetGlobalPoint(8);
+            Thread.Sleep(100);
+            NET_PLAT_RETURN_POS = robot.GetGlobalPoint(9);
             Thread.Sleep(100);
         }
 
@@ -593,6 +597,23 @@ namespace DROE_CSharp_API_Sample
                 moveLinRel(0, 0, LOCK_SCREW_HEIGHT_OFFSET, 0);
             }
            
+        }
+
+        static void returnNetPlat()
+        {
+            movePTP(COMPOSE_POS);
+            //get
+            setGetObjectSpeed();
+            moveLinRel(0, 0, -composeHeightOffset, 0);
+            robot.SetOutputState(SUCTION_INDEX, true);
+            speedDown(); 
+            Thread.Sleep(300);
+            moveLinRel(0, 0, composeHeightOffset, 0);
+
+            movePTP(NET_PLAT_RETURN_POS);
+            //put
+            robot.SetOutputState(SUCTION_INDEX, true); 
+            speedUp();
         }
 
         static void export()
