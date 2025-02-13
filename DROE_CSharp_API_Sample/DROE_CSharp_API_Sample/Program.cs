@@ -22,7 +22,7 @@ namespace DROE_CSharp_API_Sample
     static class Program
     {
         static SerialPort serialPort; //arduino communication
-        const bool TEST_MODE = true;
+        const bool TEST_MODE = false;
 
         //basic parameter
         static Robot robot = new Robot();
@@ -81,7 +81,7 @@ namespace DROE_CSharp_API_Sample
         static void Main()
         {
             initArduino();
-            serialPort.Write("yellowLight*");
+            serialPort.Write("redLight*");
             initRobot();
             Thread.Sleep(500);
 
@@ -90,11 +90,11 @@ namespace DROE_CSharp_API_Sample
             while (true)
             {
                 bool isFininsh = false;
-                serialPort.Write("yellowLight*");
+                serialPort.Write("redLight*");
                 testRobot();
                 Console.WriteLine("自動測試完成, 請確認來料完全補滿");
 
-                for (int i = 0; i < 3; i++)
+                for (int i = 9; i < 10; i++)
                 {
                     serialPort.Write("greenLight*");
                     Console.WriteLine("按一下開始按鈕啟動執行, 或長按開始按鈕1秒結束程式");
@@ -112,10 +112,11 @@ namespace DROE_CSharp_API_Sample
                     }
 
                     if (isFininsh == true) break;
-                    serialPort.Write("redLight*");
+                    serialPort.Write("yellowLight*");
 
                     //work flow=======================================================
-                    //getBaseFrame();
+
+                    getBaseFrame();
                     getPicture();
                     getAcrylic();
                     getTopFrame();
@@ -278,12 +279,19 @@ namespace DROE_CSharp_API_Sample
 
             // Move to every defined position
             movePTP(GET_BASE_FRAME_POS);
+            Thread.Sleep(100);
             movePTP(GET_PICTURE_POS);
+            Thread.Sleep(100);
             movePTP(GET_ACRYLIC_POS);
+            Thread.Sleep(100);
             movePTP(GET_TOP_FRAME_POS);
+            Thread.Sleep(100);
             movePTP(GET_SCREW_POS);
+            Thread.Sleep(100);
             movePTP(COMPOSE_POS);
+            Thread.Sleep(100);
             movePTP(LOCK_SCREW_POS);
+            Thread.Sleep(100);
             movePTP(EXPORT_POS);
         }
 
@@ -525,7 +533,7 @@ namespace DROE_CSharp_API_Sample
             //get
             setGetObjectSpeed();
             moveLinRel(0, 0, -topFrameHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, true);
+            robot.SetOutputState(CYLINDER_INDEX, true);
             speedDown();
             Thread.Sleep(300);
             moveLinRel(0, 0, topFrameHeightOffset, 0);
@@ -533,7 +541,7 @@ namespace DROE_CSharp_API_Sample
 
             //put
             moveLinRel(0, 0, -composeHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, false);
+            robot.SetOutputState(CYLINDER_INDEX, false);
             speedUp();
             moveLinRel(0, 0, composeHeightOffset, 0);
 
