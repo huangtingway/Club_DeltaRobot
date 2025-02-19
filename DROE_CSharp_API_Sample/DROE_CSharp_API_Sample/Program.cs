@@ -115,7 +115,7 @@ namespace DROE_CSharp_API_Sample
                     serialPort.Write("yellowLight*");
 
                     //work flow=======================================================
-
+                    Console.WriteLine("執行第" + i + "次");
                     getBaseFrame();
                     getPicture();
                     getAcrylic();
@@ -585,10 +585,8 @@ namespace DROE_CSharp_API_Sample
             speedUp();
             moveLinRel(0, 0, composeHeightOffset, 0);
 
-            //lock screw
-           
-           
         }
+        
         static void export()
         {
             movePTP(COMPOSE_POS);
