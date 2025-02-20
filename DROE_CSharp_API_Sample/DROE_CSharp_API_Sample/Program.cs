@@ -21,7 +21,6 @@ namespace DROE_CSharp_API_Sample
 {
     static class Program
     {
-        static SerialPort serialPort; //arduino communication
         const bool TEST_MODE = false;
 
         //basic parameter
@@ -80,8 +79,6 @@ namespace DROE_CSharp_API_Sample
 
         static void Main()
         {
-            initArduino();
-            serialPort.Write("redLight*");
             initRobot();
             Thread.Sleep(500);
 
@@ -90,13 +87,11 @@ namespace DROE_CSharp_API_Sample
             while (true)
             {
                 bool isFininsh = false;
-                serialPort.Write("redLight*");
                 testRobot();
                 Console.WriteLine("自動測試完成, 請確認來料完全補滿");
 
                 for (int i = 9; i < 10; i++)
                 {
-                    serialPort.Write("greenLight*");
                     Console.WriteLine("按一下開始按鈕啟動執行, 或長按開始按鈕1秒結束程式");
                     pressTime = detectBtnPress();
 
@@ -112,7 +107,6 @@ namespace DROE_CSharp_API_Sample
                     }
 
                     if (isFininsh == true) break;
-                    serialPort.Write("yellowLight*");
 
                     //work flow=======================================================
                     Console.WriteLine("執行第" + i + "次");
@@ -129,14 +123,11 @@ namespace DROE_CSharp_API_Sample
                     //================================================================
 
                     Console.WriteLine("執行結束");
-                    serialPort.Write("blink*");
                     Thread.Sleep(800);
                 }
 
                 if (isFininsh == true) break;
 
-                serialPort.Write("redBlink*");
-                Console.WriteLine("補料完成後, 長按開始按鈕1秒");
                 pressTime = detectBtnPress();
 
                 while (true)
@@ -157,28 +148,9 @@ namespace DROE_CSharp_API_Sample
 
             movePTP(HOME_POS);
             robotOff();
-            serialPort.Write("off*");
             Thread.Sleep(500);
-            serialPort.Close();
             Thread.Sleep(500);
             return;
-        }
-
-        static void initArduino()
-        {
-            string portName = "COM10";
-            int baudRate = 9600;
-            serialPort = new SerialPort(portName, baudRate);
-            serialPort.Open();
-            Thread.Sleep(2000);
-            serialPort.Write("blink*");
-            Thread.Sleep(800); 
-            serialPort.Write("greenLight*");
-            Thread.Sleep(500); 
-            serialPort.Write("yellowLight*");
-            Thread.Sleep(500); 
-            serialPort.Write("redLight*");
-            Thread.Sleep(500);
         }
 
         static void initRobot()
