@@ -53,23 +53,20 @@ namespace DROE_CSharp_API_Sample
         static int FRAME_WIDTH = 53;
 
         //margin
-        static int SCREW_MARGIN_X = 35;
-        static int SCREW_MARGIN_Y = 30;
+        static int SCREW_MARGIN_X = 20;
+        static int SCREW_MARGIN_Y = 35;
         static int COMPOSE_SCREW_MARGIN_X = 43;
         static int COMPOSE_SCREW_MARGIN_Y = 53;
-        static int SCREW_DRIVER_MARGIN_Y = 35;
 
         //height offset
-        static int ORG_ACRYLIC_HEIGHT_OFFSET = 35;
-        static int ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 35;
-        static int ORG_TOP_FRAME_HEIGHT_OFFSET = 35;
+        static int ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 50;
+        static int ORG_TOP_FRAME_HEIGHT_OFFSET = 40;
         static int ORG_PICTURE_HEIGHT_OFFSET = 45;
-        static int ORG_SCREW_HEIGHT_OFFSET = 30;
-        static int ORG_COMPOSE_HEIGHT_OFFSET = 30;
-        static int ORG_EXPORT_HEIGHT_OFFSET = 30;
-        static int LOCK_SCREW_HEIGHT_OFFSET = 30;
+        static int ORG_SCREW_HEIGHT_OFFSET = 50;
+        static int ORG_COMPOSE_HEIGHT_OFFSET = 45;
+        static int ORG_EXPORT_HEIGHT_OFFSET = 60;
+        static int LOCK_SCREW_HEIGHT_OFFSET = 45;
 
-        static int acrylicHeightOffset = ORG_ACRYLIC_HEIGHT_OFFSET;
         static int bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
         static int topFrameHeightOffset = ORG_TOP_FRAME_HEIGHT_OFFSET;
         static int pictureHeightOffset = ORG_PICTURE_HEIGHT_OFFSET;
@@ -90,7 +87,7 @@ namespace DROE_CSharp_API_Sample
                 testRobot();
                 Console.WriteLine("自動測試完成, 請確認來料完全補滿");
 
-                for (int i = 9; i < 10; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     Console.WriteLine("按一下開始按鈕啟動執行, 或長按開始按鈕1秒結束程式");
                     pressTime = detectBtnPress();
@@ -442,19 +439,22 @@ namespace DROE_CSharp_API_Sample
 
         static void getBaseFrame()
         {
-            movePTP(GET_BASE_FRAME_POS);
+            moveLin(GET_BASE_FRAME_POS);
             //get
             setGetObjectSpeed();
-            moveLinRel(0, 0, -bottomFrameHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, true);
+            moveLinRel(0, 10, -bottomFrameHeightOffset, 0);
+            moveLinRel(0, -10, 0, 0);
+            robot.SetOutputState(CYLINDER_INDEX, true);
             speedDown();
             Thread.Sleep(300);
+            moveLinRel(50 , 0 , 0 , 0);
             moveLinRel(0, 0, bottomFrameHeightOffset, 0);
-            movePTP(COMPOSE_POS);
+
+            moveLin(COMPOSE_POS);
 
             //put
             moveLinRel(0, 0, -composeHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, false);
+            robot.SetOutputState(CYLINDER_INDEX , false);
             speedUp();
             moveLinRel(0, 0, composeHeightOffset, 0);
 
@@ -464,7 +464,7 @@ namespace DROE_CSharp_API_Sample
 
         static void getPicture()
         {
-            movePTP(GET_PICTURE_POS);
+            moveLin(GET_PICTURE_POS);
             //get
             setGetObjectSpeed();
             moveLinRel(0, 0, -pictureHeightOffset, 0);
@@ -472,7 +472,7 @@ namespace DROE_CSharp_API_Sample
             speedDown();
             Thread.Sleep(300);
             moveLinRel(0, 0, pictureHeightOffset, 0);
-            movePTP(COMPOSE_POS);
+            moveLin(COMPOSE_POS);
 
             //put
             moveLinRel(0, 0, -composeHeightOffset, 0);
@@ -485,19 +485,21 @@ namespace DROE_CSharp_API_Sample
 
         static void getAcrylic()
         {
-            movePTP(GET_ACRYLIC_POS);
+            moveLin(GET_ACRYLIC_POS);
             //get
             setGetObjectSpeed();
-            moveLinRel(0 , 0 , -acrylicHeightOffset , 0);
-            robot.SetOutputState(SUCTION_INDEX , true);
+            moveLinRel(0 , 10 , -acrylicHeightOffset , 0);
+            moveLinRel(0 , -10 , 0 , 0);
+            robot.SetOutputState(CYLINDER_INDEX , true);
             speedDown();
             Thread.Sleep(300);
+            moveLinRel(50 , 0 , 0 , 0);
             moveLinRel(0 , 0 , acrylicHeightOffset , 0);
-            movePTP(COMPOSE_POS);
+            moveLin(COMPOSE_POS);
 
             //put
             moveLinRel(0 , 0 , -composeHeightOffset , 0);
-            robot.SetOutputState(SUCTION_INDEX , false);
+            robot.SetOutputState(CYLINDER_INDEX , false);
             speedUp();
             moveLinRel(0 , 0 , composeHeightOffset , 0);
 
@@ -507,15 +509,17 @@ namespace DROE_CSharp_API_Sample
 
         static void getTopFrame()
         {
-            movePTP(GET_TOP_FRAME_POS);
+            moveLin(GET_TOP_FRAME_POS);
             //get
             setGetObjectSpeed();
-            moveLinRel(0, 0, -topFrameHeightOffset, 0);
+            moveLinRel(0, 10, -topFrameHeightOffset, 0);
+            moveLinRel(0, -10, 0, 0);
             robot.SetOutputState(CYLINDER_INDEX, true);
             speedDown();
             Thread.Sleep(300);
+            moveLinRel(50, 0, 0, 0);
             moveLinRel(0, 0, topFrameHeightOffset, 0);
-            movePTP(COMPOSE_POS);
+            moveLin(COMPOSE_POS);
 
             //put
             moveLinRel(0, 0, -composeHeightOffset, 0);
