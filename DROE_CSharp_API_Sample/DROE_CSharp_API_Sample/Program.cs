@@ -10,7 +10,7 @@ namespace DROE_CSharp_API_Sample
 {
     static class Program
     {
-        const bool TEST_MODE = false;
+        const bool TEST_MODE = true;
 
         //basic parameter
         static Robot robot = new Robot();
@@ -164,12 +164,12 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(100);
 
             robot.SetSpeed(CRUISE_SPEED);
+            Thread.Sleep(100);
             robot.SetOverrideSpeed(CRUISE_SPEED);
             Thread.Sleep(100);
 
             robot.FrameSelect(0, 0);
-            robot.GoHome();
-            Thread.Sleep(200);
+            Thread.Sleep(100);
 
             initPos();
             moveLin(HOME_POS);
@@ -201,12 +201,12 @@ namespace DROE_CSharp_API_Sample
             if(TEST_MODE == false) return;
 
             Console.WriteLine("moving Rel test");
-            moveLinRel(80, 0, 0, 0);
-            moveLinRel(-80, 0, 0, 0);
-            moveLinRel(0, 100, 0, 0);
-            moveLinRel(0, -100, 0, 0);
-            moveLinRel(0, 0, -50, 0);
-            moveLinRel(0, 0, 50, 0);
+            moveLinRel(50, 0, 0, 0);
+            moveLinRel(-50, 0, 0, 0);
+            moveLinRel(0, 50, 0, 0);
+            moveLinRel(0, -50, 0, 0);
+            moveLinRel(0, 0, -30, 0);
+            moveLinRel(0, 0, 30, 0);
             moveLinRel(0, 0, 0, 45);
             moveLinRel(0, 0, 0, -45);
             Console.WriteLine("moving Rel test complete");
@@ -223,7 +223,7 @@ namespace DROE_CSharp_API_Sample
             Console.WriteLine("Pneumatic test complete");
             Thread.Sleep(300);
 
-            Console.WriteLine("press button");
+            Console.WriteLine("press start button");
             int pressTime = detectBtnPress();
             Console.WriteLine("press time: " + pressTime);
             Console.WriteLine("button test complete");
