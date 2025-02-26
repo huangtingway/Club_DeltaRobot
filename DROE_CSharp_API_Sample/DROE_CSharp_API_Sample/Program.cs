@@ -104,7 +104,9 @@ namespace DROE_CSharp_API_Sample
 
                     Console.WriteLine("組裝中... (執行第" + i + "次)");
                     robot.ServoOn();
-                    Thread.Sleep(500);
+                    Thread.Sleep(300);
+                    moveLin(HOME_POS);
+                    Thread.Sleep(100);
 
                     //work flow=======================================================
                     getBaseFrame();
