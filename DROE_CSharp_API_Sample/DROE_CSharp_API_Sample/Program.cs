@@ -10,7 +10,7 @@ namespace DROE_CSharp_API_Sample
 {
     static class Program
     {
-        const bool TEST_MODE = true;
+        const bool TEST_MODE = false;
 
         //basic parameter
         static Robot robot = new Robot();
@@ -19,8 +19,8 @@ namespace DROE_CSharp_API_Sample
         const int LOAD_SPEED = 40;
         const int LOAD_ACC_SPEED = 100;
         const int LOAD_DEC_SPEED = 100;
-        const int DOWN_SPEED = 30;
-        const int DOWN_DEC_SPEED = 50;
+        const int DOWN_SPEED = 20;
+        const int DOWN_DEC_SPEED = 20;
         const int CRUISE_ACC_SPEED = 100;
         const int CRUISE_DEC_SPEED = 100;
         const int SUCTION_INDEX = 2;
@@ -47,11 +47,11 @@ namespace DROE_CSharp_API_Sample
         static int COMPOSE_SCREW_MARGIN_Y = 43;
 
         //height offset
-        static int ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 50;
+        static int ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 83;
         static int ORG_TOP_FRAME_HEIGHT_OFFSET = 40;
         static int ORG_PICTURE_HEIGHT_OFFSET = 45;
         static int ORG_SCREW_HEIGHT_OFFSET = 50;
-        static int ORG_COMPOSE_HEIGHT_OFFSET = 45;
+        static int ORG_COMPOSE_HEIGHT_OFFSET = 92;
         static int ORG_EXPORT_HEIGHT_OFFSET = 60;
         static int LOCK_SCREW_HEIGHT_OFFSET = 20;
 
@@ -102,22 +102,20 @@ namespace DROE_CSharp_API_Sample
 
                     if (isFininsh == true) break;
 
-                    Console.WriteLine("組裝中... (執行第" + i + "次)");
-                    robot.ServoOn();
-                    Thread.Sleep(300);
-                    moveLin(HOME_POS);
-                    Thread.Sleep(100);
+                    Console.WriteLine("組裝中... (執行第" + (i+1) + "次)");
+                    initRobot();
+                    Thread.Sleep(500);
 
                     //work flow=======================================================
                     getBaseFrame();
-                    getPicture();
-                    getAcrylic();
-                    getTopFrame();
-                    getScrew(i, 0);
-                    getScrew(i, 1);
-                    getScrew(i, 2);
-                    getScrew(i, 3);
-                    export();
+                    //getPicture();
+                    //getAcrylic();
+                    //getTopFrame();
+                    //getScrew(i, 0);
+                    //getScrew(i, 1);
+                    //getScrew(i, 2);
+                    //getScrew(i, 3);
+                    //export();
                     moveLin(HOME_POS);
                     //================================================================
 
@@ -144,7 +142,6 @@ namespace DROE_CSharp_API_Sample
 
             moveLin(HOME_POS);
             robotOff();
-            Thread.Sleep(500);
             Thread.Sleep(500);
             return;
         }
@@ -429,7 +426,7 @@ namespace DROE_CSharp_API_Sample
             robot.SetOutputState(CYLINDER_INDEX, true);
             speedDown();
             Thread.Sleep(300);
-            moveLinRel(50 , 0 , 0 , 0);
+            moveLinRel(45 , 0 , 0 , 0);
             moveLinRel(0, 0, bottomFrameHeightOffset, 0);
 
             moveLin(COMPOSE_POS);
