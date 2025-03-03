@@ -49,18 +49,15 @@ namespace DROE_CSharp_API_Sample
         //height offset
         static double ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 80;
         static double ORG_TOP_FRAME_HEIGHT_OFFSET = 40;
-        static double ORG_PICTURE_HEIGHT_OFFSET = 45;
-        static double ORG_SCREW_HEIGHT_OFFSET = 50;
+        static double PICTURE_HEIGHT_OFFSET = 45;
+        static double SCREW_HEIGHT_OFFSET = 50;
         static double ORG_COMPOSE_HEIGHT_OFFSET = 90;
-        static double ORG_EXPORT_HEIGHT_OFFSET = 60;
+        static double EXPORT_HEIGHT_OFFSET = 60;
         static double LOCK_SCREW_HEIGHT_OFFSET = 20;
 
         static double bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
         static double topFrameHeightOffset = ORG_TOP_FRAME_HEIGHT_OFFSET;
-        static double pictureHeightOffset = ORG_PICTURE_HEIGHT_OFFSET;
-        static double screwHeightOffset = ORG_SCREW_HEIGHT_OFFSET;
         static double composeHeightOffset = ORG_COMPOSE_HEIGHT_OFFSET;
-        static double exportHeightOffset = ORG_EXPORT_HEIGHT_OFFSET;
 
         static void Main()
         {
@@ -457,11 +454,11 @@ namespace DROE_CSharp_API_Sample
             moveLin(GET_PICTURE_POS);
             //get
             setGetObjectSpeed();
-            moveLinRel(0, 0, -pictureHeightOffset, 0);
+            moveLinRel(0, 0, -PICTURE_HEIGHT_OFFSET, 0);
             robot.SetOutputState(SUCTION_INDEX, true);
             speedDown();
             Thread.Sleep(300);
-            moveLinRel(0, 0, pictureHeightOffset, 0);
+            moveLinRel(0, 0, PICTURE_HEIGHT_OFFSET, 0);
 
             moveLin(COMPOSE_POS);
 
@@ -563,10 +560,10 @@ namespace DROE_CSharp_API_Sample
             moveLin(EXPORT_POS);
 
             //put
-            moveLinRel(0, 0, -exportHeightOffset, 0);
+            moveLinRel(0, 0, -EXPORT_HEIGHT_OFFSET, 0);
             robot.SetOutputState(SUCTION_INDEX, false);
             speedUp();
-            moveLinRel(0, 0, exportHeightOffset, 0);
+            moveLinRel(0, 0, EXPORT_HEIGHT_OFFSET, 0);
         }
     }
 }
