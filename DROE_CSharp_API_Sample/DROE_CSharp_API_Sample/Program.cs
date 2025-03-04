@@ -15,11 +15,11 @@ namespace DROE_CSharp_API_Sample
         //basic parameter
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
-        const int CRUISE_SPEED = 60;
-        const int LOAD_SPEED = 40;
+        const int CRUISE_SPEED = 55;
+        const int LOAD_SPEED = 55;
         const int LOAD_ACC_SPEED = 100;
         const int LOAD_DEC_SPEED = 100;
-        const int DOWN_SPEED = 20;
+        const int DOWN_SPEED = 10;
         const int DOWN_DEC_SPEED = 20;
         const int CRUISE_ACC_SPEED = 100;
         const int CRUISE_DEC_SPEED = 100;
@@ -48,7 +48,7 @@ namespace DROE_CSharp_API_Sample
 
         //height offset
         static double ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 80;
-        static double ORG_TOP_FRAME_HEIGHT_OFFSET = 40;
+        static double ORG_TOP_FRAME_HEIGHT_OFFSET = 46;
         static double PICTURE_HEIGHT_OFFSET = 45;
         static double SCREW_HEIGHT_OFFSET = 50;
         static double ORG_COMPOSE_HEIGHT_OFFSET = 90;
@@ -101,15 +101,17 @@ namespace DROE_CSharp_API_Sample
 
                     Console.WriteLine("組裝中... (執行第" + (i+1) + "次)");
                     robotOn();
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
 
                     //work flow=======================================================
                     robot.ResetAlarm();
                     Thread.Sleep(100);
                     getBaseFrame();
                     //getPicture();
-                    //getAcrylic();
-                    //getTopFrame();
+                    moveLin(HOME_POS);
+                    getAcrylic();
+                    moveLin(HOME_POS);
+                    getTopFrame();
                     //getScrew(i, 0);
                     //getScrew(i, 1);
                     //getScrew(i, 2);
@@ -119,7 +121,7 @@ namespace DROE_CSharp_API_Sample
                     //================================================================
 
                     robot.ServoOff();
-                    Thread.Sleep(500);
+                    Thread.Sleep(300);
                     Console.WriteLine("組裝完成");
                 }
 
@@ -350,6 +352,7 @@ namespace DROE_CSharp_API_Sample
         static void moveLinRel(double x, double y, double z, double Rz)
         {
             cPoint currrentPos = robot.GetPos();
+            Thread.Sleep(100);
             currrentPos[eAxisName.X] += x * 1000;
             currrentPos[eAxisName.Y] += y * 1000;
             currrentPos[eAxisName.Z] += z * 1000;
@@ -531,12 +534,12 @@ namespace DROE_CSharp_API_Sample
             moveLin(getScrewPos, 0, 10, 0, 0);
             //get
             setGetObjectSpeed();
-            moveLinRel(0, 0, -screwHeightOffset, 0);
+            moveLinRel(0, 0, -SCREW_HEIGHT_OFFSET, 0);
             moveLinRel(0, -10, 0, 0);
             robot.SetOutputState(CYLINDER_INDEX, true);
             speedDown();
             Thread.Sleep(300);
-            moveLinRel(0, 0, screwHeightOffset, 0);
+            moveLinRel(0, 0, SCREW_HEIGHT_OFFSET , 0);
 
             moveLin(COMPOSE_POS);
             moveLin(lockScrewPos);
