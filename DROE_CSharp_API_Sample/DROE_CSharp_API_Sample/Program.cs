@@ -32,9 +32,9 @@ namespace DROE_CSharp_API_Sample
         static cPoint GET_PICTURE_POS = new cPoint();
         static cPoint GET_TOP_FRAME_POS = new cPoint();
         static cPoint GET_SCREW_POS = new cPoint(); //右下角
-        static cPoint EXPORT_POS = new cPoint(); //左上角
+        static cPoint EXPORT_POS = new cPoint(); 
         static cPoint COMPOSE_POS = new cPoint();
-        static cPoint LOCK_SCREW_POS = new cPoint();
+        static cPoint LOCK_SCREW_POS = new cPoint();//左上角
 
         //object size
         static int FRAME_LENGTH = 63;
@@ -51,8 +51,8 @@ namespace DROE_CSharp_API_Sample
         static double ORG_TOP_FRAME_HEIGHT_OFFSET = 43.5;
         static double PICTURE_HEIGHT_OFFSET = 45;
         static double SCREW_HEIGHT_OFFSET = 91;
-        static double ORG_COMPOSE_HEIGHT_OFFSET = 100;
-        static double EXPORT_HEIGHT_OFFSET = 60;
+        static double ORG_COMPOSE_HEIGHT_OFFSET = 99;
+        static double EXPORT_HEIGHT_OFFSET = 80;
         static double LOCK_SCREW_HEIGHT_OFFSET = 20;
 
         static double bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
@@ -451,7 +451,7 @@ namespace DROE_CSharp_API_Sample
             moveLinRel(0, 0, composeHeightOffset, 0);
 
             bottomFrameHeightOffset += 7;
-            composeHeightOffset += 3;
+            composeHeightOffset -= 3;
         }
 
         static void getPicture()
@@ -519,7 +519,7 @@ namespace DROE_CSharp_API_Sample
             moveLinRel(0, 0, composeHeightOffset, 0);
 
             topFrameHeightOffset += 7;
-            composeHeightOffset += 3;
+            composeHeightOffset -= 3;
         }
 
         static void getScrew(int round, int screwNum)
