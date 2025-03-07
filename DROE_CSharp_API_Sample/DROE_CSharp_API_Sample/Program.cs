@@ -48,10 +48,10 @@ namespace DROE_CSharp_API_Sample
 
         //height offset
         static double ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 79;
-        static double ORG_TOP_FRAME_HEIGHT_OFFSET = 43.5;
+        static double ORG_TOP_FRAME_HEIGHT_OFFSET = 44;
         static double PICTURE_HEIGHT_OFFSET = 45;
-        static double SCREW_HEIGHT_OFFSET = 91;
-        static double ORG_COMPOSE_HEIGHT_OFFSET = 99;
+        static double SCREW_HEIGHT_OFFSET = 90.2;
+        static double ORG_COMPOSE_HEIGHT_OFFSET = 103.5;
         static double EXPORT_HEIGHT_OFFSET = 80;
         static double LOCK_SCREW_HEIGHT_OFFSET = 20;
 
@@ -107,13 +107,13 @@ namespace DROE_CSharp_API_Sample
                     robot.ResetAlarm();
                     Thread.Sleep(100);
                     speedUp();
-                    getBaseFrame();
+                    //getBaseFrame();
                     //getPicture();
-                    moveLin(HOME_POS);
+                    //moveLin(HOME_POS);
                     getTopFrame();
                     moveLin(HOME_POS);
                     getTopFrame();
-                    //moveLin(COMPOSE_POS);
+                    moveLin(COMPOSE_POS);
                     //getScrew(i, 0);
                     //getScrew(i, 1);
                     //getScrew(i, 2);
@@ -125,6 +125,7 @@ namespace DROE_CSharp_API_Sample
                     robot.ServoOff();
                     Thread.Sleep(300);
                     Console.WriteLine("組裝完成");
+                    composeHeightOffset = ORG_COMPOSE_HEIGHT_OFFSET;
                 }
 
                 if (isFininsh == true) break;
@@ -140,7 +141,6 @@ namespace DROE_CSharp_API_Sample
                 //reset height
                 bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
                 topFrameHeightOffset = ORG_TOP_FRAME_HEIGHT_OFFSET;
-                composeHeightOffset = ORG_COMPOSE_HEIGHT_OFFSET;
             }
 
             moveLin(HOME_POS);
@@ -556,6 +556,7 @@ namespace DROE_CSharp_API_Sample
 
             moveLin(COMPOSE_POS, 0 ,150, 0, 0);
             moveLin(COMPOSE_POS);
+            moveLin(LOCK_SCREW_POS);
             //moveLin(lockScrewPos);
             ////put
             //moveLinRel(0, 0, -LOCK_SCREW_HEIGHT_OFFSET, 0);
