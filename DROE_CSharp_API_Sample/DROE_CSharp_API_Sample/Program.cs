@@ -11,7 +11,6 @@ namespace DROE_CSharp_API_Sample
     static class Program
     {
         const bool TEST_MODE = false;
-        //static System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
 
         //basic parameter
         static Robot robot = new Robot();
@@ -31,6 +30,7 @@ namespace DROE_CSharp_API_Sample
         static cPoint HOME_POS = new cPoint();
         static cPoint GET_BASE_FRAME_POS = new cPoint();
         static cPoint GET_PICTURE_POS = new cPoint();
+        static cPoint CUT_PICTURE_POS = new cPoint();
         static cPoint GET_TOP_FRAME_POS = new cPoint();
         static cPoint GET_SCREW_POS = new cPoint(); //右下角
         static cPoint EXPORT_POS = new cPoint(); 
@@ -55,6 +55,8 @@ namespace DROE_CSharp_API_Sample
         static double ORG_COMPOSE_HEIGHT_OFFSET = 103.5;
         static double EXPORT_HEIGHT_OFFSET = 80;
         static double LOCK_SCREW_HEIGHT_OFFSET = 17;
+        static double CUT_PICTURE_HEIGHT_OFFSET = 50;
+        static double CUT_PICTURE_X_OFFSET = 40;
 
         static double bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
         static double topFrameHeightOffset = ORG_TOP_FRAME_HEIGHT_OFFSET;
@@ -150,18 +152,10 @@ namespace DROE_CSharp_API_Sample
             return;
         }
 
-        //static void timerTick(object sender, EventArgs e)
-        //{
-        //    cPoint temp = robot.GetPos();
-        //}
-
         static void initRobot()
         {
             robot.ConnectRobot(robotIP, myIP, 11000);
             Thread.Sleep(500);
-            //myTimer.Tick += new EventHandler(timerTick);
-            //myTimer.Interval = 1000;
-            //myTimer.Start();
             Console.WriteLine("Connected to robot");
             robotOn();
             initPos();
@@ -186,6 +180,8 @@ namespace DROE_CSharp_API_Sample
             LOCK_SCREW_POS = robot.GetGlobalPoint(6);
             Thread.Sleep(150);
             EXPORT_POS = robot.GetGlobalPoint(7);
+            Thread.Sleep(150);
+            CUT_PICTURE_POS = robot.GetGlobalPoint(8);
             Thread.Sleep(150);
         }
 
@@ -309,7 +305,7 @@ namespace DROE_CSharp_API_Sample
         static void moveLin(cPoint pos)
         {
             robot.GotoMovL(pos);
-            Thread.Sleep(400);
+            Thread.Sleep(300);
 
             while (true)
             {
@@ -327,7 +323,7 @@ namespace DROE_CSharp_API_Sample
             pos[eAxisName.Z] += offsetZ * 1000;
             pos[eAxisName.RZ] += offsetRz * 1000;
             robot.GotoMovL(pos);
-            Thread.Sleep(400);
+            Thread.Sleep(300);
 
             while (true)
             {
@@ -363,7 +359,7 @@ namespace DROE_CSharp_API_Sample
 
         static void moveLinRel(double x, double y, double z, double Rz)
         {
-            Thread.Sleep(500);
+            Thread.Sleep(300);
             cPoint currrentPos = robot.GetPos();
             Thread.Sleep(100);
             currrentPos[eAxisName.X] += x * 1000;
@@ -371,7 +367,7 @@ namespace DROE_CSharp_API_Sample
             currrentPos[eAxisName.Z] += z * 1000;
             currrentPos[eAxisName.RZ] += Rz * 1000;
             robot.GotoMovL(currrentPos);
-            Thread.Sleep(500);
+            Thread.Sleep(300);
 
             while (true)
             {
@@ -466,16 +462,31 @@ namespace DROE_CSharp_API_Sample
         }
 
         static void getPicture()
-        {
+        {   
             moveLin(GET_PICTURE_POS);
-            //get
+
+            //pick picture
             setGetObjectSpeed();
             moveLinRel(0, 0, -PICTURE_HEIGHT_OFFSET, 0);
             robot.SetOutputState(SUCTION_INDEX, true);
             speedDown();
             Thread.Sleep(300);
+            moveLinRel(0, -50, 3, 0);
+            robot.SetOutputState(SUCTION_INDEX, false);
+            moveLinRel(0, 50, 0, 0);
+
+            //get
+            moveLinRel(0, 0, -3, 0);
+            robot.SetOutputState(SUCTION_INDEX, true);
+            Thread.Sleep(300);
             moveLinRel(0, 0, PICTURE_HEIGHT_OFFSET, 0);
 
+            //cut
+            moveLin(CUT_PICTURE_POS);
+            moveLinRel(0, 0, -CUT_PICTURE_HEIGHT_OFFSET, 0);
+            moveLinRel(CUT_PICTURE_X_OFFSET, 0, 0, 0);
+            moveLinRel(-CUT_PICTURE_X_OFFSET, 0, 0, 0);
+            moveLinRel(0, 0, CUT_PICTURE_HEIGHT_OFFSET, 0);
             moveLin(COMPOSE_POS);
 
             //put
