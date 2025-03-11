@@ -15,8 +15,8 @@ namespace DROE_CSharp_API_Sample
         //basic parameter
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
-        const int CRUISE_SPEED = 45;
-        const int LOAD_SPEED = 45;
+        const int CRUISE_SPEED = 55;
+        const int LOAD_SPEED = 55;
         const int LOAD_ACC_SPEED = 100;
         const int LOAD_DEC_SPEED = 100;
         const int DOWN_SPEED = 10;
@@ -51,7 +51,7 @@ namespace DROE_CSharp_API_Sample
         static double ORG_BOTTOM_FRAME_HEIGHT_OFFSET = 79;
         static double ORG_TOP_FRAME_HEIGHT_OFFSET = 44;
         static double PICTURE_HEIGHT_OFFSET = 45;
-        static double SCREW_HEIGHT_OFFSET = 90.2;
+        static double SCREW_HEIGHT_OFFSET = 90;
         static double ORG_COMPOSE_HEIGHT_OFFSET = 103.5;
         static double EXPORT_HEIGHT_OFFSET = 80;
         static double LOCK_SCREW_HEIGHT_OFFSET = 17;
@@ -465,7 +465,7 @@ namespace DROE_CSharp_API_Sample
         {   
             moveLin(GET_PICTURE_POS);
 
-            //pick picture
+            //pull out picture
             setGetObjectSpeed();
             moveLinRel(0, 0, -PICTURE_HEIGHT_OFFSET, 0);
             robot.SetOutputState(SUCTION_INDEX, true);
@@ -484,12 +484,12 @@ namespace DROE_CSharp_API_Sample
             //cut
             moveLin(CUT_PICTURE_POS);
             moveLinRel(0, 0, -CUT_PICTURE_HEIGHT_OFFSET, 0);
-            moveLinRel(CUT_PICTURE_X_OFFSET, 0, 0, 0);
+            moveLinRel(CUT_PICTURE_X_OFFSET, 0, 0, 0); //cut in
             moveLinRel(-CUT_PICTURE_X_OFFSET, 0, 0, 0);
             moveLinRel(0, 0, CUT_PICTURE_HEIGHT_OFFSET, 0);
-            moveLin(COMPOSE_POS);
 
             //put
+            moveLin(COMPOSE_POS);
             moveLinRel(0, 0, -composeHeightOffset, 0);
             robot.SetOutputState(SUCTION_INDEX, false);
             speedUp();
@@ -544,7 +544,7 @@ namespace DROE_CSharp_API_Sample
             composeHeightOffset -= 3;
         }
 
-        static void getScrew(int round, int screwNum, int putXOffset, int putYOffset)
+        static void getScrew(int round, int screwNum, double putXOffset, double putYOffset)
         {
             speedDown();
             cPoint getScrewPos = GET_SCREW_POS;
@@ -561,21 +561,20 @@ namespace DROE_CSharp_API_Sample
             lockScrewPos[eAxisName.Y] += putYOffset * 1000;
 
             moveLin(getScrewPos , 200 , 0 , 0 , 0);
-            moveLin(getScrewPos, 0, 5, 0, 0);
+            moveLin(getScrewPos, 0, 2, 0, 0);
 
             //get
-            robot.SetSpeed(4);
+            robot.SetSpeed(20);
             Thread.Sleep(100);
             moveLinRel(0, 0, -SCREW_HEIGHT_OFFSET, 0);
-            moveLinRel(0, -3, 0, 0);
+            moveLinRel(0, -2, 0, 0);
             robot.SetOutputState(CYLINDER_INDEX, true);
             speedDown();
             Thread.Sleep(300);
             moveLinRel(0, 0, SCREW_HEIGHT_OFFSET , 0);
 
             moveLin(COMPOSE_POS, -40 ,150, 0, 0);
-            moveLin(COMPOSE_POS);
-            moveLin(lockScrewPos);
+           moveLin(lockScrewPos);
 
             //put
             moveLinRel(0, 0, -LOCK_SCREW_HEIGHT_OFFSET, 0);
