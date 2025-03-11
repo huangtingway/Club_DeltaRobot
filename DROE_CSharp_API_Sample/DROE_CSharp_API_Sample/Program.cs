@@ -574,13 +574,16 @@ namespace DROE_CSharp_API_Sample
             moveLinRel(0, 0, SCREW_HEIGHT_OFFSET , 0);
 
             moveLin(COMPOSE_POS, -40 ,150, 0, 0);
-           moveLin(lockScrewPos);
+            moveLin(lockScrewPos);
 
             //put
-            moveLinRel(0, 0, -LOCK_SCREW_HEIGHT_OFFSET, 0);
+            moveLinRel(0, 0, -(LOCK_SCREW_HEIGHT_OFFSET / 2), 0); //clamp down
             robot.SetOutputState(CYLINDER_INDEX, false);
-            speedUp();
+            moveLinRel(0, 3, LOCK_SCREW_HEIGHT_OFFSET / 2, 0);
+            moveLinRel(0, -10, 0, 0);
+            moveLinRel(0, 0, -LOCK_SCREW_HEIGHT_OFFSET, 0); //press down
             moveLinRel(0, 0, LOCK_SCREW_HEIGHT_OFFSET, 0);
+            speedUp();
 
             getScrewPos[eAxisName.X] -= getXOffset; //reset
             getScrewPos[eAxisName.Y] -= getYOffset;
