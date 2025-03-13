@@ -162,9 +162,8 @@ namespace DROE_CSharp_API_Sample
             Console.WriteLine("Connected to robot");
             robotOn();
             initPos();
+            speedUp();
             moveLin(HOME_POS);
-            robot.SelectProgram(0);
-            robot.RunSelectProgram(0);
             Console.WriteLine("robot init");
         }
 
@@ -420,8 +419,14 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(150);
             robot.SetOverrideSpeed(CRUISE_SPEED);
             Thread.Sleep(150);
-            robot.SetSpeedEx(CRUISE_SPEED);
+            robot.SetSpeedEx(1500, SpeedType.SpdL); //**
             Thread.Sleep(150);
+
+            uint speedRes = robot.GetSpeed();
+            double overrsideSpeedRes = 0;
+            robot.GetOverrideSpeed(ref overrsideSpeedRes);
+            int speedExRes = robot.GetSpeedEx();
+            Console.WriteLine("speed: " + speedRes + " override speed: " + overrsideSpeedRes + " speedEx: " + speedExRes);
 
             robot.SetAccelEx(CRUISE_ACC_SPEED);
             Thread.Sleep(150);
