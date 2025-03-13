@@ -15,16 +15,17 @@ namespace DROE_CSharp_API_Sample
         //basic parameter
         static Robot robot = new Robot();
         const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
-        const int CRUISE_SPEED = 55;
-        const int LOAD_SPEED = 55;
+        const int CRUISE_SPEED = 40;
+        const int LOAD_SPEED = 40;
         const int LOAD_ACC_SPEED = 100;
         const int LOAD_DEC_SPEED = 100;
         const int DOWN_SPEED = 10;
         const int DOWN_DEC_SPEED = 10;
         const int CRUISE_ACC_SPEED = 100;
         const int CRUISE_DEC_SPEED = 100;
-        const int SUCTION_INDEX = 2;
-        const int CYLINDER_INDEX = 3;
+        const int CYLINDER_INDEX = 2;
+        const int SUCTION_INDEX1 = 3; //fornt
+        const int SUCTION_INDEX2 = 5; //back
 
         //position
         static cPoint HOME_POS = new cPoint();
@@ -36,6 +37,7 @@ namespace DROE_CSharp_API_Sample
         static cPoint EXPORT_POS = new cPoint(); 
         static cPoint COMPOSE_POS = new cPoint();
         static cPoint LOCK_SCREW_POS = new cPoint();//左上角
+        static cPoint GET_EXPORT_POS = new cPoint();
 
         //object size
         static int FRAME_LENGTH = 63;
@@ -53,8 +55,8 @@ namespace DROE_CSharp_API_Sample
         static double PICTURE_HEIGHT_OFFSET = 45;
         static double SCREW_HEIGHT_OFFSET = 90;
         static double ORG_COMPOSE_HEIGHT_OFFSET = 103.5;
-        static double EXPORT_HEIGHT_OFFSET = 80;
-        static double LOCK_SCREW_HEIGHT_OFFSET = 17;
+        static double EXPORT_HEIGHT_OFFSET = 10;
+        static double LOCK_SCREW_HEIGHT_OFFSET = 14.7;
         static double CUT_PICTURE_HEIGHT_OFFSET = 50;
         static double CUT_PICTURE_X_OFFSET = 40;
 
@@ -110,18 +112,18 @@ namespace DROE_CSharp_API_Sample
                     robot.ResetAlarm();
                     Thread.Sleep(100);
                     speedUp();
-                    //getBaseFrame();
+                    getBaseFrame();
                     //getPicture();
-                    //moveLin(HOME_POS);
-                    //getTopFrame();
-                    //moveLin(HOME_POS);
-                    //getTopFrame();
+                    moveLin(HOME_POS);
+                    getTopFrame();
+                    moveLin(HOME_POS);
+                    getTopFrame();
                     moveLin(COMPOSE_POS);
-                    getScrew(i, 0, 0, 0);
-                    getScrew(i, 1, -53, 0);
-                    getScrew(i, 2, 0, -43);
-                    getScrew(i, 3, -53, -43);
-                    //export();
+                    getScrew(i , 0 , 0 , 0);
+                    getScrew(i , 1 , -53.5 , 0);
+                    getScrew(i , 2 , -0.5 , -43);
+                    getScrew(i , 3 , -54.5 , -43);
+                    export();
                     moveLin(HOME_POS);
                     //================================================================
 
@@ -183,6 +185,8 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(150);
             CUT_PICTURE_POS = robot.GetGlobalPoint(8);
             Thread.Sleep(150);
+            GET_EXPORT_POS = robot.GetGlobalPoint(9);
+            Thread.Sleep(150);
         }
 
         static void testRobot()
@@ -202,9 +206,9 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(300);
 
             Console.WriteLine("Pneumatic test");
-            robot.SetOutputState(SUCTION_INDEX, true);
+            robot.SetOutputState(SUCTION_INDEX1, true);
             Thread.Sleep(800);
-            robot.SetOutputState(SUCTION_INDEX, false);
+            robot.SetOutputState(SUCTION_INDEX1, false);
             Thread.Sleep(1000);
             robot.SetOutputState(CYLINDER_INDEX, true);
             Thread.Sleep(800);
@@ -468,16 +472,16 @@ namespace DROE_CSharp_API_Sample
             //pull out picture
             setGetObjectSpeed();
             moveLinRel(0, 0, -PICTURE_HEIGHT_OFFSET, 0);
-            robot.SetOutputState(SUCTION_INDEX, true);
+            robot.SetOutputState(SUCTION_INDEX1, true);
             speedDown();
             Thread.Sleep(300);
             moveLinRel(0, -50, 3, 0);
-            robot.SetOutputState(SUCTION_INDEX, false);
+            robot.SetOutputState(SUCTION_INDEX1, false);
             moveLinRel(0, 50, 0, 0);
 
             //get
             moveLinRel(0, 0, -3, 0);
-            robot.SetOutputState(SUCTION_INDEX, true);
+            robot.SetOutputState(SUCTION_INDEX1, true);
             Thread.Sleep(300);
             moveLinRel(0, 0, PICTURE_HEIGHT_OFFSET, 0);
 
@@ -491,7 +495,7 @@ namespace DROE_CSharp_API_Sample
             //put
             moveLin(COMPOSE_POS);
             moveLinRel(0, 0, -composeHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, false);
+            robot.SetOutputState(SUCTION_INDEX1, false);
             speedUp();
             moveLinRel(0, 0, composeHeightOffset, 0);
         }
@@ -560,7 +564,7 @@ namespace DROE_CSharp_API_Sample
             lockScrewPos[eAxisName.X] += putXOffset * 1000;
             lockScrewPos[eAxisName.Y] += putYOffset * 1000;
 
-            moveLin(getScrewPos , 200 , 0 , 0 , 0);
+            moveLin(getScrewPos , 180 , 0 , 0 , 0);
             moveLin(getScrewPos, 0, 2, 0, 0);
 
             //get
@@ -573,13 +577,14 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(300);
             moveLinRel(0, 0, SCREW_HEIGHT_OFFSET , 0);
 
-            moveLin(COMPOSE_POS, -40 ,150, 0, 0);
+            moveLin(COMPOSE_POS, -60 ,150, 0, 0);
             moveLin(lockScrewPos);
 
             //put
-            moveLinRel(0, 0, -(LOCK_SCREW_HEIGHT_OFFSET / 2), 0); //clamp down
+            moveLinRel(0, 0, -(LOCK_SCREW_HEIGHT_OFFSET * (2.0f/3)), 0); //clamp down
             robot.SetOutputState(CYLINDER_INDEX, false);
-            moveLinRel(0, 3, LOCK_SCREW_HEIGHT_OFFSET / 2, 0);
+            Thread.Sleep(250);
+            moveLin(lockScrewPos , 0 , 3 , 0 , 0);
             moveLinRel(0, -10, 0, 0);
             moveLinRel(0, 0, -LOCK_SCREW_HEIGHT_OFFSET, 0); //press down
             moveLinRel(0, 0, LOCK_SCREW_HEIGHT_OFFSET, 0);
@@ -594,18 +599,20 @@ namespace DROE_CSharp_API_Sample
         static void export()
         {
             moveLin(COMPOSE_POS);
+            moveLin(GET_EXPORT_POS);
             //get
             setGetObjectSpeed();
-            moveLinRel(0, 0, -composeHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX, true);
+            moveLinRel(0, 0, -17, 0);
+            robot.SetOutputState(SUCTION_INDEX2, true);
             speedDown();
-            Thread.Sleep(300);
-            moveLinRel(0, 0, composeHeightOffset, 0);
-            moveLin(EXPORT_POS);
+            Thread.Sleep(500);
+            moveLinRel(0, 0, 17, 0);
 
             //put
+            moveLin(EXPORT_POS);
             moveLinRel(0, 0, -EXPORT_HEIGHT_OFFSET, 0);
-            robot.SetOutputState(SUCTION_INDEX, false);
+            robot.SetOutputState(SUCTION_INDEX2, false);
+            Thread.Sleep(100);
             speedUp();
             moveLinRel(0, 0, EXPORT_HEIGHT_OFFSET, 0);
         }
