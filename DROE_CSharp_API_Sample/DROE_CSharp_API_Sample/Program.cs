@@ -14,15 +14,15 @@ namespace DROE_CSharp_API_Sample
 
         //basic parameter
         static Robot robot = new Robot();
-        const String myIP = "192.168.1.2", robotIP = "192.168.1.1";
-        const int CRUISE_SPEED = 100;
-        const int LOAD_SPEED = 100;
-        const int LOAD_ACC_SPEED = 100;
-        const int LOAD_DEC_SPEED = 100;
-        const int DOWN_SPEED = 20;
-        const int DOWN_DEC_SPEED = 5;
-        const int CRUISE_ACC_SPEED = 50;
-        const int CRUISE_DEC_SPEED = 50;
+        const String myIP = "192.168.1.100", robotIP = "192.168.1.1";
+        const int CRUISE_SPEED = 10;
+        const int LOAD_SPEED = 10;
+        const int LOAD_ACC_SPEED = 20;
+        const int LOAD_DEC_SPEED = 20;
+        const int DOWN_SPEED = 2;
+        const int DOWN_DEC_SPEED = 3;
+        const int CRUISE_ACC_SPEED = 20;
+        const int CRUISE_DEC_SPEED = 20;
         const int CYLINDER_INDEX = 2;
         const int SUCTION_INDEX1 = 3; //fornt
         const int SUCTION_INDEX2 = 5; //back
@@ -109,23 +109,23 @@ namespace DROE_CSharp_API_Sample
                     Thread.Sleep(100);
 
                     //work flow=======================================================
-                    robot.ResetAlarm();
-                    Thread.Sleep(100);
-                    speedUp();
-                    getBaseFrame();
+                    robot. ResetAlarm ();
+                    Thread. Sleep ( 300 );
+                    //speedUp();
+                    getBaseFrame ();
                     moveLin(COMPOSE_POS);
-                    getPicture();
-                    //moveLin(HOME_POS);
-                    //getTopFrame();
-                    //moveLin(HOME_POS);
-                    //getTopFrame();
-                    //moveLin(COMPOSE_POS);
-                    //getScrew(i , 0 , 0 , 0);
+                    //getPicture();
+                    moveLin ( HOME_POS );
+                    getTopFrame ();
+                    moveLin ( HOME_POS );
+                    getTopFrame ();
+                    moveLin ( COMPOSE_POS );
+                    getScrew ( i , 0 , 0 , 0 );
                     //getScrew(i , 1 , -53.5 , 0);
                     //getScrew(i , 2 , -0.5 , -43);
                     //getScrew(i , 3 , -54.5 , -43);
                     //export();
-                    moveLin(HOME_POS);
+                    moveLin (HOME_POS);
                     //================================================================
 
                     robot.ServoOff();
@@ -157,12 +157,29 @@ namespace DROE_CSharp_API_Sample
 
         static void initRobot()
         {
-            robot.ConnectRobot(robotIP, myIP, 11000);
+            robot.ConnectRobot(robotIP, myIP, 10000);
             Thread.Sleep(500);
-            Console.WriteLine("Connected to robot");
-            robotOn();
             initPos();
-            speedUp();
+            robot. ResetAlarm ();
+            Thread. Sleep ( 300 );
+            robot.EndCmd();
+            Thread. Sleep ( 500 );
+            robot. StartCmd ();
+            Thread. Sleep ( 500 );
+            robot. FrameSelect ( 0 , 0 );
+            Thread. Sleep ( 100 );
+            Console.WriteLine("Connected to robot");
+            bool apiRes = robot. StartAPIMoveFunction ();
+            Thread. Sleep ( 100 );
+            String errCode = robot. API_MoveFuction_Status ();
+            Thread. Sleep ( 100 );
+            Console. WriteLine ( "API move function status: " + errCode);
+
+            string firmver = robot. GetFirmwareVersion ();
+            Console. WriteLine ( "firmware version: " + firmver );
+            string apiVer = robot.APIVersion();
+            Console.WriteLine("API version: " + apiVer);
+            robotOn ();
             moveLin(HOME_POS);
             Console.WriteLine("robot init");
         }
@@ -170,25 +187,25 @@ namespace DROE_CSharp_API_Sample
         static void initPos()
         {
             HOME_POS = robot.GetGlobalPoint(0);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             COMPOSE_POS = robot.GetGlobalPoint(1);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             GET_BASE_FRAME_POS = robot.GetGlobalPoint(2);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             GET_PICTURE_POS = robot.GetGlobalPoint(3);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             GET_TOP_FRAME_POS = robot.GetGlobalPoint(4);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             GET_SCREW_POS = robot.GetGlobalPoint(5);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             LOCK_SCREW_POS = robot.GetGlobalPoint(6);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             EXPORT_POS = robot.GetGlobalPoint(7);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             CUT_PICTURE_POS = robot.GetGlobalPoint(8);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             GET_EXPORT_POS = robot.GetGlobalPoint(9);
-            Thread.Sleep(150);
+            Thread.Sleep(200);
         }
 
         static void testRobot()
@@ -242,25 +259,11 @@ namespace DROE_CSharp_API_Sample
 
         static void robotOn()
         {
+            Thread.Sleep(100);
             if(robot.ServoState() == true) return;
-
             robot.ResetAlarm();
-            Thread.Sleep(100);
+            Thread.Sleep(300);
             robot.ServoOn();
-            Thread.Sleep(100);
-            robot.StartAPIMoveFunction();
-            Thread.Sleep(100);
-
-            String errCode = robot.API_MoveFuction_Status();
-            Thread.Sleep(100);
-            Console.WriteLine("API move function status: " + errCode);
-
-            robot.SetSpeed(CRUISE_SPEED);
-            Thread.Sleep(100);
-            robot.SetOverrideSpeed(CRUISE_SPEED);
-            Thread.Sleep(100);
-
-            robot.FrameSelect(0 , 0);
             Thread.Sleep(100);
         }
 
@@ -311,13 +314,14 @@ namespace DROE_CSharp_API_Sample
 
         static void moveLin(cPoint pos)
         {
-           robot.GotoMovL(pos);
-            Thread.Sleep(300);
+            Thread. Sleep ( 200 );
+            robot.MovL(pos);
+            Thread.Sleep(500);
 
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(150);
+                Thread.Sleep(100);
             }
 
             Thread.Sleep(100);
@@ -325,17 +329,19 @@ namespace DROE_CSharp_API_Sample
 
         static void moveLin(cPoint pos, double offsetX, double offsetY, double offsetZ, double offsetRz)
         {
-            pos[eAxisName.X] += offsetX * 1000;
+            Thread. Sleep ( 200 );
+            pos [eAxisName.X] += offsetX * 1000;
             pos[eAxisName.Y] += offsetY * 1000;
             pos[eAxisName.Z] += offsetZ * 1000;
             pos[eAxisName.RZ] += offsetRz * 1000;
-            robot.GotoMovL(pos);
-            Thread.Sleep(300);
+
+            robot.MovL(pos);
+            Thread.Sleep(500);
 
             while (true)
             {
-                if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(150);
+                if (robot. RobotMovingStatus () == false) break;
+                Thread.Sleep(100);
             }
 
             pos[eAxisName.X] -= offsetX * 1000;
@@ -352,7 +358,7 @@ namespace DROE_CSharp_API_Sample
             currrentPos[eAxisName.Y] += y * 1000;
             currrentPos[eAxisName.Z] += z * 1000;
             currrentPos[eAxisName.RZ] += Rz * 1000;
-            robot.GotoMovP(currrentPos);
+            robot.MovP(currrentPos);
             Thread.Sleep(500);
 
             while (true)
@@ -366,20 +372,21 @@ namespace DROE_CSharp_API_Sample
 
         static void moveLinRel(double x, double y, double z, double Rz)
         {
-            Thread.Sleep(100);
+
+            Thread. Sleep ( 200 );
             cPoint currrentPos = robot.GetPos();
-            Thread.Sleep(150);
+            Thread.Sleep(200);
             currrentPos[eAxisName.X] += x * 1000;
             currrentPos[eAxisName.Y] += y * 1000;
             currrentPos[eAxisName.Z] += z * 1000;
             currrentPos[eAxisName.RZ] += Rz * 1000;
-            robot.GotoMovL(currrentPos);
-            Thread.Sleep(300);
+            robot.MovL(currrentPos);
+            Thread.Sleep(500);
 
             while (true)
             {
                 if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(150);
+                Thread.Sleep(100);
             }
 
             Thread.Sleep(100);
@@ -415,43 +422,37 @@ namespace DROE_CSharp_API_Sample
         
         static void speedUp()
         {
-            robot.SetSpeed(CRUISE_SPEED);
-            Thread.Sleep(150);
-            robot.SetOverrideSpeed(CRUISE_SPEED);
-            Thread.Sleep(150);
-            robot.SetSpeedEx(1500, SpeedType.SpdL); //**
-            Thread.Sleep(150);
+            //robot. SetSpeed ( CRUISE_SPEED );
+            //Thread. Sleep ( 150 );
+            //robot. SetOverrideSpeed ( CRUISE_SPEED );
+            //Thread. Sleep ( 150 );
+            robot. SetSpeedEx ( CRUISE_SPEED );
+            Thread. Sleep ( 150 );
 
-            uint speedRes = robot.GetSpeed();
-            double overrsideSpeedRes = 0;
-            robot.GetOverrideSpeed(ref overrsideSpeedRes);
-            int speedExRes = robot.GetSpeedEx();
-            Console.WriteLine("speed: " + speedRes + " override speed: " + overrsideSpeedRes + " speedEx: " + speedExRes);
-
-            robot.SetAccelEx(CRUISE_ACC_SPEED);
-            Thread.Sleep(150);
-            robot.SetDecelEx(CRUISE_DEC_SPEED);
-            Thread.Sleep(150);
+            //robot. SetAccelEx ( CRUISE_ACC_SPEED );
+            //Thread. Sleep ( 100 );
+            //robot. SetDecelEx ( CRUISE_DEC_SPEED );
+            //Thread. Sleep ( 100 );
         }
 
         static void speedDown()
         {
             robot.SetSpeed(LOAD_SPEED);
-            Thread.Sleep(100);
-            robot.SetAccelEx(LOAD_ACC_SPEED);
-            Thread.Sleep(100);
-            robot.SetDecelEx(LOAD_DEC_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(150);
+            //robot. SetAccelEx ( LOAD_ACC_SPEED );
+            //Thread. Sleep ( 100 );
+            //robot. SetDecelEx ( LOAD_DEC_SPEED );
+            //Thread. Sleep ( 100 );
         }
         
         static void setGetObjectSpeed()
         {
             robot.SetSpeed(DOWN_SPEED);
-            Thread.Sleep(100);
-            robot.SetAccelEx(LOAD_ACC_SPEED);
-            Thread.Sleep(100);
-            robot.SetDecelEx(DOWN_DEC_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(150);
+            //robot. SetAccelEx ( LOAD_ACC_SPEED );
+            //Thread. Sleep ( 100 );
+            //robot. SetDecelEx ( DOWN_DEC_SPEED );
+            //Thread. Sleep ( 100 );
         }
 
         static void getBaseFrame()

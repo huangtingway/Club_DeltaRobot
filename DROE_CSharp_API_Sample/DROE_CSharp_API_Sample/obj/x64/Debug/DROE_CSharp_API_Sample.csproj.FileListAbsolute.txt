@@ -178,7 +178,6 @@ C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_S
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\bin\Debug\LuaDebugger.dll.config
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\bin\Debug\LuaInterface.pdb
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.AssemblyReference.cache
-C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.Form1.resources
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.Properties.Resources.resources
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.GenerateResource.cache
 C:\school\SchoolProgram\Club_DeltaRobot\DROE_CSharp_API_Sample\DROE_CSharp_API_Sample\obj\x64\Debug\DROE_CSharp_API_Sample.csproj.CoreCompileInputs.cache
