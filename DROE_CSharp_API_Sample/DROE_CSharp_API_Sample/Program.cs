@@ -15,14 +15,18 @@ namespace DROE_CSharp_API_Sample
         //basic parameter
         static Robot robot = new Robot();
         const String myIP = "192.168.1.100", robotIP = "192.168.1.1";
-        const int CRUISE_SPEED = 10;
-        const int LOAD_SPEED = 10;
-        const int LOAD_ACC_SPEED = 20;
-        const int LOAD_DEC_SPEED = 20;
-        const int DOWN_SPEED = 2;
-        const int DOWN_DEC_SPEED = 3;
+
+        const int CRUISE_SPEED = 20;
         const int CRUISE_ACC_SPEED = 20;
         const int CRUISE_DEC_SPEED = 20;
+
+        const int LOAD_SPEED = 15;
+        const int LOAD_ACC_SPEED = 20;
+        const int LOAD_DEC_SPEED = 20;
+
+        const int DOWN_SPEED = 2;
+        const int DOWN_DEC_SPEED = 3;
+
         const int CYLINDER_INDEX = 2;
         const int SUCTION_INDEX1 = 3; //fornt
         const int SUCTION_INDEX2 = 5; //back
@@ -107,13 +111,13 @@ namespace DROE_CSharp_API_Sample
                     Console.WriteLine("組裝中... (執行第" + (i + 1) + "次)");
                     robotOn();
                     Thread.Sleep(100);
+                    robot.ResetAlarm();
+                    Thread.Sleep(100);
 
                     //work flow=======================================================
-                    robot.ResetAlarm();
-                    Thread.Sleep(300);
                     speedUp();
                     getBaseFrame();
-                    moveLin(COMPOSE_POS);
+                    //moveLin(COMPOSE_POS);
                     //getPicture();
                     moveLin(HOME_POS);
                     getTopFrame();
@@ -161,21 +165,23 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(500);
             initPos();
             robot.ResetAlarm();
-            Thread.Sleep(300);
-            robot.EndCmd();
-            Thread.Sleep(500);
+            Thread.Sleep(100);
+            robot.StopProgram();
+            Thread.Sleep(1000);
             robot.StartCmd();
-            Thread.Sleep(500);
+            Thread.Sleep(3000);
             robot.FrameSelect(0, 0);
             Thread.Sleep(100);
-            Console.WriteLine("Connected to robot");
-            bool apiRes = robot.StartAPIMoveFunction();
+            robot.StartAPIMoveFunction();
             Thread.Sleep(100);
+            Console.WriteLine("Connected to robot");
 
-            string firmver = robot.GetFirmwareVersion();
-            Console.WriteLine("firmware version: " + firmver);
-            string apiVer = robot.APIVersion();
-            Console.WriteLine("API version: " + apiVer);
+            string robotInfo = "robotInfo:\n";
+            robotInfo += "firmware version: " + robot.GetFirmwareVersion() + "\n";
+            robotInfo += "API version: " + robot.APIVersion() + "\n";
+            robotInfo += "test mode: " + TEST_MODE + "\n";
+            Console.WriteLine(robotInfo);
+
             robotOn();
             moveLin(HOME_POS);
             Console.WriteLine("robot init");
@@ -184,25 +190,25 @@ namespace DROE_CSharp_API_Sample
         static void initPos()
         {
             HOME_POS = robot.GetGlobalPoint(0);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             COMPOSE_POS = robot.GetGlobalPoint(1);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             GET_BASE_FRAME_POS = robot.GetGlobalPoint(2);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             GET_PICTURE_POS = robot.GetGlobalPoint(3);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             GET_TOP_FRAME_POS = robot.GetGlobalPoint(4);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             GET_SCREW_POS = robot.GetGlobalPoint(5);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             LOCK_SCREW_POS = robot.GetGlobalPoint(6);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             EXPORT_POS = robot.GetGlobalPoint(7);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             CUT_PICTURE_POS = robot.GetGlobalPoint(8);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             GET_EXPORT_POS = robot.GetGlobalPoint(9);
-            Thread.Sleep(200);
+            Thread.Sleep(100);
         }
 
         static void testRobot()
@@ -308,6 +314,25 @@ namespace DROE_CSharp_API_Sample
 
             Thread.Sleep(500);
         }
+        
+        static void movePTPRel(double x, double y, double z, double Rz)
+        {
+            cPoint currrentPos = robot.GetPos();
+            currrentPos[eAxisName.X] += x * 1000;
+            currrentPos[eAxisName.Y] += y * 1000;
+            currrentPos[eAxisName.Z] += z * 1000;
+            currrentPos[eAxisName.RZ] += Rz * 1000;
+            robot.MovP(currrentPos);
+            Thread.Sleep(500);
+
+            while (true)
+            {
+                if (robot.RobotMovingStatus() == false) break;
+                Thread.Sleep(100);
+            }
+
+            Thread.Sleep(500);
+        }
 
         static void moveLin(cPoint pos)
         {
@@ -386,28 +411,8 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(100);
         }
 
-        static void movePTPRel(double x, double y, double z, double Rz)
-        {
-            cPoint currrentPos = robot.GetPos();
-            currrentPos[eAxisName.X] += x * 1000;
-            currrentPos[eAxisName.Y] += y * 1000;
-            currrentPos[eAxisName.Z] += z * 1000;
-            currrentPos[eAxisName.RZ] += Rz * 1000;
-            robot.MovP(currrentPos);
-            Thread.Sleep(500);
-
-            while (true)
-            {
-                if (robot.RobotMovingStatus() == false) break;
-                Thread.Sleep(100);
-            }
-
-            Thread.Sleep(500);
-        }
-
         static void moveLinRel(double x, double y, double z, double Rz)
         {
-
             Thread.Sleep(200);
             cPoint currrentPos = robot.GetPos();
             Thread.Sleep(200);
@@ -541,33 +546,35 @@ namespace DROE_CSharp_API_Sample
         {
             moveLin(GET_PICTURE_POS);
 
-            //pull out picture
-            setGetObjectSpeed();
-            moveLinRel(0, 0, -PICTURE_HEIGHT_OFFSET, 0);
-            robot.SetOutputState(SUCTION_INDEX1, true);
-            speedDown();
-            Thread.Sleep(300);
-            moveLinRel(0, -50, 3, 0);
-            robot.SetOutputState(SUCTION_INDEX1, false);
-            moveLinRel(0, 50, 0, 0);
+            ////pull out picture
+            //setGetObjectSpeed();
+            //moveLinRel(0, 0, -PICTURE_HEIGHT_OFFSET, 0);
+            //robot.SetOutputState(SUCTION_INDEX1, true);
+            //speedDown();
+            //Thread.Sleep(300);
+            //moveLinRel(0, -50, 3, 0);
+            //robot.SetOutputState(SUCTION_INDEX1, false);
+            //moveLinRel(0, 50, 0, 0);
 
             //get
-            moveLinRel(0, 0, -3, 0);
-            robot.SetOutputState(SUCTION_INDEX1, true);
+            setGetObjectSpeed();
+            moveLinRel(0, 0, -PICTURE_HEIGHT_OFFSET, 0);
+            robot.SetOutputState(SUCTION_INDEX2, true);
+            speedDown();
             Thread.Sleep(300);
             moveLinRel(0, 0, PICTURE_HEIGHT_OFFSET, 0);
 
-            //cut
-            moveLin(CUT_PICTURE_POS);
-            moveLinRel(0, 0, -CUT_PICTURE_HEIGHT_OFFSET, 0);
-            moveLinRel(CUT_PICTURE_X_OFFSET, 0, 0, 0); //cut in
-            moveLinRel(-CUT_PICTURE_X_OFFSET, 0, 0, 0);
-            moveLinRel(0, 0, CUT_PICTURE_HEIGHT_OFFSET, 0);
+            ////cut
+            //moveLin(CUT_PICTURE_POS);
+            //moveLinRel(0, 0, -CUT_PICTURE_HEIGHT_OFFSET, 0);
+            //moveLinRel(CUT_PICTURE_X_OFFSET, 0, 0, 0); //cut in
+            //moveLinRel(-CUT_PICTURE_X_OFFSET, 0, 0, 0);
+            //moveLinRel(0, 0, CUT_PICTURE_HEIGHT_OFFSET, 0);
 
             //put
             moveLin(COMPOSE_POS);
             moveLinRel(0, 0, -composeHeightOffset, 0);
-            robot.SetOutputState(SUCTION_INDEX1, false);
+            robot.SetOutputState(SUCTION_INDEX2, false);
             speedUp();
             moveLinRel(0, 0, composeHeightOffset, 0);
         }
@@ -622,7 +629,6 @@ namespace DROE_CSharp_API_Sample
 
         static void getScrew(int round, int screwNum, double putXOffset, double putYOffset)
         {
-            speedDown();
             cPoint getScrewPos = GET_SCREW_POS;
             cPoint lockScrewPos = LOCK_SCREW_POS;
             int screwXOffset = screwNum / 2;
@@ -681,8 +687,8 @@ namespace DROE_CSharp_API_Sample
 
         static void export()
         {
-            moveLin(COMPOSE_POS);
             moveLin(GET_EXPORT_POS);
+
             //get
             setGetObjectSpeed();
             moveLinRel(0, 0, -17, 0);

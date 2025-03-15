@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DROE_CSharp_API_Sample", "DROE_CSharp_API_Sample\DROE_CSharp_API_Sample.csproj", "{880D1AA6-7570-490D-99BD-F46486BBA022}"
 EndProject
