@@ -35,7 +35,6 @@ namespace DROE_CSharp_API_Sample
         static cPoint HOME_POS = new cPoint();
         static cPoint GET_BASE_FRAME_POS = new cPoint();
         static cPoint GET_PICTURE_POS = new cPoint();
-        static cPoint CUT_PICTURE_POS = new cPoint();
         static cPoint GET_TOP_FRAME_POS = new cPoint();
         static cPoint GET_SCREW_POS = new cPoint(); //右下角
         static cPoint EXPORT_POS = new cPoint();
@@ -77,8 +76,6 @@ namespace DROE_CSharp_API_Sample
 
             while (true)
             {
-                bool isFininsh = false;
-
                 if (TEST_MODE == true)
                 {
                     Console.WriteLine("自動測試中...");
@@ -90,12 +87,14 @@ namespace DROE_CSharp_API_Sample
                     Console.WriteLine("自動測試完成, 請確認來料完全補滿");
                 }
 
+                bool isFininsh = false;
+
                 for (int i = 0; i < 5; i++)
                 {
                     Console.WriteLine("按一下開始按鈕啟動執行, 或長按開始按鈕1秒結束程式");
 
-                    pressTime = detectBtnPress(); //detect is finish or not
-                    while (true)
+                    pressTime = detectBtnPress(); //detect press time
+                    while (true) //handle button event
                     {
                         if (pressTime >= 800)
                         {
@@ -133,14 +132,14 @@ namespace DROE_CSharp_API_Sample
                     //================================================================
 
                     robot.ServoOff();
-                    Thread.Sleep(300);
+                    Thread.Sleep(100);
                     Console.WriteLine("組裝完成");
                     composeHeightOffset = ORG_COMPOSE_HEIGHT_OFFSET; //reset height
                 }
 
                 if (isFininsh == true) break;
 
-                Console.WriteLine("來料不足, 補料完成後長按開始按鈕1秒");
+                Console.WriteLine("來料不足, 補料完成後長按開始按鈕1秒"); //material not enough 
                 pressTime = detectBtnPress();
                 while (true)
                 {
@@ -205,9 +204,7 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(100);
             EXPORT_POS = robot.GetGlobalPoint(7);
             Thread.Sleep(100);
-            CUT_PICTURE_POS = robot.GetGlobalPoint(8);
-            Thread.Sleep(100);
-            GET_EXPORT_POS = robot.GetGlobalPoint(9);
+            GET_EXPORT_POS = robot.GetGlobalPoint(8);
             Thread.Sleep(100);
         }
 
@@ -572,7 +569,7 @@ namespace DROE_CSharp_API_Sample
             //moveLinRel(0, 0, CUT_PICTURE_HEIGHT_OFFSET, 0);
 
             //put
-            moveLin(COMPOSE_POS);
+            moveLin(COMPOSE_POS, -20, -20, 0, 0);
             moveLinRel(0, 0, -composeHeightOffset, 0);
             robot.SetOutputState(SUCTION_INDEX2, false);
             speedUp();
@@ -605,6 +602,12 @@ namespace DROE_CSharp_API_Sample
 
         static void getTopFrame()
         {
+            //cPoint currentPos = robot.GetPos();
+            //Thread.Sleep(100);
+            //robot.StartContinuousMovL(currentPos);
+            //robot.PathL(HOME_POS);
+            //robot.EndContinuousMovL(GET_TOP_FRAME_POS);
+
             moveLin(GET_TOP_FRAME_POS, 0, 10, 0, 0);
             //get
             setGetObjectSpeed();
