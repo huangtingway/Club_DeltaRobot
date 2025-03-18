@@ -61,7 +61,6 @@ namespace DROE_CSharp_API_Sample
 
         static double SCREW_HEIGHT_OFFSET = 90;
         static double COMPOSE_HEIGHT_OFFSET = 96;
-        static double EXPORT_HEIGHT_OFFSET = 10;
         static double LOCK_SCREW_HEIGHT_OFFSET = 14.7;
 
         static double bottomFrameHeightOffset = ORG_BOTTOM_FRAME_HEIGHT_OFFSET;
@@ -505,44 +504,44 @@ namespace DROE_CSharp_API_Sample
         static void speedUp()
         {
             robot.SetSpeed(CRUISE_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             robot.SetSpeedEx(CRUISE_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
 
             robot.SetAccelEx(CRUISE_ACC_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             robot.SetDecelEx(CRUISE_DEC_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             robot.SetAccurEx(eAccur.HIGH);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
         }
 
         static void speedDown()
         {
             robot.SetSpeed(LOAD_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             robot.SetSpeedEx(LOAD_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             robot.SetAccelEx(LOAD_ACC_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             robot.SetDecelEx(LOAD_DEC_SPEED);
-            Thread.Sleep(100); 
+            Thread.Sleep(50); 
             robot.SetAccurEx(eAccur.HIGH);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
         }
 
         static void setGetObjectSpeed()
         {
             robot.SetSpeed(DOWN_SPEED);
-            Thread.Sleep(150);
+            Thread.Sleep(50);
             robot.SetSpeedEx(DOWN_SPEED);
-            Thread.Sleep(150);
+            Thread.Sleep(50);
             robot.SetAccelEx(DOWN_DEC_SPEED);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             robot.SetDecelEx(DOWN_DEC_SPEED);
-            Thread.Sleep(100); 
+            Thread.Sleep(50); 
             robot.SetAccurEx(eAccur.HIGH);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
         }
 
         static void getBaseFrame()
@@ -654,12 +653,12 @@ namespace DROE_CSharp_API_Sample
             moveLin(lockScrewPos);
 
             //put
+            setGetObjectSpeed();
             moveLinRel(0, 0, -(LOCK_SCREW_HEIGHT_OFFSET * (3.0f / 4)), 0); //clamp down
             robot.SetOutputState(CYLINDER_INDEX, false);
             Thread.Sleep(250);
             moveLin(lockScrewPos, 0, 3, 0, 0);
             moveLinRel(0, -20, 0, 0);
-            setGetObjectSpeed();
 
             if (screwNum == 1 || screwNum == 3) //press down
             {
