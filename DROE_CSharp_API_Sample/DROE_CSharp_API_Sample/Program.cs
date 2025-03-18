@@ -655,12 +655,12 @@ namespace DROE_CSharp_API_Sample
             moveLin(lockScrewPos);
 
             //put
+            setGetObjectSpeed();
             moveLinRel(0, 0, -(LOCK_SCREW_HEIGHT_OFFSET * (2.0f / 3)), 0); //clamp down
             robot.SetOutputState(CYLINDER_INDEX, false);
             Thread.Sleep(250);
             moveLin(lockScrewPos, 0, 3, 0, 0);
             moveLinRel(0, -10, 0, 0);
-            setGetObjectSpeed();
 
             if (screwNum == 1 || screwNum == 3) //press down
             {
