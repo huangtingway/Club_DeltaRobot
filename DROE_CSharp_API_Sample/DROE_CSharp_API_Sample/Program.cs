@@ -16,16 +16,16 @@ namespace DROE_CSharp_API_Sample
         static Robot robot = new Robot();
         const String myIP = "192.168.1.100", robotIP = "192.168.1.1";
 
-        const int CRUISE_SPEED = 10;
-        const int CRUISE_ACC_SPEED = 5;
+        const int CRUISE_SPEED = 50;
+        const int CRUISE_ACC_SPEED = 10;
         const int CRUISE_DEC_SPEED = 5;
 
-        const int LOAD_SPEED = 3;
-        const int LOAD_ACC_SPEED = 3;
+        const int LOAD_SPEED = 20;
+        const int LOAD_ACC_SPEED = 7;
         const int LOAD_DEC_SPEED = 3;
 
         const int DOWN_SPEED = 2;
-        const int DOWN_DEC_SPEED = 1;
+        const int DOWN_DEC_SPEED = 5;
 
         const int CYLINDER_INDEX = 2;
         const int SUCTION_INDEX1 = 3; //fornt
@@ -132,8 +132,8 @@ namespace DROE_CSharp_API_Sample
                     moveLin(COMPOSE_POS);
                     getScrew(i , 0 , 0 , 0);
                     getScrew(i , 1 , -53.0 , 0.2);
-                    getScrew(i , 2 , -0.3 , -43.4);
-                    getScrew(i , 3 , -53.8 , -43.2);
+                    getScrew(i , 2 , -0.3 , -43.3);
+                    getScrew(i , 3 , -53.8 , -43.1);
                     export();
                     moveLin(HOME_POS);
                     //================================================================
@@ -504,44 +504,81 @@ namespace DROE_CSharp_API_Sample
         static void speedUp()
         {
             robot.SetSpeed(CRUISE_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetSpeedEx(CRUISE_SPEED);
-            Thread.Sleep(50);
-
+            Thread.Sleep(100);
             robot.SetAccelEx(CRUISE_ACC_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetDecelEx(CRUISE_DEC_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetAccurEx(eAccur.HIGH);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
+
+            while (true)
+            {
+                uint speed = robot.GetSpeed();
+                int speedEx = robot.GetSpeedEx();
+
+                if (speed == CRUISE_SPEED && speedEx == CRUISE_SPEED) break;
+                robot.SetSpeed(CRUISE_SPEED);
+                Thread.Sleep(100);
+                robot.SetSpeedEx(CRUISE_SPEED);
+                Thread.Sleep(100);
+            }
         }
 
         static void speedDown()
         {
             robot.SetSpeed(LOAD_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetSpeedEx(LOAD_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetAccelEx(LOAD_ACC_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetDecelEx(LOAD_DEC_SPEED);
-            Thread.Sleep(50); 
+            Thread.Sleep(100); 
             robot.SetAccurEx(eAccur.HIGH);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
+
+            while(true)
+            {
+                uint speed = robot.GetSpeed();
+                int speedEx = robot.GetSpeedEx();
+
+                if(speed == LOAD_SPEED && speedEx == LOAD_SPEED)
+                    break;
+                robot.SetSpeed(LOAD_SPEED);
+                Thread.Sleep(100);
+                robot.SetSpeedEx(LOAD_SPEED);
+                Thread.Sleep(100);
+            }
         }
 
         static void setGetObjectSpeed()
         {
             robot.SetSpeed(DOWN_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetSpeedEx(DOWN_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetAccelEx(DOWN_DEC_SPEED);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             robot.SetDecelEx(DOWN_DEC_SPEED);
-            Thread.Sleep(50); 
+            Thread.Sleep(100); 
             robot.SetAccurEx(eAccur.HIGH);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
+
+            while(true)
+            {
+                uint speed = robot.GetSpeed();
+                int speedEx = robot.GetSpeedEx();
+
+                if(speed == DOWN_SPEED && speedEx == DOWN_SPEED)
+                    break;
+                robot.SetSpeed(DOWN_SPEED);
+                Thread.Sleep(100);
+                robot.SetSpeedEx(DOWN_SPEED);
+                Thread.Sleep(100);
+            }
         }
 
         static void getBaseFrame()
