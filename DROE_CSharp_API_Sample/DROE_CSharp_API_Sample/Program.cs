@@ -562,7 +562,9 @@ namespace DROE_CSharp_API_Sample
 
         static void speedUp()
         {
-            robot.SetSpeedEx(CRUISE_SPEED);
+            robot.SetSpeedEx(12000, SpeedType.SpdL);
+
+            //robot.SetSpeedEx(CRUISE_SPEED);
             Thread.Sleep(100);
             robot.SetAccelEx(CRUISE_ACC_SPEED);
             Thread.Sleep(100);
@@ -589,7 +591,9 @@ namespace DROE_CSharp_API_Sample
 
         static void speedDown()
         {
-            robot.SetSpeedEx(LOAD_SPEED);
+            robot.SetSpeedEx(5000, SpeedType.SpdL);
+
+            //robot.SetSpeedEx(LOAD_SPEED);
             Thread.Sleep(100);
             robot.SetAccelEx(LOAD_ACC_SPEED);
             Thread.Sleep(100);
@@ -616,7 +620,9 @@ namespace DROE_CSharp_API_Sample
 
         static void setGetObjectSpeed()
         {
-            robot.SetSpeedEx(DOWN_SPEED);
+            robot.SetSpeedEx(350, SpeedType.SpdL);
+
+            //robot.SetSpeedEx(DOWN_SPEED);
             Thread.Sleep(100);
             robot.SetAccelEx(DOWN_DEC_SPEED);
             Thread.Sleep(100);
@@ -686,8 +692,8 @@ namespace DROE_CSharp_API_Sample
             robot.SetAccelEx(1);
             Thread.Sleep(150);
             moveLinRel(0 , 0 , PLACE_PICTURE_HEIGHT_OFFSET , 0);
-            robot.SetAccelEx(LOAD_ACC_SPEED);
-            Thread.Sleep(100);
+            //robot.SetAccelEx(LOAD_ACC_SPEED);
+            //Thread.Sleep(100);
 
             speedUp();
         }
