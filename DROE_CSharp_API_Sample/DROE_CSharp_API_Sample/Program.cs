@@ -16,16 +16,16 @@ namespace DROE_CSharp_API_Sample
         static Robot robot = new Robot();
         const String myIP = "192.168.1.100", robotIP = "192.168.1.1";
 
-        const int CRUISE_SPEED = 50;
-        const int CRUISE_ACC_SPEED = 10;
-        const int CRUISE_DEC_SPEED = 8;
+        const int CRUISE_SPEED = 90;
+        const int CRUISE_ACC_SPEED = 50;
+        const int CRUISE_DEC_SPEED = 20;
 
-        const int LOAD_SPEED = 20;
-        const int LOAD_ACC_SPEED = 6;
-        const int LOAD_DEC_SPEED = 3;
+        const int LOAD_SPEED = 30;
+        const int LOAD_ACC_SPEED = 20;
+        const int LOAD_DEC_SPEED = 5;
 
-        const int DOWN_SPEED = 2;
-        const int DOWN_DEC_SPEED = 2;
+        const int DOWN_SPEED = 10;
+        const int DOWN_DEC_SPEED = 3;
 
         const int CYLINDER_INDEX = 2;
         const int SUCTION_INDEX1 = 3; //fornt
@@ -562,7 +562,7 @@ namespace DROE_CSharp_API_Sample
 
         static void speedUp()
         {
-            robot.SetSpeedEx(12000, SpeedType.SpdL);
+            robot.SetSpeedEx(24000, SpeedType.SpdL);
 
             //robot.SetSpeedEx(CRUISE_SPEED);
             Thread.Sleep(100);
@@ -571,6 +571,8 @@ namespace DROE_CSharp_API_Sample
             robot.SetDecelEx(CRUISE_DEC_SPEED);
             Thread.Sleep(100);
             robot.SetSpeed(CRUISE_SPEED);
+            Thread.Sleep(100);
+            robot.SetAccurEx(eAccur.HIGH);
             Thread.Sleep(100);
 
             while(true)
@@ -601,6 +603,8 @@ namespace DROE_CSharp_API_Sample
             Thread.Sleep(100);
             robot.SetSpeed(LOAD_SPEED);
             Thread.Sleep(100);
+            robot.SetAccurEx(eAccur.HIGH);
+            Thread.Sleep(100);
 
             while(true)
             {
@@ -620,7 +624,7 @@ namespace DROE_CSharp_API_Sample
 
         static void setGetObjectSpeed()
         {
-            robot.SetSpeedEx(350, SpeedType.SpdL);
+            robot.SetSpeedEx(500, SpeedType.SpdL);
 
             //robot.SetSpeedEx(DOWN_SPEED);
             Thread.Sleep(100);
@@ -629,6 +633,8 @@ namespace DROE_CSharp_API_Sample
             robot.SetDecelEx(DOWN_DEC_SPEED);
             Thread.Sleep(100);
             robot.SetSpeed(DOWN_SPEED);
+            Thread.Sleep(100);
+            robot.SetAccurEx(eAccur.HIGH);
             Thread.Sleep(100);
 
             while(true)
@@ -654,11 +660,11 @@ namespace DROE_CSharp_API_Sample
             //get
             setGetObjectSpeed();
             moveLinRel(0 , 0 , -bottomFrameHeightOffset , 0);
-            moveLinRel(0 , -10 , 0 , 0);
+            moveLinRel(0 , -10 , 1 , 0);
             robot.SetOutputState(CYLINDER_INDEX , true);
             speedDown();
             Thread.Sleep(300);
-            moveLinRel(43 , 0 , 0 , 0);
+            moveLinRel(43 , 0 , -1 , 0);
             moveLinRel(0 , 0 , bottomFrameHeightOffset , 0);
 
             moveLin(COMPOSE_POS);
@@ -714,10 +720,10 @@ namespace DROE_CSharp_API_Sample
             moveLin(COMPOSE_POS);
 
             //put
-            moveLinRel(0 , 0 , -COMPOSE_HEIGHT_OFFSET , -1);
+            moveLinRel(0 , 1 , -COMPOSE_HEIGHT_OFFSET , -1);
             robot.SetOutputState(CYLINDER_INDEX , false);
             speedUp();
-            moveLinRel(0 , 0 , COMPOSE_HEIGHT_OFFSET , 1);
+            moveLinRel(0 , -1 , COMPOSE_HEIGHT_OFFSET , 1);
 
             topFrameHeightOffset += 7;
         }
